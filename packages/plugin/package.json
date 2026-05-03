@@ -1,0 +1,40 @@
+{
+  "name": "@hypeup/plugin",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./vite": "./src/vite.ts",
+    "./esbuild": "./src/esbuild.ts",
+    "./rollup": "./src/rollup.ts",
+    "./webpack": "./src/webpack.ts",
+    "./rspack": "./src/rspack.ts"
+  },
+  "dependencies": {
+    "unplugin": "^3.0.0",
+    "@babel/core": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@hypeup/babel": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/bun": "^1.3.13",
+    "vite": "^8.0.0",
+    "@typescript/native-preview": "beta"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Sigitex",
+    "url": "http://github.com/sigitex"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sigitex/hypeup.git"
+  },
+  "scripts": {
+    "check": "tsgo --build",
+    "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
+  },
+  "files": [
+    "src"
+  ]
+}

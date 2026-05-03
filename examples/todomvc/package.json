@@ -1,0 +1,17 @@
+{
+  "name": "@hypeup/todomvc",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypeup/client": "workspace:*",
+    "@hypeup/vdom": "workspace:*",
+    "@hypeup/runtime": "workspace:*",
+    "@hypeup/lexicon": "workspace:*",
+    "todomvc-app-css": "^2.4.3"
+  },
+  "devDependencies": {
+    "@hypeup/plugin": "workspace:*",
+    "@babel/preset-typescript": "^7.27.1",
+    "vite": "^6.3.3"
+  }
+}

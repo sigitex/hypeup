@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "references": [
+    {
+      "path": "./tsconfig.src.json"
+    }
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "types": [
+      "bun"
+    ]
+  },
+  "include": [
+    "tests"
+  ],
+  "files": []
+}

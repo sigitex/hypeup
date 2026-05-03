@@ -1,0 +1,26 @@
+{
+  "name": "@hypeup/vdom",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "license": "MIT",
+  "author": {
+    "name": "Sigitex",
+    "url": "http://github.com/sigitex"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sigitex/hypeup.git"
+  },
+  "devDependencies": {
+    "@typescript/native-preview": "beta",
+    "@types/bun": "^1.3.13"
+  },
+  "scripts": {
+    "check": "tsgo --build",
+    "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
+  },
+  "files": [
+    "src"
+  ]
+}

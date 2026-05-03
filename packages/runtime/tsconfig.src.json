@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "references": [
+    {
+      "path": "../vdom/tsconfig.src.json"
+    }
+  ],
+  "compilerOptions": {
+    "composite": true
+  },
+  "include": [
+    "src"
+  ]
+}

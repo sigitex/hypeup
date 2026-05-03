@@ -1,0 +1,196 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`HTML element lowering standard element call 1`] = `
+"import { elem as _elem } from "@hypeup/runtime";
+_elem("div", ["hello"]);"
+`;
+
+exports[`HTML element lowering void element call 1`] = `
+"import { elemVoid as _elemVoid } from "@hypeup/runtime";
+_elemVoid("br", []);"
+`;
+
+exports[`HTML element lowering void element with attributes 1`] = `
+"import { elemVoid as _elemVoid } from "@hypeup/runtime";
+_elemVoid("img", [{
+  src: "x.png"
+}]);"
+`;
+
+exports[`class chain lowering single class 1`] = `
+"import { className as _className, elem as _elem } from "@hypeup/runtime";
+_elem("div", [_className("active"), "hello"]);"
+`;
+
+exports[`class chain lowering multiple classes 1`] = `
+"import { className as _className, elem as _elem } from "@hypeup/runtime";
+_elem("div", [_className("active"), _className("large"), "hello"]);"
+`;
+
+exports[`class chain lowering camelCase class kebabized 1`] = `
+"import { className as _className, elem as _elem } from "@hypeup/runtime";
+_elem("div", [_className("active-item"), "hello"]);"
+`;
+
+exports[`CSS property call-form lowering simple property call 1`] = `
+"import { prop as _prop } from "@hypeup/runtime";
+_prop("color", "red");"
+`;
+
+exports[`CSS property call-form lowering camelCase property call 1`] = `
+"import { prop as _prop } from "@hypeup/runtime";
+_prop("z-index", 10);"
+`;
+
+exports[`CSS property keyword-access lowering keyword access 1`] = `
+"import { prop as _prop } from "@hypeup/runtime";
+_prop("z-index", "auto");"
+`;
+
+exports[`CSS property keyword-access lowering camelCase keyword 1`] = `
+"import { prop as _prop } from "@hypeup/runtime";
+_prop("writing-mode", "horizontal-tb");"
+`;
+
+exports[`CSS property keyword-access lowering color keyword access 1`] = `
+"import { prop as _prop } from "@hypeup/runtime";
+_prop("color", "red");"
+`;
+
+exports[`at-rule lowering at-rule with rule argument 1`] = `
+"import { atRule as _atRule, elem as _elem } from "@hypeup/runtime";
+_atRule("@media", "(min-width: 600px)", [_elem("div", ["hi"])]);"
+`;
+
+exports[`at-rule lowering at-rule without rule argument 1`] = `
+"import { atRule as _atRule, prop as _prop } from "@hypeup/runtime";
+_atRule("@font-face", null, [_prop("font-family", "Arial")]);"
+`;
+
+exports[`rule lowering rule call with string selector 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule(".foo", [_prop("color", "red")]);"
+`;
+
+exports[`rule lowering rule class access 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule(".active", [_prop("color", "red")]);"
+`;
+
+exports[`rule lowering rule class access kebabized 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule(".active-item", [_prop("color", "red")]);"
+`;
+
+exports[`rule lowering rule with element selector 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule("div", [_prop("color", "red")]);"
+`;
+
+exports[`each lowering each call rewritten to import from client 1`] = `
+"import { elem as _elem } from "@hypeup/runtime";
+import { each as _each } from "@hypeup/client";
+_each(state.items, i => i.id, i => _elem("li", [i.name]));"
+`;
+
+exports[`each lowering each with local binding not rewritten 1`] = `
+"const each = myFn;
+each(items);"
+`;
+
+exports[`each lowering each inside element contents 1`] = `
+"import { each as _each } from "@hypeup/client";
+import { elem as _elem } from "@hypeup/runtime";
+_elem("ul", [_each(state.items, i => i.id, i => _elem("li", [i.name]))]);"
+`;
+
+exports[`escape hatch lowering doctype.html5 1`] = `
+"import { raw as _raw } from "@hypeup/runtime";
+_raw("<!DOCTYPE html>");"
+`;
+
+exports[`escape hatch lowering cssString passthrough 1`] = `
+"import { cssString as _cssString } from "@hypeup/runtime";
+_cssString(userInput);"
+`;
+
+exports[`escape hatch lowering elem escape hatch preserves call 1`] = `
+"import { elem as _elem } from "@hypeup/runtime";
+_elem(tag, "hello");"
+`;
+
+exports[`scope-shadowing skip locally bound name not rewritten 1`] = `
+"const div = something();
+div("hello");"
+`;
+
+exports[`scope-shadowing skip destructured name not rewritten 1`] = `
+"const {
+  color
+} = palette;
+color("red");"
+`;
+
+exports[`scope-shadowing skip parameter name not rewritten 1`] = `
+"function render(div) {
+  return div("hi");
+}"
+`;
+
+exports[`import injection only used helpers imported 1`] = `
+"import { elem as _elem, prop as _prop } from "@hypeup/runtime";
+_elem("div", ["hello"]);
+_prop("color", "red");"
+`;
+
+exports[`import injection multiple uses produce single import 1`] = `
+"import { elem as _elem } from "@hypeup/runtime";
+_elem("div", ["a"]);
+_elem("span", ["b"]);
+_elem("p", ["c"]);"
+`;
+
+exports[`import injection collision-safe import 1`] = `
+"import { elem as _elem } from "@hypeup/runtime";
+const elem = "mine";
+_elem("div", ["hello"]);"
+`;
+
+exports[`keyword collisions _var maps to var tag 1`] = `
+"import { elem as _elem } from "@hypeup/runtime";
+_elem("var", ["code"]);"
+`;
+
+exports[`PascalCase lazy wrapping PascalCase call with args is wrapped 1`] = `
+"import { lazy as _lazy } from "@hypeup/client";
+_lazy(TodoRow, [todo, isSelected]);"
+`;
+
+exports[`PascalCase lazy wrapping PascalCase call with single arg 1`] = `
+"import { lazy as _lazy } from "@hypeup/client";
+_lazy(Header, [count]);"
+`;
+
+exports[`PascalCase lazy wrapping zero-arg PascalCase call is NOT wrapped 1`] = `"Header();"`;
+
+exports[`PascalCase lazy wrapping PascalCase call in variable assignment is wrapped 1`] = `
+"import { lazy as _lazy } from "@hypeup/client";
+const row = _lazy(TodoRow, [todo]);"
+`;
+
+exports[`PascalCase lazy wrapping PascalCase call inside each() mapFn is wrapped 1`] = `
+"import { each as _each, lazy as _lazy } from "@hypeup/client";
+_each(items, d => d.id, d => _lazy(TodoRow, [d, selected]));"
+`;
+
+exports[`PascalCase lazy wrapping locally bound PascalCase IS wrapped 1`] = `
+"import { lazy as _lazy } from "@hypeup/client";
+const MyComp = () => {};
+_lazy(MyComp, [x]);"
+`;
+
+exports[`PascalCase lazy wrapping multiple PascalCase calls share single lazy import 1`] = `
+"import { lazy as _lazy } from "@hypeup/client";
+_lazy(TodoRow, ["a"]);
+_lazy(AdminRow, ["b"]);"
+`;

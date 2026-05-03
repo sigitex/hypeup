@@ -1,0 +1,34 @@
+{
+  "name": "@hypeup/lexicon",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./primitives": "./src/primitives.gen.ts"
+  },
+  "dependencies": {
+    "@hypeup/runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@hypeup/generate": "workspace:*",
+    "@hypeup/vdom": "workspace:*",
+    "@typescript/native-preview": "beta",
+    "@types/bun": "^1.3.13"
+  },
+  "scripts": {
+    "generate": "bun node_modules/@hypeup/generate/src/generate.ts",
+    "check": "tsgo --build",
+    "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Sigitex",
+    "url": "http://github.com/sigitex"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sigitex/hypeup.git"
+  },
+  "files": [
+    "src"
+  ]
+}

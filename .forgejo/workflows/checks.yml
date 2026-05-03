@@ -1,0 +1,13 @@
+name: Checks
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: https://${{ secrets.FORGE_TOKEN }}@code.quickbasic.org/sigitex/regime/actions/checks@main

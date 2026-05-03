@@ -1,0 +1,40 @@
+{
+  "name": "@hypeup/escape-html",
+  "type": "module",
+  "exports": {
+    ".": {
+      "bun": "./src/index.bun.ts",
+      "default": "./src/index.default.ts"
+    }
+  },
+  "peerDependencies": {
+    "escape-html": "^1.0.3"
+  },
+  "peerDependenciesMeta": {
+    "escape-html": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.13",
+    "@types/escape-html": "1.0.4",
+    "escape-html": "1.0.3",
+    "@typescript/native-preview": "beta"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Sigitex",
+    "url": "http://github.com/sigitex"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sigitex/hypeup.git"
+  },
+  "scripts": {
+    "check": "tsgo --build",
+    "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
+  },
+  "files": [
+    "src"
+  ]
+}

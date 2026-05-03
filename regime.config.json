@@ -1,0 +1,8 @@
+{
+  "templates": [
+    "profile/monorepo/root"
+  ],
+  "vars": {
+    "repo": "hypeup"
+  }
+}
