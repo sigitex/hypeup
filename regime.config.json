@@ -1,7 +1,8 @@
 {
   "templates": [
     "profile/monorepo/root",
-    "workflow/mirror"
+    "workflow/mirror",
+    "workflow/publish-npm"
   ],
   "vars": {
     "repo": "hypeup"
