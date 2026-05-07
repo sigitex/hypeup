@@ -22,7 +22,7 @@
     "url": "https://github.com/sigitex/hypeup.git"
   },
   "scripts": {
-    "check": "tsgo --build && rm -rf dist",
+    "check": "tsgo --build",
     "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
   },
   "files": [
