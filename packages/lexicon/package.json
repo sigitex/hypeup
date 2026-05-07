@@ -16,7 +16,7 @@
   },
   "scripts": {
     "generate": "bun node_modules/@hypeup/generate/src/generate.ts",
-    "check": "tsgo --build",
+    "check": "tsgo --build && rm -rf dist",
     "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
   },
   "license": "MIT",

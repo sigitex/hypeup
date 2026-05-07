@@ -21,7 +21,7 @@
     "@types/bun": "^1.3.13"
   },
   "scripts": {
-    "check": "tsgo --build",
+    "check": "tsgo --build && rm -rf dist",
     "test": "bun test --pass-with-no-tests --tsconfig-override tsconfig.test.json"
   },
   "files": [
