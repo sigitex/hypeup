@@ -3,7 +3,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "bun": "./src/index.bun.ts",
+      "bun": "./src/bun/index.ts",
       "default": "./src/index.default.ts"
     }
   },
