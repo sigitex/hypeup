@@ -35,5 +35,6 @@
     "lint": "oxlint",
     "test": "bun run --workspaces --parallel --no-exit-on-error test",
     "check": "bun run --workspaces --parallel --no-exit-on-error check"
-  }
+  },
+  "type": "module"
 }
