@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sigitex/hypeup.git"
+    "url": "git+https://github.com/sigitex/hypeup.git"
   },
   "devDependencies": {
     "@typescript/native-preview": "beta",
