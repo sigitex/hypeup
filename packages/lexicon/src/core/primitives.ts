@@ -22,7 +22,14 @@ declare global {
   function prop(name: string, value: Content): Property
   function attr(name: string, value: Content): Attr
   function raw(x: Content): Raw
-  function rule(selector: string, ...contents: Content[]): Rule
+  const rule: {
+    /** Create a CSS rule with a selector. */
+    (selector: string, ...contents: Content[]): Rule
+    /** Create a `rule` CSS property. `css-gaps-1` */
+    (value: Content): Property
+    /** Dot-syntax class selector shorthand: `rule.active(...)` becomes `rule(".active", ...)` */
+    [className: string]: (...contents: Content[]) => Rule
+  }
   function className(...names: [string, ...string[]]): CssClass[]
   function cssString(text: string): string
   const doctype: { html5: Raw }

@@ -8159,9 +8159,6 @@ declare global {
     interCharacter: Property
   }
   
-  /** Create a `rule` property. `css-gaps-1` */
-  function rule(value: Content): Property
-  
   /** Create a `rule-break` property. `css-gaps-1` */
   function ruleBreak(value: Content): Property
   

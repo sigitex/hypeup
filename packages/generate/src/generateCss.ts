@@ -1,6 +1,8 @@
 import discoverCss, { type SpecProperty, type SpecValue } from "./discoverCss"
 import Writer from "@sigitex/writer"
 
+const corePrimitives = new Set(["rule"])
+
 export async function generateCss() {
   const { properties, colors, atrules } = await discoverCss()
   const ts = new Writer()
@@ -31,7 +33,7 @@ export async function generateCss() {
     })
     .line("// Properties")
     .line()
-    .each(properties, generateProperty)
+    .each(properties.filter(p => !corePrimitives.has(p.jsName)), generateProperty)
     .dedent()
     .line("}")
     .line()

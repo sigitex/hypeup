@@ -101,6 +101,7 @@ export async function createDevServer(
 
   const server = await createServer({
     ...sharedConfig(root),
+    appType: "custom",
     logLevel: "info",
     server: {
       port: options?.port,
@@ -132,8 +133,11 @@ export async function createDevServer(
                 route = (url === "/" ? "" : url.slice(1)) + "index.html"
               } else if (url.endsWith(".html")) {
                 route = url.slice(1)
+              } else if (!url.includes(".")) {
+                // Clean URL without extension — try as a page route
+                route = url.slice(1) + ".html"
               } else {
-                // Not a page request — let Vite handle static assets etc.
+                // Has a non-.html extension (e.g. .css, .js, .png) — let Vite handle it
                 next()
                 return
               }
@@ -155,6 +159,15 @@ export async function createDevServer(
                       params = match
                       break
                     }
+                  }
+                }
+
+                // Try /index.html variant (e.g. /src/projects -> src/projects/index.html)
+                if (!page) {
+                  const indexRoute = route.replace(/\.html$/, "/index.html")
+                  page = pages.find((p) => p.route === indexRoute)
+                  if (page) {
+                    route = indexRoute
                   }
                 }
 
