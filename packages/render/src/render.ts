@@ -1,7 +1,7 @@
 // oxlint-disable complexity
 // oxlint-disable typescript/no-explicit-any
 import { escapeHtml } from "@hypeup/escape-html"
-import { AtRule, Each, Element, Raw, Rule } from "@hypeup/vdom"
+import { AtRule, Each, Element, Lazy, Raw, Rule } from "@hypeup/vdom"
 import { classifyAtRule, classifyElement, classifyRule } from "@hypeup/runtime"
 
 // TODO: .toHTML()
@@ -46,6 +46,11 @@ function renderNode(x: Content, r: Renderer) {
         renderNode(e, r)
       }
       break
+    case x instanceof Lazy: {
+      const element = x.fn(...x.args)
+      renderNode(element, r)
+      break
+    }
     case x instanceof Each: {
       const items: any[] = x.items
       for (let i = 0; i < items.length; i++) {
