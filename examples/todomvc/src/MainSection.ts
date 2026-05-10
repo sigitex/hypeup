@@ -9,6 +9,12 @@ export function MainSection() {
       on("change", () => toggleAll()),
     ),
     label({ for: "toggle-all" }, "Mark all as complete"),
-    ul.todoList(each(filteredTodos(), (todo: Todo) => todo.id, (todo: Todo) => TodoItem(todo))),
+    ul.todoList(
+      each(
+        filteredTodos(),
+        (todo: Todo) => todo.id,
+        (todo: Todo) => TodoItem(todo),
+      ),
+    ),
   )
 }

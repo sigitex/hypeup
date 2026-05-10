@@ -8,11 +8,29 @@ export function FooterSection() {
       count === 1 ? " item left" : " items left",
     ),
     ul.filters(
-      li(a(state.filter === "all" && className("selected"), { href: "#/" }, "All")),
-      li(a(state.filter === "active" && className("selected"), { href: "#/active" }, "Active")),
-      li(a(state.filter === "completed" && className("selected"), { href: "#/completed" }, "Completed")),
+      li(
+        a(
+          state.filter === "all" && className("selected"),
+          { href: "#/" },
+          "All",
+        ),
+      ),
+      li(
+        a(
+          state.filter === "active" && className("selected"),
+          { href: "#/active" },
+          "Active",
+        ),
+      ),
+      li(
+        a(
+          state.filter === "completed" && className("selected"),
+          { href: "#/completed" },
+          "Completed",
+        ),
+      ),
     ),
-    state.todos.some(t => t.completed)
+    state.todos.some((t) => t.completed)
       ? button.clearCompleted(
           "Clear completed",
           on("click", () => clearCompleted()),

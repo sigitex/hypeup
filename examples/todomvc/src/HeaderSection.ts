@@ -11,7 +11,9 @@ export function HeaderSection() {
 }
 
 function handleNewTodoKeydown(e: KeyboardEvent) {
-  if (e.key !== "Enter") return
+  if (e.key !== "Enter") {
+    return
+  }
   const el = e.target as HTMLInputElement
   addTodo(el.value)
   el.value = ""

@@ -13,53 +13,71 @@ export const state = {
   filter: "all" as Filter,
 }
 
+// Queries
+
 export function filteredTodos(): Todo[] {
-  const f = state.filter
-  if (f === "active") return state.todos.filter(t => !t.completed)
-  if (f === "completed") return state.todos.filter(t => t.completed)
+  if (state.filter === "active") {
+    return state.todos.filter((t) => !t.completed)
+  }
+  if (state.filter === "completed") {
+    return state.todos.filter((t) => t.completed)
+  }
   return state.todos
 }
 
 export function activeCount(): number {
-  return state.todos.filter(t => !t.completed).length
+  return state.todos.filter((t) => !t.completed).length
 }
 
 export function allCompleted(): boolean {
-  return state.todos.length > 0 && state.todos.every(t => t.completed)
+  return state.todos.length > 0 && state.todos.every((t) => t.completed)
 }
+
+// Mutations
 
 export function addTodo(title: string) {
   const trimmed = title.trim()
-  if (!trimmed) return
-  state.todos = [...state.todos, { id: nextId++, title: trimmed, completed: false }]
+  if (trimmed) {
+    state.todos.push({ id: nextId++, title: trimmed, completed: false })
+  }
 }
 
 export function removeTodo(id: number) {
-  state.todos = state.todos.filter(t => t.id !== id)
+  const i = state.todos.findIndex((t) => t.id === id)
+  if (i !== -1) {
+    state.todos.splice(i, 1)
+  }
 }
 
 export function toggleTodo(id: number) {
-  state.todos = state.todos.map(t =>
-    t.id === id ? { ...t, completed: !t.completed } : t
-  )
+  const todo = state.todos.find((t) => t.id === id)
+  if (todo) {
+    todo.completed = !todo.completed
+  }
 }
 
 export function toggleAll() {
-  const hasActive = state.todos.some(t => !t.completed)
-  state.todos = state.todos.map(t => ({ ...t, completed: hasActive }))
+  const target = state.todos.some((t) => !t.completed)
+  for (const todo of state.todos) {
+    todo.completed = target
+  }
 }
 
 export function clearCompleted() {
-  state.todos = state.todos.filter(t => !t.completed)
+  for (let i = state.todos.length - 1; i >= 0; i--) {
+    if (state.todos[i].completed) {
+      state.todos.splice(i, 1)
+    }
+  }
 }
 
 export function editTodo(id: number, newTitle: string) {
   const trimmed = newTitle.trim()
   if (!trimmed) {
-    removeTodo(id)
-    return
+    return removeTodo(id)
   }
-  state.todos = state.todos.map(t =>
-    t.id === id ? { ...t, title: trimmed } : t
-  )
+  const todo = state.todos.find((t) => t.id === id)
+  if (todo) {
+    todo.title = trimmed
+  }
 }
