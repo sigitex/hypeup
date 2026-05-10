@@ -59,7 +59,7 @@ async function runBuild(
   for (const page of pages) {
     // Vite sanitizes brackets in filenames: [slug] -> _slug_
     const moduleName = page.route.replace(/\.html$/, "").replace(/\[(\w+)\]/g, "_$1_")
-    const modulePath = resolve(ssrOutDir, moduleName + ".js")
+    const modulePath = resolve(ssrOutDir, moduleName + ".mjs")
 
     try {
       const mod = await import(modulePath)
@@ -70,7 +70,7 @@ async function runBuild(
 
       if (page.params.length > 0 && typeof mod.getStaticPaths === "function") {
         // Dynamic page — expand into multiple outputs
-        const paths = mod.getStaticPaths() as Record<string, string>[]
+        const paths = await mod.getStaticPaths() as Record<string, string>[]
         for (const params of paths) {
           const route = resolveRoute(page.route, params)
           const vdom = pageFn(params)
