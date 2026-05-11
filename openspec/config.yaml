@@ -1,0 +1,15 @@
+schema: spec-driven
+
+context: |
+  Tech stack: TypeScript, Bun, Vite
+  Monorepo with packages: babel, cli, client, escape-html, generate, lexicon, plugin, render, runtime, vdom
+  Commit format: conventional commits enforced by commitlint + husky
+  Git workflow: branch-per-change
+
+rules:
+  tasks:
+    - Before starting implementation, create and checkout a git branch named feat/<change-name> (e.g., git checkout -b feat/factory-components)
+    - If the branch already exists (resuming work), just checkout the existing branch (git checkout feat/<change-name>)
+    - After completing each task, stage and commit changes using conventional commit format
+    - "Commit message format: feat(<change-name>): <concise task description>"
+    - Run git add -A && git commit before moving to the next task

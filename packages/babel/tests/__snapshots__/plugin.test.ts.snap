@@ -104,17 +104,17 @@ import { elem as _elem } from "@hypeup/runtime";
 _elem("ul", [_each(state.items, i => i.id, i => _elem("li", [i.name]))]);"
 `;
 
-exports[`escape hatch lowering doctype.html5 1`] = `
+exports[`builtin lowering doctype.html5 1`] = `
 "import { raw as _raw } from "@hypeup/runtime";
 _raw("<!DOCTYPE html>");"
 `;
 
-exports[`escape hatch lowering cssString passthrough 1`] = `
+exports[`builtin lowering cssString passthrough 1`] = `
 "import { cssString as _cssString } from "@hypeup/runtime";
 _cssString(userInput);"
 `;
 
-exports[`escape hatch lowering elem escape hatch preserves call 1`] = `
+exports[`builtin lowering elem builtin preserves call 1`] = `
 "import { elem as _elem } from "@hypeup/runtime";
 _elem(tag, "hello");"
 `;

@@ -12,7 +12,9 @@ export type Page = {
 /** Extract dynamic param names from a route (e.g. "[slug]" -> ["slug"]). */
 export function extractParams(relativePath: string): string[] {
   const matches = relativePath.match(/\[(\w+)\]/g)
-  if (!matches) return []
+  if (!matches) {
+    return []
+  }
   return matches.map((m) => m.slice(1, -1))
 }
 
@@ -24,9 +26,14 @@ export function mapRoute(relativePath: string): string {
 }
 
 /** Resolve a dynamic route template with params (e.g. "blog/[slug].html" + {slug:"hi"} -> "blog/hi.html"). */
-export function resolveRoute(routeTemplate: string, params: Record<string, string>): string {
+export function resolveRoute(
+  routeTemplate: string,
+  params: Record<string, string>,
+): string {
   return routeTemplate.replace(/\[(\w+)\]/g, (_, key) => {
-    if (!(key in params)) throw new Error(`Missing param "${key}" for route "${routeTemplate}"`)
+    if (!(key in params)) {
+      throw new Error(`Missing param "${key}" for route "${routeTemplate}"`)
+    }
     return params[key]
   })
 }

@@ -26,8 +26,8 @@ export async function generateCss() {
     .line("// Atrules")
     .line()
     .each(atrules, (atrule) => {
-      const help = atrule.help ?? `\`@${atrule.name}\` atrule.`
-      ts.line(`/** ${help} */`)
+      const help = atrule.help ?? `@${atrule.name} atrule.`
+      ts.line(`/** \`${help}\` */`)
         .line(`function $${atrule.jsName}(...contents: Content[]): AtRule`)
         .line()
     })

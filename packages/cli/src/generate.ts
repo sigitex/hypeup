@@ -1,16 +1,21 @@
 import { resolve, dirname } from "node:path"
-import { discoverPages, resolveRoute } from "./discover"
+import { discoverPages, resolveRoute, type Page } from "./discover"
 import { buildPages, createDevServer } from "./vite"
 import { render } from "@hypeup/render"
 import { rmSync, mkdirSync, cpSync, existsSync } from "node:fs"
 import type { ViteDevServer } from "vite"
-import type { Page } from "./discover"
 
 export async function generate(flags: Record<string, string | boolean>) {
   const startTime = performance.now()
   const root = process.cwd()
-  const pagesDir = resolve(root, typeof flags.dir === "string" ? flags.dir : ".")
-  const outDir = resolve(root, typeof flags.out === "string" ? flags.out : "dist")
+  const pagesDir = resolve(
+    root,
+    typeof flags.dir === "string" ? flags.dir : ".",
+  )
+  const outDir = resolve(
+    root,
+    typeof flags.out === "string" ? flags.out : "dist",
+  )
   const clean = flags.clean === true
   const watch = flags.watch === true
 
@@ -58,7 +63,9 @@ async function runBuild(
   let rendered = 0
   for (const page of pages) {
     // Vite sanitizes brackets in filenames: [slug] -> _slug_
-    const moduleName = page.route.replace(/\.html$/, "").replace(/\[(\w+)\]/g, "_$1_")
+    const moduleName = page.route
+      .replace(/\.html$/, "")
+      .replace(/\[(\w+)\]/g, "_$1_")
     const modulePath = resolve(ssrOutDir, moduleName + ".mjs")
 
     try {
@@ -70,7 +77,7 @@ async function runBuild(
 
       if (page.params.length > 0 && typeof mod.getStaticPaths === "function") {
         // Dynamic page — expand into multiple outputs
-        const paths = await mod.getStaticPaths() as Record<string, string>[]
+        const paths = (await mod.getStaticPaths()) as Record<string, string>[]
         for (const params of paths) {
           const route = resolveRoute(page.route, params)
           const vdom = pageFn(params)
@@ -101,16 +108,28 @@ async function runBuild(
     cpSync(publicDir, outDir, { recursive: true })
   }
 
+  // Copy emitted assets (images, fonts, etc.) from SSR build to output
+  const ssrAssetsDir = resolve(ssrOutDir, "assets")
+  if (existsSync(ssrAssetsDir)) {
+    cpSync(ssrAssetsDir, resolve(outDir, "assets"), { recursive: true })
+  }
+
   // Clean up SSR build artifacts
   rmSync(ssrOutDir, { recursive: true, force: true })
 
   // Summary
   const duration = (performance.now() - startTime).toFixed(0)
-  console.log(`Generated ${rendered} page${rendered !== 1 ? "s" : ""} to ${outDir} in ${duration}ms`)
+  console.log(
+    `Generated ${rendered} page${rendered !== 1 ? "s" : ""} to ${outDir} in ${duration}ms`,
+  )
 }
 
 /** Render a single page via ssrLoadModule. Accepts optional params for dynamic pages. */
-async function renderPage(server: ViteDevServer, page: Page, params?: Record<string, string>): Promise<string> {
+async function renderPage(
+  server: ViteDevServer,
+  page: Page,
+  params?: Record<string, string>,
+): Promise<string> {
   const mod = await server.ssrLoadModule(page.filePath)
   const pageFn = mod.default
   if (typeof pageFn !== "function") {
@@ -121,12 +140,14 @@ async function renderPage(server: ViteDevServer, page: Page, params?: Record<str
 }
 
 /** Watch mode: Vite dev server with SSR middleware serving pages over HTTP. */
-async function runWatchMode(
-  root: string,
-  pagesDir: string,
-  port?: number,
-) {
-  const server = await createDevServer(root, pagesDir, renderPage, discoverPages, { port })
+async function runWatchMode(root: string, pagesDir: string, port?: number) {
+  const server = await createDevServer(
+    root,
+    pagesDir,
+    renderPage,
+    discoverPages,
+    { port },
+  )
 
   // Graceful shutdown
   const shutdown = async () => {

@@ -158,151 +158,151 @@ type ColorKeywords = {
 declare global {
   // Atrules
   
-  /** `@-webkit-keyframes` atrule. */
+  /** `@-webkit-keyframes atrule.` */
   function $webkitKeyframes(...contents: Content[]): AtRule
   
-  /** `@apply` atrule. */
+  /** `@apply atrule.` */
   function $apply(...contents: Content[]): AtRule
   
-  /** `@bottom-center` atrule. */
+  /** `@bottom-center atrule.` */
   function $bottomCenter(...contents: Content[]): AtRule
   
-  /** `@bottom-left` atrule. */
+  /** `@bottom-left atrule.` */
   function $bottomLeft(...contents: Content[]): AtRule
   
-  /** `@bottom-left-corner` atrule. */
+  /** `@bottom-left-corner atrule.` */
   function $bottomLeftCorner(...contents: Content[]): AtRule
   
-  /** `@bottom-right` atrule. */
+  /** `@bottom-right atrule.` */
   function $bottomRight(...contents: Content[]): AtRule
   
-  /** `@bottom-right-corner` atrule. */
+  /** `@bottom-right-corner atrule.` */
   function $bottomRightCorner(...contents: Content[]): AtRule
   
-  /** However, there is no actual at-rule named @charset. When a stylesheet is actually parsed, any occurrences of an @charset rule must be treated as an unrecognized rule, and thus dropped as invalid when the stylesheet is grammar-checked. */
+  /** `However, there is no actual at-rule named @charset. When a stylesheet is actually parsed, any occurrences of an @charset rule must be treated as an unrecognized rule, and thus dropped as invalid when the stylesheet is grammar-checked.` */
   function $charset(...contents: Content[]): AtRule
   
-  /** The @color-profile rule defines and names a color profile which can later be used in the color() function to specify a color. */
+  /** `The @color-profile rule defines and names a color profile which can later be used in the color() function to specify a color.` */
   function $colorProfile(...contents: Content[]): AtRule
   
-  /** The @container rule is a conditional group rule whose condition contains a container query, which is a boolean combination of container size queries and/or container style queries. Style declarations within the <block-contents> block of an @container rule are filtered by its condition to only match when the container query is true for their element’s query container. */
+  /** `The @container rule is a conditional group rule whose condition contains a container query, which is a boolean combination of container size queries and/or container style queries. Style declarations within the <block-contents> block of an @container rule are filtered by its condition to only match when the container query is true for their element’s query container.` */
   function $container(...contents: Content[]): AtRule
   
-  /** `@contents` atrule. */
+  /** `@contents atrule.` */
   function $contents(...contents: Content[]): AtRule
   
-  /** The @counter-style rule allows authors to define a custom counter style. The components of a counter style are specified by descriptors in the @counter-style rule. The algorithm is specified implicitly by a combination of the system, symbols, and additive-symbols properties. */
+  /** `The @counter-style rule allows authors to define a custom counter style. The components of a counter style are specified by descriptors in the @counter-style rule. The algorithm is specified implicitly by a combination of the system, symbols, and additive-symbols properties.` */
   function $counterStyle(...contents: Content[]): AtRule
   
-  /** `@custom-media` atrule. */
+  /** `@custom-media atrule.` */
   function $customMedia(...contents: Content[]): AtRule
   
-  /** `@custom-selector` atrule. */
+  /** `@custom-selector atrule.` */
   function $customSelector(...contents: Content[]): AtRule
   
-  /** The @else rule is a conditional group rule used to form conditional rule chains, which associate multiple conditional group rules and guarantee that only the first one that matches will evaluate its condition as true. It is defined as: */
+  /** `The @else rule is a conditional group rule used to form conditional rule chains, which associate multiple conditional group rules and guarantee that only the first one that matches will evaluate its condition as true. It is defined as:` */
   function $else(...contents: Content[]): AtRule
   
-  /** `@font-face` atrule. */
+  /** `@font-face atrule.` */
   function $fontFace(...contents: Content[]): AtRule
   
-  /** `@font-feature-values` atrule. */
+  /** `@font-feature-values atrule.` */
   function $fontFeatureValues(...contents: Content[]): AtRule
   
-  /** The @font-palette-values rule defines a color palette and associates that color palette with a specific font. This allows a web author to select arbitrary <color>s to use inside a color font rather than being limited to the preexisting palettes inside font files. */
+  /** `The @font-palette-values rule defines a color palette and associates that color palette with a specific font. This allows a web author to select arbitrary <color>s to use inside a color font rather than being limited to the preexisting palettes inside font files.` */
   function $fontPaletteValues(...contents: Content[]): AtRule
   
-  /** `@function` atrule. */
+  /** `@function atrule.` */
   function $function(...contents: Content[]): AtRule
   
-  /** The @import rule allows users to import style rules from other style sheets. If an @import rule refers to a valid stylesheet, user agents must treat the contents of the stylesheet as if they were written in place of the @import rule, with two exceptions: */
+  /** `The @import rule allows users to import style rules from other style sheets. If an @import rule refers to a valid stylesheet, user agents must treat the contents of the stylesheet as if they were written in place of the @import rule, with two exceptions:` */
   function $import(...contents: Content[]): AtRule
   
-  /** Keyframes are specified using the @keyframes at-rule, defined as follows: */
+  /** `Keyframes are specified using the @keyframes at-rule, defined as follows:` */
   function $keyframes(...contents: Content[]): AtRule
   
-  /** The @layer rule declares a cascade layer, with the option to assign style rules. */
+  /** `The @layer rule declares a cascade layer, with the option to assign style rules.` */
   function $layer(...contents: Content[]): AtRule
   
-  /** `@left-bottom` atrule. */
+  /** `@left-bottom atrule.` */
   function $leftBottom(...contents: Content[]): AtRule
   
-  /** `@left-middle` atrule. */
+  /** `@left-middle atrule.` */
   function $leftMiddle(...contents: Content[]): AtRule
   
-  /** `@left-top` atrule. */
+  /** `@left-top atrule.` */
   function $leftTop(...contents: Content[]): AtRule
   
-  /** `@macro` atrule. */
+  /** `@macro atrule.` */
   function $macro(...contents: Content[]): AtRule
   
-  /** The @media rule is a conditional group rule whose condition is a media query. Its syntax is: */
+  /** `The @media rule is a conditional group rule whose condition is a media query. Its syntax is:` */
   function $media(...contents: Content[]): AtRule
   
-  /** `@mixin` atrule. */
+  /** `@mixin atrule.` */
   function $mixin(...contents: Content[]): AtRule
   
-  /** The @namespace at-rule declares a namespace prefix and associates it with a given namespace name (a string). This namespace prefix can then be used in namespace-qualified names such as the CSS qualified names defined below. */
+  /** `The @namespace at-rule declares a namespace prefix and associates it with a given namespace name (a string). This namespace prefix can then be used in namespace-qualified names such as the CSS qualified names defined below.` */
   function $namespace(...contents: Content[]): AtRule
   
-  /** The @navigation rule is a conditional group rule whose condition tests characteristics of the current URL or of the state of navigation between two URLs. These queries are called navigation queries. */
+  /** `The @navigation rule is a conditional group rule whose condition tests characteristics of the current URL or of the state of navigation between two URLs. These queries are called navigation queries.` */
   function $navigation(...contents: Content[]): AtRule
   
-  /** Authors can specify various aspects of a page box, such as its dimensions, orientation, and margins, within an @page rule. @page rules are allowed wherever rule-sets are allowed. An @page rule consists of the keyword @page, an optional comma-separated list of page selectors and a block of declarations (said to be in the page context). An @page rule can also contain other at-rules, interleaved between declarations. The current level of this specification only allows margin at-rules inside @page. */
+  /** `Authors can specify various aspects of a page box, such as its dimensions, orientation, and margins, within an @page rule. @page rules are allowed wherever rule-sets are allowed. An @page rule consists of the keyword @page, an optional comma-separated list of page selectors and a block of declarations (said to be in the page context). An @page rule can also contain other at-rules, interleaved between declarations. The current level of this specification only allows margin at-rules inside @page.` */
   function $page(...contents: Content[]): AtRule
   
-  /** The @position-try rule defines a position option with a given name, specifying one or more sets of positioning properties that can be applied to a box via position-try-fallbacks, */
+  /** `The @position-try rule defines a position option with a given name, specifying one or more sets of positioning properties that can be applied to a box via position-try-fallbacks,` */
   function $positionTry(...contents: Content[]): AtRule
   
-  /** `@property` atrule. */
+  /** `@property atrule.` */
   function $property(...contents: Content[]): AtRule
   
-  /** `@result` atrule. */
+  /** `@result atrule.` */
   function $result(...contents: Content[]): AtRule
   
-  /** `@right-bottom` atrule. */
+  /** `@right-bottom atrule.` */
   function $rightBottom(...contents: Content[]): AtRule
   
-  /** `@right-middle` atrule. */
+  /** `@right-middle atrule.` */
   function $rightMiddle(...contents: Content[]): AtRule
   
-  /** `@right-top` atrule. */
+  /** `@right-top atrule.` */
   function $rightTop(...contents: Content[]): AtRule
   
-  /** The @route rule is an at-rule that associates a name with a URL pattern. This name can be referenced in @navigation rules and in :link-to() pseudo-classes. */
+  /** `The @route rule is an at-rule that associates a name with a URL pattern. This name can be referenced in @navigation rules and in :link-to() pseudo-classes.` */
   function $route(...contents: Content[]): AtRule
   
-  /** Scoped styles are described in CSS using the @scope block at-rule, which declares a scoping root and optional scoping limits associated with a set of style rules. */
+  /** `Scoped styles are described in CSS using the @scope block at-rule, which declares a scoping root and optional scoping limits associated with a set of style rules.` */
   function $scope(...contents: Content[]): AtRule
   
-  /** The @starting-style rule is a grouping rule. The style rules inside it are used to establish styles to transition from, if the previous style change event did not establish a before-change style for the element whose styles are being computed. */
+  /** `The @starting-style rule is a grouping rule. The style rules inside it are used to establish styles to transition from, if the previous style change event did not establish a before-change style for the element whose styles are being computed.` */
   function $startingStyle(...contents: Content[]): AtRule
   
-  /** The @supports rule is a conditional group rule whose condition tests whether the user agent supports CSS property:value pairs. Authors can use it to write style sheets that use new features when available but degrade gracefully when those features are not supported. These queries are called CSS feature queries or (colloquially) supports queries. */
+  /** `The @supports rule is a conditional group rule whose condition tests whether the user agent supports CSS property:value pairs. Authors can use it to write style sheets that use new features when available but degrade gracefully when those features are not supported. These queries are called CSS feature queries or (colloquially) supports queries.` */
   function $supports(...contents: Content[]): AtRule
   
-  /** The @supports-condition at-rule is a conditional group rule that allows authors to define and name a supports query for later reuse, creating a named supports condition. This enables complex or frequently-used feature queries to be referenced by name, improving maintainability and readability. */
+  /** `The @supports-condition at-rule is a conditional group rule that allows authors to define and name a supports query for later reuse, creating a named supports condition. This enables complex or frequently-used feature queries to be referenced by name, improving maintainability and readability.` */
   function $supportsCondition(...contents: Content[]): AtRule
   
-  /** `@top-center` atrule. */
+  /** `@top-center atrule.` */
   function $topCenter(...contents: Content[]): AtRule
   
-  /** `@top-left` atrule. */
+  /** `@top-left atrule.` */
   function $topLeft(...contents: Content[]): AtRule
   
-  /** `@top-left-corner` atrule. */
+  /** `@top-left-corner atrule.` */
   function $topLeftCorner(...contents: Content[]): AtRule
   
-  /** `@top-right` atrule. */
+  /** `@top-right atrule.` */
   function $topRight(...contents: Content[]): AtRule
   
-  /** `@top-right-corner` atrule. */
+  /** `@top-right-corner atrule.` */
   function $topRightCorner(...contents: Content[]): AtRule
   
-  /** `@view-transition` atrule. */
+  /** `@view-transition atrule.` */
   function $viewTransition(...contents: Content[]): AtRule
   
-  /** The @when at-rule is a conditional group rule that generalizes the individual conditional group rules such as @media and @supports. It is defined as: */
+  /** `The @when at-rule is a conditional group rule that generalizes the individual conditional group rules such as @media and @supports. It is defined as:` */
   function $when(...contents: Content[]): AtRule
   
   // Properties

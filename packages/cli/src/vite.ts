@@ -2,16 +2,23 @@ import type { InlineConfig, ViteDevServer } from "vite"
 import type { Page } from "./discover"
 
 /** Match a URL route against a dynamic route template. Returns params or null. */
-function matchDynamicRoute(template: string, route: string): Record<string, string> | null {
+function matchDynamicRoute(
+  template: string,
+  route: string,
+): Record<string, string> | null {
   // Convert "blog/[slug].html" to regex "^blog/([^/]+)\\.html$"
   const paramNames: string[] = []
-  const pattern = template.replace(/\[(\w+)\]/g, (_, name) => {
-    paramNames.push(name)
-    return "([^/]+)"
-  }).replace(/\./g, "\\.")
+  const pattern = template
+    .replace(/\[(\w+)\]/g, (_, name) => {
+      paramNames.push(name)
+      return "([^/]+)"
+    })
+    .replace(/\./g, "\\.")
 
   const match = route.match(new RegExp(`^${pattern}$`))
-  if (!match) return null
+  if (!match) {
+    return null
+  }
 
   const params: Record<string, string> = {}
   for (let i = 0; i < paramNames.length; i++) {
@@ -71,12 +78,11 @@ export async function buildPages(
     plugins: [plugin],
     build: {
       ssr: true,
+      ssrEmitAssets: true,
       outDir: ssrOutDir,
       rollupOptions: {
         input,
-        external: [
-          /^@hypeup\//,
-        ],
+        external: [/^@hypeup\//],
       },
       emptyOutDir: false,
     },
@@ -92,7 +98,11 @@ export async function buildPages(
 export async function createDevServer(
   root: string,
   pagesDir: string,
-  renderPage: (server: ViteDevServer, page: Page, params?: Record<string, string>) => Promise<string>,
+  renderPage: (
+    server: ViteDevServer,
+    page: Page,
+    params?: Record<string, string>,
+  ) => Promise<string>,
   discoverPages: (pagesDir: string) => Promise<Page[]>,
   options?: { port?: number },
 ): Promise<ViteDevServer> {
@@ -152,7 +162,9 @@ export async function createDevServer(
                 // Try dynamic route matching
                 if (!page) {
                   for (const p of pages) {
-                    if (p.params.length === 0) continue
+                    if (p.params.length === 0) {
+                      continue
+                    }
                     const match = matchDynamicRoute(p.route, route)
                     if (match) {
                       page = p

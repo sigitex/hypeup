@@ -1,13 +1,13 @@
 import { createUnplugin } from "unplugin"
 import { transformAsync } from "@babel/core"
 import presetTypescript from "@babel/preset-typescript"
-import { hypeupBabelPlugin, buildTable } from "@hypeup/babel"
+import { hypeupBabelPlugin, buildDslPrimitives } from "@hypeup/babel"
 import { existsSync, readFileSync } from "node:fs"
 import { resolve } from "node:path"
 
 /** Build a Set of all primitive identifier names for cheap pre-scan. */
 function buildIdentifierSet(): Set<string> {
-  const table = buildTable()
+  const table = buildDslPrimitives()
   return new Set(table.keys())
 }
 

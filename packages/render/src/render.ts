@@ -98,7 +98,7 @@ function renderNode(x: Content, r: Renderer) {
     }
     case x instanceof AtRule: {
       const { properties, children } = classifyAtRule(x.contents)
-      r.write(`@${x.keyword}`)
+      r.write(`${x.keyword}`)
       if (x.rule !== null) {
         r.write(` ${x.rule}`)
       }

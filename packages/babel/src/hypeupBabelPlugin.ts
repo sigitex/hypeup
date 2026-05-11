@@ -3,10 +3,10 @@ import type { PluginObj, NodePath } from "@babel/core"
 import * as t from "@babel/types"
 import { addNamed } from "@babel/helper-module-imports"
 import {
-  buildTable,
+  buildDslPrimitives,
   type Primitive,
   type CssPropertyPrimitive,
-} from "./buildTable"
+} from "./buildDslPrimitives"
 import { kebab } from "./kebab"
 
 const RUNTIME_MODULE = "@hypeup/runtime"
@@ -87,7 +87,7 @@ function helperCall(
 }
 
 export function hypeupBabelPlugin(): PluginObj {
-  const table = buildTable()
+  const table = buildDslPrimitives()
 
   return {
     name: "hypeup",
@@ -189,13 +189,13 @@ function handlePrimitive(
     case "atRule":
       handleAtRule(path, cache, primitive.keyword)
       break
-    case "escapeHatch":
-      handleEscapeHatch(path, cache, primitive.name, primitive.module)
+    case "builtin":
+      handleBuiltin(path, cache, primitive.name, primitive.module)
       break
   }
 }
 
-// ── HTML Elements ──────────────────────────────────────────────────
+// HTML Elements
 
 function handleHtmlElement(
   path: NodePath<t.Identifier>,
@@ -264,7 +264,7 @@ function handleHtmlElement(
   path.replaceWith(t.stringLiteral(tag))
 }
 
-// ── CSS Properties ─────────────────────────────────────────────────
+// CSS Properties
 
 function handleCssProperty(
   path: NodePath<t.Identifier>,
@@ -312,7 +312,7 @@ function handleCssProperty(
   }
 }
 
-// ── At-Rules ───────────────────────────────────────────────────────
+// At-Rules
 
 function handleAtRule(
   path: NodePath<t.Identifier>,
@@ -345,9 +345,9 @@ function handleAtRule(
   }
 }
 
-// ── Escape Hatches ─────────────────────────────────────────────────
+// Builtins
 
-function handleEscapeHatch(
+function handleBuiltin(
   path: NodePath<t.Identifier>,
   cache: ImportCache,
   name: string,

@@ -10,7 +10,7 @@ async function transform(code: string): Promise<string> {
   return result?.code ?? ""
 }
 
-// ── HTML Element Lowering ──────────────────────────────────────────
+// HTML Element Lowering
 
 describe("HTML element lowering", () => {
   test("standard element call", async () => {
@@ -36,7 +36,7 @@ describe("HTML element lowering", () => {
   })
 })
 
-// ── Class Chain Lowering ───────────────────────────────────────────
+// Class Chain Lowering
 
 describe("class chain lowering", () => {
   test("single class", async () => {
@@ -60,7 +60,7 @@ describe("class chain lowering", () => {
   })
 })
 
-// ── CSS Property Lowering ──────────────────────────────────────────
+// CSS Property Lowering
 
 describe("CSS property call-form lowering", () => {
   test("simple property call", async () => {
@@ -101,7 +101,7 @@ describe("CSS property keyword-access lowering", () => {
   })
 })
 
-// ── At-Rule Lowering ───────────────────────────────────────────────
+// At-Rule Lowering
 
 describe("at-rule lowering", () => {
   test("at-rule with rule argument", async () => {
@@ -120,7 +120,7 @@ describe("at-rule lowering", () => {
   })
 })
 
-// ── Rule Lowering ──────────────────────────────────────────────────
+// Rule Lowering
 
 describe("rule lowering", () => {
   test("rule call with string selector", async () => {
@@ -149,7 +149,7 @@ describe("rule lowering", () => {
   })
 })
 
-// ── each() Lowering ────────────────────────────────────────────────
+// each() Lowering
 
 describe("each lowering", () => {
   test("each call rewritten to import from client", async () => {
@@ -185,9 +185,9 @@ describe("each lowering", () => {
   })
 })
 
-// ── Escape Hatch Lowering ──────────────────────────────────────────
+// Builtin Lowering
 
-describe("escape hatch lowering", () => {
+describe("builtin lowering", () => {
   test("doctype.html5", async () => {
     const result = await transform(`doctype.html5`)
     expect(result).toMatchSnapshot()
@@ -201,13 +201,13 @@ describe("escape hatch lowering", () => {
     expect(result).toContain('cssString')
   })
 
-  test("elem escape hatch preserves call", async () => {
+  test("elem builtin preserves call", async () => {
     const result = await transform(`elem(tag, "hello")`)
     expect(result).toMatchSnapshot()
   })
 })
 
-// ── Scope Shadowing Skip ───────────────────────────────────────────
+// Scope Shadowing Skip
 
 describe("scope-shadowing skip", () => {
   test("locally bound name not rewritten", async () => {
@@ -230,7 +230,7 @@ describe("scope-shadowing skip", () => {
   })
 })
 
-// ── Import Injection ───────────────────────────────────────────────
+// Import Injection
 
 describe("import injection", () => {
   test("only used helpers imported", async () => {
@@ -257,7 +257,7 @@ describe("import injection", () => {
   })
 })
 
-// ── Keyword Collisions ─────────────────────────────────────────────
+// Keyword Collisions
 
 describe("keyword collisions", () => {
   test("_var maps to var tag", async () => {
@@ -268,7 +268,7 @@ describe("keyword collisions", () => {
   })
 })
 
-// ── PascalCase Lazy Wrapping ───────────────────────────────────────
+// PascalCase Lazy Wrapping
 
 describe("PascalCase lazy wrapping", () => {
   test("PascalCase call with args is wrapped", async () => {

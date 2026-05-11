@@ -16,8 +16,8 @@ export type CssPropertyPrimitive = {
   cssName: string
   keywords: readonly string[]
 }
-export type EscapeHatchPrimitive = {
-  kind: "escapeHatch"
+export type BuiltinPrimitive = {
+  kind: "builtin"
   name: string
   module?: string
 }
@@ -26,10 +26,10 @@ export type Primitive =
   | HtmlElementPrimitive
   | AtRulePrimitive
   | CssPropertyPrimitive
-  | EscapeHatchPrimitive
+  | BuiltinPrimitive
 
 /** Build an O(1) lookup table of all DSL primitives. */
-export function buildTable(): Map<string, Primitive> {
+export function buildDslPrimitives(): Map<string, Primitive> {
   const table = new Map<string, Primitive>()
 
   // HTML elements (non-void)
@@ -72,8 +72,8 @@ export function buildTable(): Map<string, Primitive> {
     })
   }
 
-  // Escape hatches (runtime)
-  const escapeHatches = [
+  // Builtins (runtime)
+  const builtins = [
     "elem",
     "elemVoid",
     "prop",
@@ -84,14 +84,14 @@ export function buildTable(): Map<string, Primitive> {
     "cssString",
     "doctype",
   ]
-  for (const name of escapeHatches) {
-    table.set(name, { kind: "escapeHatch", name })
+  for (const name of builtins) {
+    table.set(name, { kind: "builtin", name })
   }
 
-  // Escape hatches (client)
+  // Builtins (client)
   const clientHelpers = ["on", "redraw", "ref", "each", "lazy"]
   for (const name of clientHelpers) {
-    table.set(name, { kind: "escapeHatch", name, module: "@hypeup/client" })
+    table.set(name, { kind: "builtin", name, module: "@hypeup/client" })
   }
 
   return table
