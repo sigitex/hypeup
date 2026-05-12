@@ -1,9 +1,11 @@
 import { resolve, dirname } from "node:path"
-import { discoverPages, resolveRoute, type Page } from "./discover"
+import { discoverPages, resolveRoute, TARGET_FORMATS, type Page } from "./discover"
 import { buildPages, createDevServer } from "./vite"
 import { render } from "@hypeup/render"
 import { rmSync, mkdirSync, cpSync, existsSync } from "node:fs"
 import type { ViteDevServer } from "vite"
+
+const formatPattern = new RegExp(`\\.(${TARGET_FORMATS.join("|")})$`)
 
 export async function generate(flags: Record<string, string | boolean>) {
   const startTime = performance.now()
@@ -64,9 +66,9 @@ async function runBuild(
   for (const page of pages) {
     // Vite sanitizes brackets in filenames: [slug] -> _slug_
     const moduleName = page.route
-      .replace(/\.html$/, "")
+      .replace(formatPattern, "")
       .replace(/\[(\w+)\]/g, "_$1_")
-    const modulePath = resolve(ssrOutDir, moduleName + ".mjs")
+    const modulePath = resolve(ssrOutDir, moduleName + ".js")
 
     try {
       const mod = await import(modulePath)

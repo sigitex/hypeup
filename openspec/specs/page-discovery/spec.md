@@ -1,49 +1,81 @@
 ## ADDED Requirements
 
 ### Requirement: Discover page files by glob pattern
-The page discovery system SHALL scan the pages directory for files matching `**/*.{ts,tsx}` and return a list of discovered page file paths.
+The page discovery system SHALL scan the pages directory for files matching `**/*.{html,css,md}.*` — files with an allowlisted target format as the middle extension and any source extension. Only `html`, `css`, and `md` are recognized as target formats.
 
-#### Scenario: Flat pages directory
-- **WHEN** the pages directory contains `index.tsx`, `about.tsx`, and `contact.ts`
-- **THEN** discovery SHALL return all three file paths
+#### Scenario: HTML file discovered
+- **WHEN** the pages directory contains `index.html.ts`
+- **THEN** discovery SHALL return the file path
+
+#### Scenario: CSS file discovered
+- **WHEN** the pages directory contains `styles.css.ts`
+- **THEN** discovery SHALL return the file path
+
+#### Scenario: Markdown file discovered
+- **WHEN** the pages directory contains `readme.md.ts`
+- **THEN** discovery SHALL return the file path
+
+#### Scenario: Non-standard source extension discovered
+- **WHEN** the pages directory contains `index.html.civet`
+- **THEN** discovery SHALL return the file path (source extension is a wildcard)
 
 #### Scenario: Nested directories
-- **WHEN** the pages directory contains `index.tsx`, `blog/index.tsx`, and `blog/post.tsx`
-- **THEN** discovery SHALL return all three file paths including nested ones
+- **WHEN** the pages directory contains `blog/index.html.ts` and `blog/styles.css.ts`
+- **THEN** discovery SHALL return both file paths
+
+#### Scenario: Non-allowlisted target format ignored
+- **WHEN** the pages directory contains `data.json.ts`
+- **THEN** discovery SHALL NOT return the file path
+
+#### Scenario: Single-extension files ignored
+- **WHEN** the pages directory contains `helpers.ts` or `utils.js`
+- **THEN** discovery SHALL NOT return those file paths
+
+#### Scenario: Old .page.ts convention ignored
+- **WHEN** the pages directory contains `index.page.ts`
+- **THEN** discovery SHALL NOT return the file path
 
 #### Scenario: Empty pages directory
-- **WHEN** the pages directory contains no `.ts` or `.tsx` files
+- **WHEN** the pages directory contains no matching files
 - **THEN** discovery SHALL return an empty list
 
 ### Requirement: Exclude non-page files
 The page discovery system SHALL exclude files whose names start with `_` (underscore) or `.` (dot). These are treated as internal/helper modules, not pages.
 
 #### Scenario: Underscore-prefixed files are excluded
-- **WHEN** the pages directory contains `index.tsx` and `_layout.tsx`
-- **THEN** discovery SHALL return only `index.tsx`
+- **WHEN** the pages directory contains `index.html.ts` and `_layout.html.ts`
+- **THEN** discovery SHALL return only `index.html.ts`
 
 #### Scenario: Dot-prefixed files are excluded
-- **WHEN** the pages directory contains `index.tsx` and `.hidden.ts`
-- **THEN** discovery SHALL return only `index.tsx`
+- **WHEN** the pages directory contains `index.html.ts` and `.hidden.html.ts`
+- **THEN** discovery SHALL return only `index.html.ts`
 
 ### Requirement: Map file paths to output routes
-The page discovery system SHALL map each discovered file path to an output HTML path relative to the output directory. The mapping SHALL strip the file extension and append `.html`.
+The page discovery system SHALL map each discovered file path to an output route by stripping the final (source) extension. The output route is the filename without the source extension.
 
-#### Scenario: Top-level page
-- **WHEN** a page file is at `pages/about.tsx`
-- **THEN** the output route SHALL be `about.html`
-
-#### Scenario: Index page
-- **WHEN** a page file is at `pages/index.tsx`
+#### Scenario: HTML route
+- **WHEN** a page file is at `index.html.ts`
 - **THEN** the output route SHALL be `index.html`
 
-#### Scenario: Nested page
-- **WHEN** a page file is at `pages/blog/post.tsx`
+#### Scenario: CSS route
+- **WHEN** a page file is at `styles.css.ts`
+- **THEN** the output route SHALL be `styles.css`
+
+#### Scenario: Nested route
+- **WHEN** a page file is at `blog/post.html.ts`
 - **THEN** the output route SHALL be `blog/post.html`
 
-#### Scenario: Nested index page
-- **WHEN** a page file is at `pages/blog/index.tsx`
-- **THEN** the output route SHALL be `blog/index.html`
+#### Scenario: Markdown file route
+- **WHEN** a page file is at `docs/readme.md.ts`
+- **THEN** the output route SHALL be `docs/readme.md`
+
+#### Scenario: Civet source extension stripped
+- **WHEN** a page file is at `index.html.civet`
+- **THEN** the output route SHALL be `index.html`
+
+#### Scenario: Dynamic route with params
+- **WHEN** a page file is at `blog/[slug].html.ts`
+- **THEN** the output route SHALL be `blog/[slug].html`
 
 ### Requirement: Validate pages directory exists
 The page discovery system SHALL verify that the pages directory exists before scanning. If the directory does not exist, it SHALL throw an error with a descriptive message.

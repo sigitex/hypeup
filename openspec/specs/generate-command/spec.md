@@ -1,15 +1,27 @@
 ## ADDED Requirements
 
-### Requirement: Generate command renders pages to static HTML files
-The `generate` subcommand SHALL discover page components from the pages directory, render each to a complete HTML document using `@hypeup/render`, and write the output files to the output directory.
+### Requirement: Generate command renders pages to static files
+The `generate` subcommand SHALL discover components from the pages directory using the double-extension convention (`.html.ts`, `.css.ts`, `.md.ts`, etc.), render each using `@hypeup/render`, and write the output files to the output directory. The output format is determined by the file's target extension.
 
-#### Scenario: Basic generation
-- **WHEN** the user runs `hypeup generate` with a `pages/` directory containing `index.tsx` that default-exports a function returning vdom content
-- **THEN** the CLI SHALL write `dist/index.html` containing a complete HTML document with the rendered content
+#### Scenario: HTML generation
+- **WHEN** the user runs `hypeup generate` with a directory containing `index.html.ts` that default-exports a function returning content
+- **THEN** the CLI SHALL write `dist/index.html` containing the rendered content
+
+#### Scenario: CSS generation
+- **WHEN** the directory contains `styles.css.ts` that default-exports a function returning CSS rule nodes
+- **THEN** the CLI SHALL write `dist/styles.css` containing the rendered CSS
+
+#### Scenario: Markdown generation
+- **WHEN** the directory contains `readme.md.ts` that default-exports a function returning text content
+- **THEN** the CLI SHALL write `dist/readme.md` containing the rendered content
 
 #### Scenario: Nested pages
-- **WHEN** the pages directory contains `blog/post.tsx`
+- **WHEN** the pages directory contains `blog/post.html.ts`
 - **THEN** the CLI SHALL write `dist/blog/post.html` with the rendered content
+
+#### Scenario: Mixed output formats
+- **WHEN** the directory contains `index.html.ts`, `styles.css.ts`, and `readme.md.ts`
+- **THEN** the CLI SHALL write `dist/index.html`, `dist/styles.css`, and `dist/readme.md`
 
 ### Requirement: Generate command accepts output directory option
 The `generate` subcommand SHALL accept a `--out` flag to specify the output directory. The default output directory SHALL be `dist`.
@@ -51,11 +63,11 @@ The `generate` subcommand SHALL accept a `--clean` flag. When set, the output di
 The `generate` subcommand SHALL wrap each page's rendered content in a complete HTML5 document structure including `<!DOCTYPE html>`, `<html>`, `<head>`, and `<body>` tags.
 
 #### Scenario: Default document wrapper
-- **WHEN** a page default-exports a function returning vdom content and does not export a `head` function
+- **WHEN** a page default-exports a function returning content and does not export a `head` function
 - **THEN** the output HTML SHALL contain `<!DOCTYPE html>`, a `<head>` with a default `<meta charset="utf-8">`, and a `<body>` wrapping the rendered content
 
 #### Scenario: Custom head export
-- **WHEN** a page exports a `head` function alongside the default export that returns vdom content for the head
+- **WHEN** a page exports a `head` function alongside the default export that returns content for the head
 - **THEN** the output HTML SHALL include the rendered head content inside the `<head>` tag
 
 ### Requirement: Generate command reports results

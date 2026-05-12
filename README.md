@@ -205,7 +205,7 @@ div(
 )
 ```
 
-Components can accept any arguments and return elements, arrays, or any valid content. There is no special component protocol — just functions returning VDOM. You *should* capitalize their names though - as it will help the transformer will produce optimized VDOM.
+Components can accept any arguments and return elements, arrays, or any valid content. There is no special component protocol — just functions returning content. You *should* capitalize their names though — the transformer will produce optimized output.
 
 ## Client Runtime
 
@@ -272,18 +272,24 @@ each(items, (item) => item.id, (item) => li(item.name))
 
 ## Static Site Generation
 
-The `hypeup` CLI generates static HTML from `*.page.ts` files.
+The `hypeup` CLI generates static output from files using a double-extension convention. The first extension is the target format and the second is the source language:
+
+- `.html.ts` / `.html.js` -- generates an HTML file
+- `.css.ts` / `.css.js` -- generates a CSS file
+- `.md.ts` / `.md.js` -- generates a Markdown file
+
+If the build tool supports other languages, those work too (e.g. `.html.civet`).
 
 ```sh
 hypeup generate --dir src --out dist
 ```
 
-### Page Files
+### File Convention
 
-Any file matching `*.page.ts` becomes a page. The default export should be a function returning VDOM:
+Each file's default export should be a function returning content. For HTML files, return elements:
 
 ```ts
-// index.page.ts
+// index.html.ts
 import "@hypeup/lexicon"
 
 export default function Index() {
@@ -324,7 +330,7 @@ export default function layout(...content: Content[]) {
 Used in page files:
 
 ```ts
-// about.page.ts
+// about.html.ts
 import layout from "./shared/layout"
 
 export default function About() {
@@ -340,7 +346,7 @@ export default function About() {
 Parameterized routes use square brackets in the filename. Export a `getStaticPaths` function to provide the values at build time:
 
 ```ts
-// [slug].page.ts
+// [slug].html.ts
 import layout from "./shared/layout"
 
 export default function Post({ slug }: { slug: string }) {
@@ -369,7 +375,7 @@ hypeup generate --dir src --watch --port 5173
 ```
 hypeup generate [options]
 
-  --dir <dir>    Directory to scan for .page.ts files (default: ".")
+  --dir <dir>    Directory to scan (default: ".")
   --out <dir>    Output directory (default: "dist")
   --clean        Remove output directory before generating
   --watch        Start dev server with live reload

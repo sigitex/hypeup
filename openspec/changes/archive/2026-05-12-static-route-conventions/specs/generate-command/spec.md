@@ -4,7 +4,7 @@
 The `generate` subcommand SHALL discover page components from the pages directory using the `**/*.{html,css,md}.*` pattern, render each to output using `@hypeup/render`, and write the output files to the output directory. The output format is determined by the file's target extension (html, css, md), not by the render pipeline — `render()` handles all formats uniformly.
 
 #### Scenario: HTML page generation
-- **WHEN** the user runs `hypeup generate` with a directory containing `index.html.ts` that default-exports a function returning vdom content
+- **WHEN** the user runs `hypeup generate` with a directory containing `index.html.ts` that default-exports a function returning content
 - **THEN** the CLI SHALL write `dist/index.html` containing the rendered content
 
 #### Scenario: CSS file generation

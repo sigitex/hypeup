@@ -1,11 +1,14 @@
 import { resolve } from "node:path"
 
+/** Allowlisted target output formats. */
+export const TARGET_FORMATS = ["html", "css", "md"] as const
+
 export type Page = {
   /** Absolute path to the source file */
   filePath: string
-  /** Output HTML path relative to output dir (e.g. "blog/post.html") */
+  /** Output path relative to output dir (e.g. "blog/post.html", "styles.css") */
   route: string
-  /** Dynamic param segments (e.g. ["slug"] for "[slug].page.ts") */
+  /** Dynamic param segments (e.g. ["slug"] for "[slug].html.ts") */
   params: string[]
 }
 
@@ -18,11 +21,11 @@ export function extractParams(relativePath: string): string[] {
   return matches.map((m) => m.slice(1, -1))
 }
 
-/** Map a file path (relative to pages dir) to an output HTML path. */
+/** Map a file path (relative to pages dir) to an output path by stripping the final (source) extension. */
 export function mapRoute(relativePath: string): string {
-  // Strip .page.ts extension, append .html
-  const withoutExt = relativePath.replace(/\.page\.ts$/, "")
-  return withoutExt + ".html"
+  const lastDot = relativePath.lastIndexOf(".")
+  if (lastDot === -1) return relativePath
+  return relativePath.slice(0, lastDot)
 }
 
 /** Resolve a dynamic route template with params (e.g. "blog/[slug].html" + {slug:"hi"} -> "blog/hi.html"). */
@@ -56,8 +59,8 @@ export async function discoverPages(dir: string): Promise<Page[]> {
     throw new Error(`Path is not a directory: ${resolved}`)
   }
 
-  // Glob for .page.ts files, excluding node_modules and .git
-  const glob = new Bun.Glob("**/*.page.ts")
+  // Glob for files with allowlisted target format as middle extension
+  const glob = new Bun.Glob(`**/*.{${TARGET_FORMATS.join(",")}}.*`)
   const entries: Page[] = []
 
   for await (const path of glob.scan({ cwd: resolved })) {

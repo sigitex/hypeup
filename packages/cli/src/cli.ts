@@ -8,13 +8,13 @@ hypeup - static site generator for hypeup components
 Usage: hypeup <command> [options]
 
 Commands:
-  generate    Generate static HTML from *.page.ts files
+  generate    Generate static output from .html.ts, .css.ts, .md.ts files
 
 Options:
   --version   Print version and exit
 
 Generate options:
-  --dir <dir>    Directory to scan for .page.ts files (default: ".")
+  --dir <dir>    Directory to scan for page files (default: ".")
   --out <dir>    Output directory (default: "dist")
   --clean        Remove output directory before generating
   --watch        Start dev server with live reload

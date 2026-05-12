@@ -4,8 +4,8 @@
 The `generate` subcommand SHALL load the project config file (if present), merge config values with CLI flags, then discover page components, render each to HTML using `@hypeup/render`, and write the output files to the output directory. The merged Vite configuration SHALL be passed to both `vite.build()` and the dev server.
 
 #### Scenario: Basic generation
-- **WHEN** the user runs `hypeup generate` with `*.page.ts` files in the project
-- **THEN** the CLI SHALL write corresponding `.html` files to the output directory with the rendered content
+- **WHEN** the user runs `hypeup generate` with `.html.ts`, `.css.ts`, or `.md.ts` files in the project
+- **THEN** the CLI SHALL write corresponding output files to the output directory with the rendered content
 
 #### Scenario: Config file provides defaults
 - **WHEN** the user has a `hypeup.config.ts` with `{ dir: "src", out: "build" }` and runs `hypeup generate`

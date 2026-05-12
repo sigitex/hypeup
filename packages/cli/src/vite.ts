@@ -1,5 +1,6 @@
 import type { InlineConfig, ViteDevServer } from "vite"
 import type { Page } from "./discover"
+import { TARGET_FORMATS } from "./discover"
 
 /** Match a URL route against a dynamic route template. Returns params or null. */
 function matchDynamicRoute(
@@ -64,9 +65,10 @@ export async function buildPages(
   const { build } = await import("vite")
   const plugin = await loadHypeupPlugin()
 
+  const formatPattern = new RegExp(`\\.(${TARGET_FORMATS.join("|")})$`)
   const input: Record<string, string> = {}
   for (const page of pages) {
-    const name = page.route.replace(/\.html$/, "")
+    const name = page.route.replace(formatPattern, "")
     input[name] = page.filePath
   }
 
@@ -131,10 +133,17 @@ export async function createDevServer(
             server.middlewares.use(async (req, res, next) => {
               const url = req.url ?? "/"
 
-              // Only handle GET requests for HTML pages
+              // Only handle GET requests
               if (req.method !== "GET") {
                 next()
                 return
+              }
+
+              // Content-type map for target formats
+              const contentTypes: Record<string, string> = {
+                html: "text/html",
+                css: "text/css",
+                md: "text/markdown",
               }
 
               // Map URL to a page route
@@ -143,11 +152,14 @@ export async function createDevServer(
                 route = (url === "/" ? "" : url.slice(1)) + "index.html"
               } else if (url.endsWith(".html")) {
                 route = url.slice(1)
+              } else if (url.endsWith(".css") || url.endsWith(".md")) {
+                // Check if this matches a discovered page route
+                route = url.slice(1)
               } else if (!url.includes(".")) {
                 // Clean URL without extension — try as a page route
                 route = url.slice(1) + ".html"
               } else {
-                // Has a non-.html extension (e.g. .css, .js, .png) — let Vite handle it
+                // Has a non-target extension (e.g. .js, .png) — let Vite handle it
                 next()
                 return
               }
@@ -188,12 +200,20 @@ export async function createDevServer(
                   return
                 }
 
-                const rawHtml = await renderPage(server, page, params)
-                const html = await server.transformIndexHtml(url, rawHtml)
+                const rawOutput = await renderPage(server, page, params)
+
+                // Determine target format from route extension
+                const ext = page.route.split(".").pop() ?? "html"
+                const contentType = contentTypes[ext] ?? "text/html"
+
+                // Only apply Vite's HTML transforms for HTML responses
+                const output = ext === "html"
+                  ? await server.transformIndexHtml(url, rawOutput)
+                  : rawOutput
 
                 res.statusCode = 200
-                res.setHeader("Content-Type", "text/html")
-                res.end(html)
+                res.setHeader("Content-Type", contentType)
+                res.end(output)
               } catch (error) {
                 console.error(`Error rendering ${route}:`, error)
                 next(error)

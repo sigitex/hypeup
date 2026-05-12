@@ -57,8 +57,15 @@ describe("generate command (one-shot)", () => {
     const secondPost = readFileSync(resolve(OUT_DIR, "blog/second-post.html"), "utf-8")
     expect(secondPost).toContain("Post: second-post")
 
-    // Verify summary output (3 static + 2 dynamic)
-    expect(stdout).toContain("5 pages")
+    // Verify CSS output (task 4.9: CSS file output from rule nodes)
+    expect(existsSync(resolve(OUT_DIR, "styles.css"))).toBe(true)
+    const css = readFileSync(resolve(OUT_DIR, "styles.css"), "utf-8")
+    expect(css).toContain("body{margin:0")
+    expect(css).toContain("font-family:sans-serif")
+    expect(css).toContain(".container{max-width:800px}")
+
+    // Verify summary output (4 static + 2 dynamic = 6, mixed HTML + CSS: task 4.10)
+    expect(stdout).toContain("6 page")
   }, 30000)
 
   test("copies public/ directory to output", async () => {
@@ -105,7 +112,7 @@ describe("generate command (watch mode)", () => {
     rmSync(WATCH_PAGES, { recursive: true, force: true })
     mkdirSync(WATCH_PAGES, { recursive: true })
     writeFileSync(
-      resolve(WATCH_PAGES, "index.page.ts"),
+      resolve(WATCH_PAGES, "index.html.ts"),
       `import "@hypeup/lexicon"\nexport default function index() { return h1("Original") }\n`,
     )
   })
@@ -132,7 +139,7 @@ describe("generate command (watch mode)", () => {
 
     // Modify the page file
     writeFileSync(
-      resolve(WATCH_PAGES, "index.page.ts"),
+      resolve(WATCH_PAGES, "index.html.ts"),
       `import "@hypeup/lexicon"\nexport default function index() { return h1("Updated") }\n`,
     )
 
