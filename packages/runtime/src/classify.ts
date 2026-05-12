@@ -7,6 +7,7 @@ import {
   Each,
   Element,
   EventBinding,
+  Lazy,
   Property,
   Raw,
   Rule,
@@ -81,6 +82,7 @@ function walkElement(contents: any[], slots: ElementSlots, isVoid: boolean) {
     } else if (
       item instanceof Element ||
       item instanceof Each ||
+      item instanceof Lazy ||
       item instanceof Raw ||
       item instanceof Rule ||
       item instanceof AtRule
