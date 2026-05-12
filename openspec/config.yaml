@@ -12,4 +12,5 @@ rules:
     - If the branch already exists (resuming work), just checkout the existing branch (git checkout feat/<change-name>)
     - After completing each task, stage and commit changes using conventional commit format
     - "Commit message format: feat(<change-name>): <concise task description>"
-    - Run git add -A && git commit before moving to the next task
+    - Run git add -A && git commit && git push origin feat/<change-name> before moving to the next task
+    - After the first push, create a pull request on Forgejo using the qbcode MCP tool (owner: sigitex, repo: hypeup, base: main, head: feat/<change-name>, title: <change-name>). Include the proposal summary as the body. Only create the PR once — skip on subsequent pushes.
