@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test"
 import {
   Attr,
+  AtRule,
   CssClass,
   Element,
   Property,
@@ -123,6 +124,39 @@ describe("classifyRule", () => {
     const r = new Raw("/* comment */")
     const result = classifyRule([r])
     expect(result.children).toContain(r)
+  })
+
+  test("AtRule routes to atRules slot", () => {
+    const ar = new AtRule("media", "(min-width: 600px)", [
+      new Property("padding", "20px"),
+    ])
+    const result = classifyRule([ar])
+    expect(result.atRules).toContain(ar)
+  })
+
+  test("mixed Properties, Rules, and AtRules are sorted correctly", () => {
+    const prop = new Property("color", "red")
+    const nested = new Rule(".bar", [new Property("font-size", "12px")])
+    const ar = new AtRule("media", "(min-width: 600px)", [
+      new Property("padding", "20px"),
+    ])
+    const result = classifyRule([prop, nested, ar])
+    expect(result.properties["color"]).toBe("red")
+    expect(result.rules).toContain(nested)
+    expect(result.atRules).toContain(ar)
+  })
+
+  test("AtRule nested in array is collected", () => {
+    const ar = new AtRule("supports", "(display: grid)", [
+      new Property("display", "grid"),
+    ])
+    const result = classifyRule([[ar]])
+    expect(result.atRules).toContain(ar)
+  })
+
+  test("atRules array is empty when no AtRule present", () => {
+    const result = classifyRule([new Property("color", "red")])
+    expect(result.atRules).toHaveLength(0)
   })
 })
 

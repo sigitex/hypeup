@@ -23,6 +23,7 @@ type ElementSlots = {
 type RuleSlots = {
   properties: Record<string, string>
   rules: Rule[]
+  atRules: AtRule[]
   children: any[]
 }
 
@@ -51,6 +52,7 @@ export function classifyRule(contents: any[]): RuleSlots {
   const slots: RuleSlots = {
     properties: {},
     rules: [],
+    atRules: [],
     children: [],
   }
   walkRule(contents, slots)
@@ -126,6 +128,8 @@ function walkRule(contents: any[], slots: RuleSlots) {
       slots.properties[item.name] = String(item.value)
     } else if (item instanceof Rule) {
       slots.rules.push(item)
+    } else if (item instanceof AtRule) {
+      slots.atRules.push(item)
     } else if (item instanceof Raw) {
       slots.children.push(item)
     } else if (Array.isArray(item)) {
