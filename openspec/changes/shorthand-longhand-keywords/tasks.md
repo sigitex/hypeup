@@ -15,6 +15,6 @@
 
 ## 3. Validate
 
-- [ ] 3.1 Run existing tests to ensure nothing breaks
-- [ ] 3.2 Build the lexicon package to verify generated types compile
-- [ ] 3.3 Build the babel package to verify the primitive table still works
+- [x] 3.1 Run existing tests to ensure nothing breaks
+- [x] 3.2 Build the lexicon package to verify generated types compile
+- [x] 3.3 Build the babel package to verify the primitive table still works

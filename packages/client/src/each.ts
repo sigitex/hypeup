@@ -3,8 +3,6 @@ import { disposeHandle, type EachState, type MountHandle } from "./apply"
 import { mountElement, diffElement } from "./mount"
 import { type KeyedItem, reconcile } from "./reconcile"
 
-export { each } from "@hypeup/runtime"
-
 /** Per-key lazy metadata for arg-comparison-based skipping. */
 type LazyMeta = { fn: Function; args: unknown[] }
 

@@ -1,6 +1,4 @@
 export { mount } from "./mount"
 export { redraw } from "./redraw"
 export { ref } from "./ref"
-export { each } from "./each"
-export { lazy } from "./lazy"
 export { on } from "./on"
