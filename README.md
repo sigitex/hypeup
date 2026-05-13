@@ -165,6 +165,23 @@ rule("input, textarea",
 )
 ```
 
+#### Native CSS Nesting
+
+Use the `/` prefix to render child rules inline inside the parent block (native CSS nesting) instead of flattening:
+
+```ts
+rule(".parent",
+  color.red,
+  rule("/.child",
+    color.blue,
+  ),
+)
+```
+
+This produces `.parent{color:red.child{color:blue}}` -- the child rule is nested inside the parent's braces. The `/` is stripped from the output.
+
+The `/` works with any selector: `/&:hover`, `/.className`, `/ > li`, etc. Non-slash child rules continue to flatten as before.
+
 ### At-rules
 
 Media queries and other at-rules are supported with the `$` prefix:
