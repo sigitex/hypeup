@@ -2,7 +2,7 @@
 /** biome-ignore-all lint/suspicious/noPrototypeBuiltins: it's ok */
 import { listAll as getCssRefs, type RefType } from "@webref/css"
 import { definitionSyntax, type DSNodeGroup } from "css-tree"
-import { all as knownCssProperties } from "known-css-properties"
+
 
 export default async function discoverCss() {
   const properties: SpecProperty[] = []
@@ -55,27 +55,16 @@ export default async function discoverCss() {
     }
   }
 
-  // Collect properties from known-css-properties
-
-  const unknownSpec: Spec = {
-    title: "Unknown Specification",
-    shortName: "unknown-spec",
+  // Inject CSS-wide keywords on every property (CSS Cascading and Inheritance Level 5)
+  const cascadeSpec: Spec = {
+    shortName: "css-cascade-5",
+    title: "CSS Cascading 5",
   }
-
-  for (const name of knownCssProperties) {
-    if (propLookup.hasOwnProperty(name)) {
-      continue
+  const globalKeywords = ["initial", "inherit", "unset", "revert", "revert-layer"]
+  for (const property of properties) {
+    for (const keyword of globalKeywords) {
+      addValue(property, "keyword", keyword, cascadeSpec, undefined)
     }
-    if (name.startsWith("-epub")) {
-      continue
-    }
-
-    properties.push({
-      name,
-      jsName: camelize(jsName(name)),
-      specs: [unknownSpec],
-      values: [],
-    })
   }
 
   properties.sort((a, b) => a.name.localeCompare(b.name))

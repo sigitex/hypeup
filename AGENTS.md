@@ -25,8 +25,8 @@ When proposing changes via /opsx-propose:
 When implementing tasks via /opsx-apply:
 
 1. Before starting tasks, create and checkout a `feat/<change-name>` branch. If it already exists (resuming work), just check it out.
-2. After completing each task **section** (numbered group in tasks.md): `git add -A && git commit -m "feat(<change-name>): <task description>" && git push origin -u feat/<change-name>`.
-3. After the first push only: create a pull request on Forgejo using the qbcode MCP tool (`mcp__oc__qbcode_create_pull_request`) with owner: `sigitex`, repo: `hypeup`, base: `main`, head: `feat/<change-name>`, title: `<change-name>`, body: proposal summary. Skip PR creation on subsequent pushes.
+2. After completing each task **section** (numbered group in tasks.md): `git add -A && git commit -m "feat(<change-name>): <task description>" && git push origin -u feat/<change-name>`. **Do NOT batch sections into a single commit. Each section gets its own commit and push immediately after completion.**
+3. After the **first** push only: create a pull request on Forgejo using the qbcode MCP tool (`mcp__oc__qbcode_create_pull_request`) with owner: `sigitex`, repo: `hypeup`, base: `main`, head: `feat/<change-name>`, title: `<change-name>`, body: proposal summary. **Do this immediately after the first push, not at the end.** Skip PR creation on subsequent pushes.
 
 ## OpenSpec Archive Workflow
 
