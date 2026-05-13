@@ -87,9 +87,8 @@ exports[`rule lowering rule with element selector 1`] = `
 _rule("div", [_prop("color", "red")]);"
 `;
 
-exports[`each lowering each call rewritten to import from client 1`] = `
-"import { elem as _elem } from "@hypeup/runtime";
-import { each as _each } from "@hypeup/client";
+exports[`each lowering each call rewritten to import from runtime 1`] = `
+"import { each as _each, elem as _elem } from "@hypeup/runtime";
 _each(state.items, i => i.id, i => _elem("li", [i.name]));"
 `;
 
@@ -99,8 +98,7 @@ each(items);"
 `;
 
 exports[`each lowering each inside element contents 1`] = `
-"import { each as _each } from "@hypeup/client";
-import { elem as _elem } from "@hypeup/runtime";
+"import { elem as _elem, each as _each } from "@hypeup/runtime";
 _elem("ul", [_each(state.items, i => i.id, i => _elem("li", [i.name]))]);"
 `;
 
@@ -179,7 +177,8 @@ const row = _lazy(TodoRow, [todo]);"
 `;
 
 exports[`PascalCase lazy wrapping PascalCase call inside each() mapFn is wrapped 1`] = `
-"import { each as _each, lazy as _lazy } from "@hypeup/client";
+"import { lazy as _lazy } from "@hypeup/client";
+import { each as _each } from "@hypeup/runtime";
 _each(items, d => d.id, d => _lazy(TodoRow, [d, selected]));"
 `;
 

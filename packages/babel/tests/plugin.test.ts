@@ -152,10 +152,10 @@ describe("rule lowering", () => {
 // each() Lowering
 
 describe("each lowering", () => {
-  test("each call rewritten to import from client", async () => {
+  test("each call rewritten to import from runtime", async () => {
     const result = await transform(`each(state.items, i => i.id, i => li(i.name))`)
     expect(result).toMatchSnapshot()
-    expect(result).toContain('@hypeup/client')
+    expect(result).toContain('@hypeup/runtime')
     expect(result).toContain('each')
   })
 
@@ -177,8 +177,8 @@ describe("each lowering", () => {
   test("each inside element contents", async () => {
     const result = await transform(`ul(each(state.items, i => i.id, i => li(i.name)))`)
     expect(result).toMatchSnapshot()
-    // each should be imported from client
-    expect(result).toContain('@hypeup/client')
+    // each should be imported from runtime
+    expect(result).toContain('@hypeup/runtime')
     // ul should be transformed to elem
     expect(result).toContain('elem')
     expect(result).toContain('"ul"')

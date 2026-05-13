@@ -19,7 +19,7 @@
 
 ## 4. Tests and Validation
 
-- [ ] 4.1 Run existing babel plugin tests — each/lazy transforms should still pass
-- [ ] 4.2 Run existing client tests — mount/diff/each tests should still pass
-- [ ] 4.3 Run render tests — SSR rendering of Each and Lazy should still pass
-- [ ] 4.4 Verify an SSR-only project can use `each` and `lazy` without `@hypeup/client` in dependencies
+- [x] 4.1 Run existing babel plugin tests — each/lazy transforms should still pass
+- [x] 4.2 Run existing client tests — mount/diff/each tests should still pass
+- [x] 4.3 Run render tests — SSR rendering of Each and Lazy should still pass
+- [x] 4.4 Verify an SSR-only project can use `each` and `lazy` without `@hypeup/client` in dependencies
