@@ -75,9 +75,27 @@ The `cssString` function SHALL accept a string and return it escaped for safe us
 - **WHEN** `cssString("hello \"world\"")` is called
 - **THEN** the result SHALL be a properly CSS-escaped string
 
+### Requirement: each helper
+The `each` function SHALL be exported from `@hypeup/runtime`. It SHALL have two overloads: a 3-argument form `each(items, keyFn, mapFn, context?)` that creates a keyed `Each` node, and a 2-argument form `each(items, mapFn)` that creates an index-keyed `Each` node.
+
+#### Scenario: each with key function
+- **WHEN** `each([a, b], item => item.id, item => li(item.name))` is called
+- **THEN** the result SHALL be an `Each` node with the items, key function, and map function stored
+
+#### Scenario: each with index keys
+- **WHEN** `each([a, b], item => li(item.name))` is called
+- **THEN** the result SHALL be an `Each` node with an auto-generated index key function
+
+### Requirement: lazy helper
+The `lazy` function SHALL be exported from `@hypeup/runtime`. It SHALL accept `(fn: Function, args: unknown[])` and return a `Lazy` vdom node.
+
+#### Scenario: lazy creates Lazy node
+- **WHEN** `lazy(MyComponent, [prop1, prop2])` is called
+- **THEN** the result SHALL be a `Lazy` node with `fn: MyComponent` and `args: [prop1, prop2]`
+
 ### Requirement: Runtime package structure
 All helpers SHALL be exported from `@hypeup/runtime`. The package SHALL also re-export all node classes from `@hypeup/vdom`. The `cssesc` dependency SHALL be owned by this package, not by `@hypeup/vdom`.
 
 #### Scenario: Package exports
 - **WHEN** `@hypeup/runtime` is imported
-- **THEN** it SHALL export `elem`, `elemVoid`, `prop`, `attr`, `raw`, `rule`, `atRule`, `className`, `cssString`, and all node classes (`Element`, `Property`, `AtRule`, `Rule`, `Raw`, `CssClass`, `Attr`)
+- **THEN** it SHALL export `elem`, `elemVoid`, `prop`, `attr`, `raw`, `rule`, `atRule`, `className`, `cssString`, `each`, `lazy`, and all node classes (`Element`, `Property`, `AtRule`, `Rule`, `Raw`, `CssClass`, `Attr`, `Each`, `Lazy`)
