@@ -19,6 +19,6 @@ Packages have been moved from the top level into `packages/`. The workspace glob
 When implementing tasks via /opsx-apply:
 
 1. Before starting tasks, create and checkout a `feat/<change-name>` branch. If it already exists (resuming work), just check it out.
-2. After completing each task: `git add -A && git commit -m "feat(<change-name>): <task description>" && git push origin feat/<change-name>`
+2. After completing each task **section** (numbered group in tasks.md): `git add -A && git commit -m "feat(<change-name>): <task description>" && git push origin feat/<change-name>`.
 3. After the first push only: create a pull request on Forgejo using the qbcode MCP tool (`mcp__oc__qbcode_create_pull_request`) with owner: `sigitex`, repo: `hypeup`, base: `main`, head: `feat/<change-name>`, title: `<change-name>`, body: proposal summary. Skip PR creation on subsequent pushes.
 
