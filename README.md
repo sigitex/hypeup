@@ -1,6 +1,6 @@
 # hypeup
 
-> Pure TypeScript UI Framework
+> Pure TypeScript UI Framework.
 
 hypeup is a beyond-hyperscript style UI framework where all HTML elements and CSS properties are available globally — no imports needed. It supports server-side rendering, client-side mounting, and static site generation.
 

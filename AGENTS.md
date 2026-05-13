@@ -14,6 +14,12 @@ The `packages/lexicon` package contains generated files (`css.gen.ts`, `html.gen
 
 Packages have been moved from the top level into `packages/`. The workspace glob in `package.json` reflects this. When referencing package source paths, use `packages/<name>/src/...` not `<name>/src/...`. Archived openspec changes still use old top-level paths — that is intentional and should not be updated.
 
+## OpenSpec Propose Workflow
+
+When proposing changes via /opsx-propose:
+
+- If the change introduces or modifies user-facing behavior (API changes, conventions), include a task section for updating `README.md` in the proposal's impact assessment.
+
 ## OpenSpec Apply Workflow
 
 When implementing tasks via /opsx-apply:
