@@ -83,13 +83,15 @@ export function buildDslPrimitives(): Map<string, Primitive> {
     "className",
     "cssString",
     "doctype",
+    "each",
+    "lazy",
   ]
   for (const name of builtins) {
     table.set(name, { kind: "builtin", name })
   }
 
   // Builtins (client)
-  const clientHelpers = ["on", "redraw", "ref", "each", "lazy"]
+  const clientHelpers = ["on", "redraw", "ref"]
   for (const name of clientHelpers) {
     table.set(name, { kind: "builtin", name, module: "@hypeup/client" })
   }

@@ -164,7 +164,7 @@ export function hypeupBabelPlugin(): PluginObj {
         // Transform: TodoRow(a, b) → lazy(TodoRow, [a, b])
         const args = path.node.arguments as t.Expression[]
         path.replaceWith(
-          t.callExpression(getImport(path, cache, "lazy", CLIENT_MODULE), [
+          t.callExpression(getImport(path, cache, "lazy", RUNTIME_MODULE), [
             callee,
             t.arrayExpression(args),
           ]),
