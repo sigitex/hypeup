@@ -123,7 +123,7 @@ function renderNode(x: Content, r: Renderer) {
 
 /** Render a CSS rule (and any nested rules). */
 function renderRule(ruleNode: Rule, r: Renderer, prefix?: string) {
-  const { properties, rules, children } = classifyRule(ruleNode.contents)
+  const { properties, rules, atRules, children } = classifyRule(ruleNode.contents)
   let selectors = ruleNode.selector.split(",").map((s: string) => s.trim())
   if (prefix) {
     selectors = selectors.map((selector: string) => {
@@ -149,12 +149,22 @@ function renderRule(ruleNode: Rule, r: Renderer, prefix?: string) {
     r.write(`}`)
   }
 
-  if (rules.length === 0) {
-    return
-  }
-  for (const selector of selectors) {
-    for (const sub of rules) {
-      renderRule(sub, r, selector)
+  if (rules.length > 0) {
+    for (const selector of selectors) {
+      for (const sub of rules) {
+        renderRule(sub, r, selector)
+      }
     }
+  }
+
+  for (const atRule of atRules) {
+    const composedSelector = selectors.join(",")
+    r.write(`@${atRule.keyword}`)
+    if (atRule.rule !== null) {
+      r.write(` ${atRule.rule}`)
+    }
+    r.write("{")
+    renderRule(new Rule(composedSelector, atRule.contents), r)
+    r.write("}")
   }
 }

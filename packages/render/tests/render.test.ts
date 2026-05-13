@@ -133,6 +133,83 @@ describe("render at-rules", () => {
   })
 })
 
+describe("render at-rules in rules (hoisting)", () => {
+  test("simple rule with media query", () => {
+    const r = new Rule(".card", [
+      new Property("color", "red"),
+      new AtRule("media", "(min-width: 600px)", [
+        new Property("padding", "20px"),
+      ]),
+    ])
+    expect(render(r)).toBe(
+      ".card{color:red}@media (min-width: 600px){.card{padding:20px}}",
+    )
+  })
+
+  test("nested rule with at-rule uses composed selector", () => {
+    const r = new Rule(".card", [
+      new Rule(".child", [
+        new AtRule("media", "(min-width: 600px)", [
+          new Property("padding", "20px"),
+        ]),
+      ]),
+    ])
+    expect(render(r)).toBe(
+      "@media (min-width: 600px){.card .child{padding:20px}}",
+    )
+  })
+
+  test("rule with multiple at-rules of different kinds", () => {
+    const r = new Rule(".card", [
+      new AtRule("media", "(min-width: 600px)", [
+        new Property("padding", "20px"),
+      ]),
+      new AtRule("supports", "(display: grid)", [
+        new Property("display", "grid"),
+      ]),
+    ])
+    expect(render(r)).toBe(
+      "@media (min-width: 600px){.card{padding:20px}}@supports (display: grid){.card{display:grid}}",
+    )
+  })
+
+  test("comma-separated selectors with at-rule", () => {
+    const r = new Rule(".card,.panel", [
+      new AtRule("media", "(min-width: 600px)", [
+        new Property("padding", "20px"),
+      ]),
+    ])
+    expect(render(r)).toBe(
+      "@media (min-width: 600px){.card,.panel{padding:20px}}",
+    )
+  })
+
+  test("at-rule body with nested rule inside", () => {
+    const r = new Rule(".card", [
+      new AtRule("media", "(min-width: 600px)", [
+        new Property("padding", "20px"),
+        new Rule(".title", [new Property("font-size", "24px")]),
+      ]),
+    ])
+    expect(render(r)).toBe(
+      "@media (min-width: 600px){.card{padding:20px}.card .title{font-size:24px}}",
+    )
+  })
+
+  test("rule with properties, nested rule, and at-rule — emission order", () => {
+    const r = new Rule(".card", [
+      new Property("color", "red"),
+      new Rule(".child", [new Property("font-size", "12px")]),
+      new AtRule("media", "(min-width: 600px)", [
+        new Property("padding", "20px"),
+      ]),
+    ])
+    expect(render(r)).toBe(
+      ".card{color:red}.card .child{font-size:12px}@media (min-width: 600px){.card{padding:20px}}",
+    )
+  })
+})
+
 describe("render edge cases", () => {
   test("escapes HTML in text", () => {
     const el = new Element("div", false, ["<script>"])
