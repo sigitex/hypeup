@@ -106,7 +106,6 @@
         "@webref/elements": "^2.7.1",
         "css-tree": "^3.2.1",
         "html-tags": "^5.1.0",
-        "known-css-properties": "^0.37.0",
       },
       "devDependencies": {
         "@types/bun": "^1.3.13",
@@ -956,8 +955,6 @@
     "keyv": ["keyv@5.6.0", "", { "dependencies": { "@keyv/serialize": "^1.1.1" } }, "sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw=="],
 
     "kind-of": ["kind-of@6.0.3", "", {}, "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw=="],
-
-    "known-css-properties": ["known-css-properties@0.37.0", "", {}, "sha512-JCDrsP4Z1Sb9JwG0aJ8Eo2r7k4Ou5MwmThS/6lcIe1ICyb7UBJKGRIUUdqc2ASdE/42lgz6zFUnzAIhtXnBVrQ=="],
 
     "lightningcss": ["lightningcss@1.32.0", "", { "dependencies": { "detect-libc": "^2.0.3" }, "optionalDependencies": { "lightningcss-android-arm64": "1.32.0", "lightningcss-darwin-arm64": "1.32.0", "lightningcss-darwin-x64": "1.32.0", "lightningcss-freebsd-x64": "1.32.0", "lightningcss-linux-arm-gnueabihf": "1.32.0", "lightningcss-linux-arm64-gnu": "1.32.0", "lightningcss-linux-arm64-musl": "1.32.0", "lightningcss-linux-x64-gnu": "1.32.0", "lightningcss-linux-x64-musl": "1.32.0", "lightningcss-win32-arm64-msvc": "1.32.0", "lightningcss-win32-x64-msvc": "1.32.0" } }, "sha512-NXYBzinNrblfraPGyrbPoD19C1h9lfI/1mzgWYvXUTe414Gz/X1FD2XBZSZM7rRTrMA8JL3OtAaGifrIKhQ5yQ=="],
 
