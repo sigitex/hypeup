@@ -87,6 +87,37 @@ exports[`rule lowering rule with element selector 1`] = `
 _rule("div", [_prop("color", "red")]);"
 `;
 
+exports[`rule lowering rule with element selector pre 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule("pre", [_prop("color", "red")]);"
+`;
+
+exports[`rule lowering rule with void element selector 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule("hr", [_prop("border-color", "black")]);"
+`;
+
+exports[`rule lowering rule with _var uses tag field 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule("var", [_prop("font-style", "italic")]);"
+`;
+
+exports[`rule lowering rule with string selector unchanged 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule(".foo", [_prop("color", "red")]);"
+`;
+
+exports[`rule lowering rule with locally-bound identifier not replaced 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+const div = ".my-div";
+_rule(div, [_prop("color", "red")]);"
+`;
+
+exports[`rule lowering rule with non-element identifier left as-is 1`] = `
+"import { rule as _rule, prop as _prop } from "@hypeup/runtime";
+_rule(mySelector, [_prop("color", "red")]);"
+`;
+
 exports[`each lowering each call rewritten to import from runtime 1`] = `
 "import { each as _each, elem as _elem } from "@hypeup/runtime";
 _each(state.items, i => i.id, i => _elem("li", [i.name]));"
