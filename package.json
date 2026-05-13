@@ -1,7 +1,7 @@
 {
   "name": "@hypeup/monorepo",
   "private": true,
-  "description": "Pure TypeScript UI Framework",
+  "description": "Pure TypeScript UI Framework.",
   "license": "MIT",
   "workspaces": {
     "packages": [

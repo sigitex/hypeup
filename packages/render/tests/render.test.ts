@@ -210,6 +210,60 @@ describe("render at-rules in rules (hoisting)", () => {
   })
 })
 
+describe("render nested CSS rules (slash-prefix)", () => {
+  test("slash-prefixed child renders inline as native CSS nesting", () => {
+    const r = new Rule(".parent", [
+      new Property("color", "red"),
+      new Rule("/.child", [new Property("color", "blue")]),
+    ])
+    expect(render(r)).toBe(".parent{color:red.child{color:blue}}")
+  })
+
+  test("slash-prefixed &:hover renders inline with & preserved", () => {
+    const r = new Rule(".btn", [
+      new Property("color", "black"),
+      new Rule("/&:hover", [new Property("color", "red")]),
+    ])
+    expect(render(r)).toBe(".btn{color:black&:hover{color:red}}")
+  })
+
+  test("slash-prefixed child combinator renders inline", () => {
+    const r = new Rule(".list", [
+      new Property("margin", "0"),
+      new Rule("/> li", [new Property("padding", "4px")]),
+    ])
+    expect(render(r)).toBe(".list{margin:0> li{padding:4px}}")
+  })
+
+  test("non-slash child rules still flatten", () => {
+    const r = new Rule(".parent", [
+      new Property("color", "red"),
+      new Rule(".child", [new Property("color", "blue")]),
+    ])
+    expect(render(r)).toBe(".parent{color:red}.parent .child{color:blue}")
+  })
+
+  test("mixed slash and non-slash children in same parent", () => {
+    const r = new Rule(".parent", [
+      new Property("color", "red"),
+      new Rule("/.inline", [new Property("font-size", "12px")]),
+      new Rule(".flat", [new Property("margin", "0")]),
+    ])
+    expect(render(r)).toBe(
+      ".parent{color:red.inline{font-size:12px}}.parent .flat{margin:0}",
+    )
+  })
+
+  test("deeply nested slash rules", () => {
+    const r = new Rule(".a", [
+      new Rule("/.b", [
+        new Rule("/.c", [new Property("color", "red")]),
+      ]),
+    ])
+    expect(render(r)).toBe(".a{.b{.c{color:red}}}")
+  })
+})
+
 describe("render edge cases", () => {
   test("escapes HTML in text", () => {
     const el = new Element("div", false, ["<script>"])

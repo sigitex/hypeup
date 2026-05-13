@@ -136,8 +136,20 @@ function renderRule(ruleNode: Rule, r: Renderer, prefix?: string) {
       }
     })
   }
+
+  // Separate inline (slash-prefixed) rules from flattened rules
+  const inlineRules: Rule[] = []
+  const flattenedRules: Rule[] = []
+  for (const sub of rules) {
+    if (sub.selector.startsWith("/")) {
+      inlineRules.push(new Rule(sub.selector.substring(1), sub.contents))
+    } else {
+      flattenedRules.push(sub)
+    }
+  }
+
   const keys = Object.keys(properties)
-  if (keys.length > 0 || children.length > 0) {
+  if (keys.length > 0 || children.length > 0 || inlineRules.length > 0) {
     r.write(`${selectors.join(",")}{`)
     r.write(keys.map((key) => `${key}:${properties[key]}`).join(";"))
     if (keys.length > 0 && children.length > 0) {
@@ -146,12 +158,16 @@ function renderRule(ruleNode: Rule, r: Renderer, prefix?: string) {
     for (const child of children) {
       renderNode(child, r)
     }
+    // Emit inline nested rules inside the braces
+    for (const inlineRule of inlineRules) {
+      renderRule(inlineRule, r)
+    }
     r.write(`}`)
   }
 
-  if (rules.length > 0) {
+  if (flattenedRules.length > 0) {
     for (const selector of selectors) {
-      for (const sub of rules) {
+      for (const sub of flattenedRules) {
         renderRule(sub, r, selector)
       }
     }
