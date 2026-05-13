@@ -160,36 +160,35 @@ _elem("var", ["code"]);"
 `;
 
 exports[`PascalCase lazy wrapping PascalCase call with args is wrapped 1`] = `
-"import { lazy as _lazy } from "@hypeup/client";
+"import { lazy as _lazy } from "@hypeup/runtime";
 _lazy(TodoRow, [todo, isSelected]);"
 `;
 
 exports[`PascalCase lazy wrapping PascalCase call with single arg 1`] = `
-"import { lazy as _lazy } from "@hypeup/client";
+"import { lazy as _lazy } from "@hypeup/runtime";
 _lazy(Header, [count]);"
 `;
 
 exports[`PascalCase lazy wrapping zero-arg PascalCase call is NOT wrapped 1`] = `"Header();"`;
 
 exports[`PascalCase lazy wrapping PascalCase call in variable assignment is wrapped 1`] = `
-"import { lazy as _lazy } from "@hypeup/client";
+"import { lazy as _lazy } from "@hypeup/runtime";
 const row = _lazy(TodoRow, [todo]);"
 `;
 
 exports[`PascalCase lazy wrapping PascalCase call inside each() mapFn is wrapped 1`] = `
-"import { lazy as _lazy } from "@hypeup/client";
-import { each as _each } from "@hypeup/runtime";
+"import { each as _each, lazy as _lazy } from "@hypeup/runtime";
 _each(items, d => d.id, d => _lazy(TodoRow, [d, selected]));"
 `;
 
 exports[`PascalCase lazy wrapping locally bound PascalCase IS wrapped 1`] = `
-"import { lazy as _lazy } from "@hypeup/client";
+"import { lazy as _lazy } from "@hypeup/runtime";
 const MyComp = () => {};
 _lazy(MyComp, [x]);"
 `;
 
 exports[`PascalCase lazy wrapping multiple PascalCase calls share single lazy import 1`] = `
-"import { lazy as _lazy } from "@hypeup/client";
+"import { lazy as _lazy } from "@hypeup/runtime";
 _lazy(TodoRow, ["a"]);
 _lazy(AdminRow, ["b"]);"
 `;

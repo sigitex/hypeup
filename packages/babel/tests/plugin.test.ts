@@ -276,7 +276,7 @@ describe("PascalCase lazy wrapping", () => {
     expect(result).toMatchSnapshot()
     expect(result).toContain('lazy')
     expect(result).toContain('TodoRow')
-    expect(result).toContain('@hypeup/client')
+    expect(result).toContain('@hypeup/runtime')
   })
 
   test("PascalCase call with single arg", async () => {
@@ -337,7 +337,7 @@ describe("PascalCase lazy wrapping", () => {
   test("multiple PascalCase calls share single lazy import", async () => {
     const result = await transform(`TodoRow(a); AdminRow(b)`)
     expect(result).toMatchSnapshot()
-    const imports = result.match(/import.*from.*@hypeup\/client/g)
+    const imports = result.match(/import.*lazy.*from.*@hypeup\/runtime/g)
     expect(imports?.length).toBe(1)
   })
 })
