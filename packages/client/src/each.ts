@@ -3,6 +3,8 @@ import { disposeHandle, type EachState, type MountHandle } from "./apply"
 import { mountElement, diffElement } from "./mount"
 import { type KeyedItem, reconcile } from "./reconcile"
 
+export { each } from "@hypeup/runtime"
+
 /** Per-key lazy metadata for arg-comparison-based skipping. */
 type LazyMeta = { fn: Function; args: unknown[] }
 
@@ -25,44 +27,6 @@ function argsEqual(prev: unknown[], next: unknown[]): boolean {
     }
   }
   return true
-}
-
-/** Create a keyed list node with explicit key function. */
-export function each<T>(
-  items: T[],
-  keyFn: (item: T, index: number) => unknown,
-  mapFn: (item: T, index: number) => Element,
-  context?: unknown,
-): Each<T>
-
-/** Create an index-keyed list node (key defaults to array index). */
-export function each<T>(
-  items: T[],
-  mapFn: (item: T, index: number) => Element,
-): Each<T>
-
-export function each<T>(
-  items: T[],
-  keyFnOrMapFn:
-    | ((item: T, index: number) => unknown)
-    | ((item: T, index: number) => Element),
-  mapFnOrContext?: ((item: T, index: number) => Element) | unknown,
-  context?: unknown,
-): Each<T> {
-  if (typeof mapFnOrContext === "function") {
-    return new Each(
-      items,
-      keyFnOrMapFn as (item: T, index: number) => unknown,
-      mapFnOrContext as (item: T, index: number) => Element,
-      context,
-    )
-  }
-  // Two-argument overload: use index as key
-  return new Each(
-    items,
-    (_item: T, index: number) => index,
-    keyFnOrMapFn as (item: T, index: number) => Element,
-  )
 }
 
 /** Mount an Each node into a parent DOM element. Returns EachState for diffing. */

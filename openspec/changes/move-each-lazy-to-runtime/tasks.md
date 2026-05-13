@@ -12,10 +12,10 @@
 
 ## 3. Client — Re-export and clean up
 
-- [ ] 3.1 In `@hypeup/client/src/each.ts`, remove the `each()` constructor function and import it from `@hypeup/runtime` instead
-- [ ] 3.2 Remove `@hypeup/client/src/lazy.ts` (or replace with re-export from runtime)
-- [ ] 3.3 Update `@hypeup/client/src/index.ts` to re-export `each` from `@hypeup/runtime` and `lazy` from `@hypeup/runtime`
-- [ ] 3.4 Verify `mountEach` and `diffEach` still work in client (they import `Each` from vdom, not the `each` function)
+- [x] 3.1 In `@hypeup/client/src/each.ts`, remove the `each()` constructor function and import it from `@hypeup/runtime` instead
+- [x] 3.2 Remove `@hypeup/client/src/lazy.ts` (or replace with re-export from runtime)
+- [x] 3.3 Update `@hypeup/client/src/index.ts` to re-export `each` from `@hypeup/runtime` and `lazy` from `@hypeup/runtime`
+- [x] 3.4 Verify `mountEach` and `diffEach` still work in client (they import `Each` from vdom, not the `each` function)
 
 ## 4. Tests and Validation
 
