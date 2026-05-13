@@ -39,6 +39,9 @@ The `raw` function will skip HTML escaping for its contents:
 
 ```ts
 raw("<span>hello!</span>")
+
+`raw` can also be used to inject custom CSS inside rules & at-rules.
+
 ```
 
 ### Element Class Shorthand
