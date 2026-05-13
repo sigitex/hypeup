@@ -118,6 +118,12 @@ describe("classifyRule", () => {
     expect(result.rules).toHaveLength(0)
     expect(Object.keys(result.properties)).toHaveLength(0)
   })
+
+  test("Raw routes to children slot", () => {
+    const r = new Raw("/* comment */")
+    const result = classifyRule([r])
+    expect(result.children).toContain(r)
+  })
 })
 
 describe("classifyAtRule", () => {
@@ -143,5 +149,11 @@ describe("classifyAtRule", () => {
     const result = classifyAtRule([new CssClass("active") as any])
     expect(result.children).toHaveLength(0)
     expect(Object.keys(result.properties)).toHaveLength(0)
+  })
+
+  test("Raw routes to children slot", () => {
+    const r = new Raw("/* raw css */")
+    const result = classifyAtRule([r])
+    expect(result.children).toContain(r)
   })
 })

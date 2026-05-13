@@ -1,3 +1,4 @@
+// oxlint-disable complexity
 import type { InlineConfig, ViteDevServer } from "vite"
 import type { Page } from "./discover"
 import { TARGET_FORMATS } from "./discover"

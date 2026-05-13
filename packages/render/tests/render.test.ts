@@ -80,6 +80,28 @@ describe("render rules", () => {
     const r = new Rule(".x", [new Property("a", "1"), new Property("b", "2")])
     expect(render(r)).toBe(".x{a:1;b:2}")
   })
+
+  test("rule with Raw child emits text inline", () => {
+    const r = new Rule(".foo", [
+      new Property("color", "red"),
+      new Raw("/* comment */"),
+    ])
+    expect(render(r)).toBe(".foo{color:red;/* comment */}")
+  })
+
+  test("rule with only Raw children", () => {
+    const r = new Rule(".foo", [new Raw("color: red; font-size: 12px")])
+    expect(render(r)).toBe(".foo{color: red; font-size: 12px}")
+  })
+
+  test("rule with properties, Raw, and nested rules together", () => {
+    const r = new Rule(".foo", [
+      new Property("color", "red"),
+      new Raw("/* hack */"),
+      new Rule(".bar", [new Property("font-size", "12px")]),
+    ])
+    expect(render(r)).toBe(".foo{color:red;/* hack */}.foo .bar{font-size:12px}")
+  })
 })
 
 describe("render at-rules", () => {
@@ -100,6 +122,14 @@ describe("render at-rules", () => {
   test("empty at-rule renders semicolon", () => {
     const ar = new AtRule("charset", '"utf-8"', [])
     expect(render(ar)).toBe('@charset "utf-8";')
+  })
+
+  test("at-rule with Raw child", () => {
+    const ar = new AtRule("font-face", null, [
+      new Property("font-family", "Arial"),
+      new Raw("src: url('font.woff2')"),
+    ])
+    expect(render(ar)).toBe("font-face{font-family:Arialsrc: url('font.woff2')}")
   })
 })
 

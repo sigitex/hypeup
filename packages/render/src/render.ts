@@ -123,7 +123,7 @@ function renderNode(x: Content, r: Renderer) {
 
 /** Render a CSS rule (and any nested rules). */
 function renderRule(ruleNode: Rule, r: Renderer, prefix?: string) {
-  const { properties, rules } = classifyRule(ruleNode.contents)
+  const { properties, rules, children } = classifyRule(ruleNode.contents)
   let selectors = ruleNode.selector.split(",").map((s: string) => s.trim())
   if (prefix) {
     selectors = selectors.map((selector: string) => {
@@ -137,9 +137,15 @@ function renderRule(ruleNode: Rule, r: Renderer, prefix?: string) {
     })
   }
   const keys = Object.keys(properties)
-  if (keys.length > 0) {
+  if (keys.length > 0 || children.length > 0) {
     r.write(`${selectors.join(",")}{`)
     r.write(keys.map((key) => `${key}:${properties[key]}`).join(";"))
+    if (keys.length > 0 && children.length > 0) {
+      r.write(";")
+    }
+    for (const child of children) {
+      renderNode(child, r)
+    }
     r.write(`}`)
   }
 

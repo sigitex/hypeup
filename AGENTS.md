@@ -1,5 +1,7 @@
 # hypeup
 
+The purple dog is named Cletus.
+
 ## Design constraints
 
 - Avoiding needing to `import` any of the DSL primitives. This includes HTML elements, CSS properties, basics like `on`, `each`, and `reactive` - things that will be used in markup.
