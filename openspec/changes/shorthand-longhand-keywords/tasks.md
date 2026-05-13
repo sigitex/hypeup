@@ -1,9 +1,9 @@
 ## 1. Add longhand keyword resolution
 
-- [ ] 1.1 After the existing webref property loop in `discoverCss.ts`, add a second pass that walks each property's syntax looking for `Property` nodes
-- [ ] 1.2 For each `Property` node found, look up the referenced property in `propLookup` and copy its keyword values to the current property using `addValue`
-- [ ] 1.3 Use the longhand keyword's original spec references (from its `helps` array) when calling `addValue`
-- [ ] 1.4 Ensure the second pass runs before the CSS-wide keyword injection loop
+- [x] 1.1 After the existing webref property loop in `discoverCss.ts`, add a second pass that walks each property's syntax looking for `Property` nodes
+- [x] 1.2 For each `Property` node found, look up the referenced property in `propLookup` and copy its keyword values to the current property using `addValue`
+- [x] 1.3 Use the longhand keyword's original spec references (from its `helps` array) when calling `addValue`
+- [x] 1.4 Ensure the second pass runs before the CSS-wide keyword injection loop
 
 ## 2. Regenerate lexicon
 

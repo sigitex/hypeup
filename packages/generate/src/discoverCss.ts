@@ -55,6 +55,27 @@ export default async function discoverCss() {
     }
   }
 
+  // Second pass: resolve Property node references so shorthands inherit
+  // their direct longhands' keywords (one level only, no recursion).
+  for (const refProp of refs.properties) {
+    const property = propLookup[refProp.name]
+    if (!property || !refProp.syntax) continue
+    const parsed = definitionSyntax.parse(refProp.syntax)
+    definitionSyntax.walk(parsed, {
+      enter(node) {
+        if (node.type === "Property") {
+          const longhand = propLookup[node.name]
+          if (!longhand) return
+          for (const value of longhand.values) {
+            for (const h of value.helps) {
+              addValue(property, value.type, value.name, h.spec, h.help)
+            }
+          }
+        }
+      },
+    })
+  }
+
   // Inject CSS-wide keywords on every property (CSS Cascading and Inheritance Level 5)
   const cascadeSpec: Spec = {
     shortName: "css-cascade-5",
