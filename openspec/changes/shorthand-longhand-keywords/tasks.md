@@ -7,11 +7,11 @@
 
 ## 2. Regenerate lexicon
 
-- [ ] 2.1 Run the generator to regenerate `primitives.gen.ts` and `css.gen.ts`
-- [ ] 2.2 Verify `textDecoration` now has `underline`, `overline`, `lineThrough`, `solid`, `double`, `dotted`, `dashed`, `wavy` keywords
-- [ ] 2.3 Verify `overflow` now has `visible`, `hidden`, `clip`, `scroll`, `auto` keywords
-- [ ] 2.4 Verify longhand keyword doc comments reference the longhand's spec (e.g., `css-text-decor-4`), not the shorthand's
-- [ ] 2.5 Verify no duplicate keywords on properties that share keyword names with their longhands
+- [x] 2.1 Run the generator to regenerate `primitives.gen.ts` and `css.gen.ts`
+- [x] 2.2 Verify `textDecoration` now has `underline`, `overline`, `lineThrough`, `solid`, `double`, `dotted`, `dashed`, `wavy` keywords
+- [x] 2.3 Verify `overflow` now has `visible`, `hidden`, `clip`, `scroll`, `auto` keywords
+- [x] 2.4 Verify longhand keyword doc comments reference the longhand's spec (e.g., `css-text-decor-4`), not the shorthand's
+- [x] 2.5 Verify no duplicate keywords on properties that share keyword names with their longhands
 
 ## 3. Validate
 

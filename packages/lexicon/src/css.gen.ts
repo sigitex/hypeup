@@ -936,6 +936,8 @@ declare global {
     (value: Content): Property
     /** `none` keyword. `compat.spec.whatwg.org` */
     none: Property
+    /** `content` keyword. `css-flexbox-1` */
+    content: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -953,6 +955,18 @@ declare global {
     (value: Content): Property
     /** `content` keyword. `compat.spec.whatwg.org` */
     content: Property
+    /** `auto` keyword. `css-sizing-3` */
+    auto: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -991,6 +1005,20 @@ declare global {
   /** Create a `-webkit-flex-flow` property. `compat.spec.whatwg.org` */
   const webkitFlexFlow: {
     (value: Content): Property
+    /** `row` keyword. `css-flexbox-1` */
+    row: Property
+    /** `row-reverse` keyword. `css-flexbox-1` */
+    rowReverse: Property
+    /** `column` keyword. `css-flexbox-1` */
+    column: Property
+    /** `column-reverse` keyword. `css-flexbox-1` */
+    columnReverse: Property
+    /** `nowrap` keyword. `css-flexbox-1` */
+    nowrap: Property
+    /** `wrap` keyword. `css-flexbox-1` */
+    wrap: Property
+    /** `wrap-reverse` keyword. `css-flexbox-1` */
+    wrapReverse: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -1134,6 +1162,10 @@ declare global {
   /** Create a `-webkit-mask-box-image` property. `compat.spec.whatwg.org` */
   const webkitMaskBoxImage: {
     (value: Content): Property
+    /** `luminance` keyword. `css-masking-1` */
+    luminance: Property
+    /** `alpha` keyword. `css-masking-1` */
+    alpha: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -1164,6 +1196,14 @@ declare global {
   /** Create a `-webkit-mask-box-image-repeat` property. `compat.spec.whatwg.org` */
   const webkitMaskBoxImageRepeat: {
     (value: Content): Property
+    /** `stretch` keyword. `css-borders-4` */
+    stretch: Property
+    /** `repeat` keyword. `css-borders-4` */
+    repeat: Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `space` keyword. `css-borders-4` */
+    space: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -1179,6 +1219,8 @@ declare global {
   /** Create a `-webkit-mask-box-image-slice` property. `compat.spec.whatwg.org` */
   const webkitMaskBoxImageSlice: {
     (value: Content): Property
+    /** `fill` keyword. `css-borders-4` */
+    fill: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -1194,6 +1236,8 @@ declare global {
   /** Create a `-webkit-mask-box-image-source` property. `compat.spec.whatwg.org` */
   const webkitMaskBoxImageSource: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -1209,6 +1253,8 @@ declare global {
   /** Create a `-webkit-mask-box-image-width` property. `compat.spec.whatwg.org` */
   const webkitMaskBoxImageWidth: {
     (value: Content): Property
+    /** `auto` keyword. `css-borders-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2075,6 +2121,8 @@ declare global {
   /** Create a `animation-range` property. `scroll-animations-1` */
   const animationRange: {
     (value: Content): Property
+    /** `normal` keyword. `scroll-animations-1` */
+    normal: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2326,6 +2374,40 @@ declare global {
   /** Create a `background-blend-mode` property. `compositing-2` */
   const backgroundBlendMode: {
     (value: Content): Property
+    /** `normal` keyword. `compositing-2` */
+    normal: Property
+    /** `darken` keyword. `compositing-2` */
+    darken: Property
+    /** `multiply` keyword. `compositing-2` */
+    multiply: Property
+    /** `color-burn` keyword. `compositing-2` */
+    colorBurn: Property
+    /** `lighten` keyword. `compositing-2` */
+    lighten: Property
+    /** `screen` keyword. `compositing-2` */
+    screen: Property
+    /** `color-dodge` keyword. `compositing-2` */
+    colorDodge: Property
+    /** `overlay` keyword. `compositing-2` */
+    overlay: Property
+    /** `soft-light` keyword. `compositing-2` */
+    softLight: Property
+    /** `hard-light` keyword. `compositing-2` */
+    hardLight: Property
+    /** `difference` keyword. `compositing-2` */
+    difference: Property
+    /** `exclusion` keyword. `compositing-2` */
+    exclusion: Property
+    /** `hue` keyword. `compositing-2` */
+    hue: Property
+    /** `saturation` keyword. `compositing-2` */
+    saturation: Property
+    /** `color` keyword. `compositing-2` */
+    color: Property
+    /** `luminosity` keyword. `compositing-2` */
+    luminosity: Property
+    /** `plus-lighter` keyword. `compositing-2` */
+    plusLighter: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2736,6 +2818,18 @@ declare global {
   /** Create a `block-size` property. `css-logical-1` */
   const blockSize: {
     (value: Content): Property
+    /** `auto` keyword. `css-sizing-3` */
+    auto: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2751,6 +2845,28 @@ declare global {
   /** Create a `block-step` property. `css-rhythm-1` */
   const blockStep: {
     (value: Content): Property
+    /** `none` keyword. `css-rhythm-1` */
+    none: Property
+    /** `margin-box` keyword. `css-rhythm-1` */
+    marginBox: Property
+    /** `padding-box` keyword. `css-rhythm-1` */
+    paddingBox: Property
+    /** `content-box` keyword. `css-rhythm-1` */
+    contentBox: Property
+    /** `auto` keyword. `css-rhythm-1` */
+    auto: Property
+    /** `center` keyword. `css-rhythm-1` */
+    center: Property
+    /** `start` keyword. `css-rhythm-1` */
+    start: Property
+    /** `end` keyword. `css-rhythm-1` */
+    end: Property
+    /** `up` keyword. `css-rhythm-1` */
+    up: Property
+    /** `down` keyword. `css-rhythm-1` */
+    down: Property
+    /** `nearest` keyword. `css-rhythm-1` */
+    nearest: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2942,6 +3058,34 @@ declare global {
   /** Create a `border-block` property. `css-borders-4` */
   const borderBlock: {
     (value: Content): Property
+    /** `hairline` keyword. `css-borders-4` */
+    hairline: Property
+    /** `thin` keyword. `css-borders-4` */
+    thin: Property
+    /** `medium` keyword. `css-borders-4` */
+    medium: Property
+    /** `thick` keyword. `css-borders-4` */
+    thick: Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
+    /** `hidden` keyword. `css-borders-4` */
+    hidden: Property
+    /** `dotted` keyword. `css-borders-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-borders-4` */
+    dashed: Property
+    /** `solid` keyword. `css-borders-4` */
+    solid: Property
+    /** `double` keyword. `css-borders-4` */
+    double: Property
+    /** `groove` keyword. `css-borders-4` */
+    groove: Property
+    /** `ridge` keyword. `css-borders-4` */
+    ridge: Property
+    /** `inset` keyword. `css-borders-4` */
+    inset: Property
+    /** `outset` keyword. `css-borders-4` */
+    outset: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2952,11 +3096,13 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `border-block-clip` property. `css-borders-4` */
   const borderBlockClip: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -2982,7 +3128,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `border-block-end` property. `css-borders-4` */
   const borderBlockEnd: {
@@ -3283,6 +3429,26 @@ declare global {
   /** Create a `border-block-style` property. `css-borders-4` */
   const borderBlockStyle: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
+    /** `hidden` keyword. `css-borders-4` */
+    hidden: Property
+    /** `dotted` keyword. `css-borders-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-borders-4` */
+    dashed: Property
+    /** `solid` keyword. `css-borders-4` */
+    solid: Property
+    /** `double` keyword. `css-borders-4` */
+    double: Property
+    /** `groove` keyword. `css-borders-4` */
+    groove: Property
+    /** `ridge` keyword. `css-borders-4` */
+    ridge: Property
+    /** `inset` keyword. `css-borders-4` */
+    inset: Property
+    /** `outset` keyword. `css-borders-4` */
+    outset: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -3298,6 +3464,14 @@ declare global {
   /** Create a `border-block-width` property. `css-borders-4` */
   const borderBlockWidth: {
     (value: Content): Property
+    /** `hairline` keyword. `css-borders-4` */
+    hairline: Property
+    /** `thin` keyword. `css-borders-4` */
+    thin: Property
+    /** `medium` keyword. `css-borders-4` */
+    medium: Property
+    /** `thick` keyword. `css-borders-4` */
+    thick: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -3512,6 +3686,8 @@ declare global {
   /** Create a `border-clip` property. `css-borders-4` */
   const borderClip: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -3591,6 +3767,20 @@ declare global {
   /** Create a `border-image` property. `css-borders-4` */
   const borderImage: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
+    /** `fill` keyword. `css-borders-4` */
+    fill: Property
+    /** `auto` keyword. `css-borders-4` */
+    auto: Property
+    /** `stretch` keyword. `css-borders-4` */
+    stretch: Property
+    /** `repeat` keyword. `css-borders-4` */
+    repeat: Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `space` keyword. `css-borders-4` */
+    space: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -3695,6 +3885,34 @@ declare global {
   /** Create a `border-inline` property. `css-borders-4` */
   const borderInline: {
     (value: Content): Property
+    /** `hairline` keyword. `css-borders-4` */
+    hairline: Property
+    /** `thin` keyword. `css-borders-4` */
+    thin: Property
+    /** `medium` keyword. `css-borders-4` */
+    medium: Property
+    /** `thick` keyword. `css-borders-4` */
+    thick: Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
+    /** `hidden` keyword. `css-borders-4` */
+    hidden: Property
+    /** `dotted` keyword. `css-borders-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-borders-4` */
+    dashed: Property
+    /** `solid` keyword. `css-borders-4` */
+    solid: Property
+    /** `double` keyword. `css-borders-4` */
+    double: Property
+    /** `groove` keyword. `css-borders-4` */
+    groove: Property
+    /** `ridge` keyword. `css-borders-4` */
+    ridge: Property
+    /** `inset` keyword. `css-borders-4` */
+    inset: Property
+    /** `outset` keyword. `css-borders-4` */
+    outset: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -3705,11 +3923,13 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `border-inline-clip` property. `css-borders-4` */
   const borderInlineClip: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -3735,7 +3955,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `border-inline-end` property. `css-borders-4` */
   const borderInlineEnd: {
@@ -4036,6 +4256,26 @@ declare global {
   /** Create a `border-inline-style` property. `css-borders-4` */
   const borderInlineStyle: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
+    /** `hidden` keyword. `css-borders-4` */
+    hidden: Property
+    /** `dotted` keyword. `css-borders-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-borders-4` */
+    dashed: Property
+    /** `solid` keyword. `css-borders-4` */
+    solid: Property
+    /** `double` keyword. `css-borders-4` */
+    double: Property
+    /** `groove` keyword. `css-borders-4` */
+    groove: Property
+    /** `ridge` keyword. `css-borders-4` */
+    ridge: Property
+    /** `inset` keyword. `css-borders-4` */
+    inset: Property
+    /** `outset` keyword. `css-borders-4` */
+    outset: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -4051,6 +4291,14 @@ declare global {
   /** Create a `border-inline-width` property. `css-borders-4` */
   const borderInlineWidth: {
     (value: Content): Property
+    /** `hairline` keyword. `css-borders-4` */
+    hairline: Property
+    /** `thin` keyword. `css-borders-4` */
+    thin: Property
+    /** `medium` keyword. `css-borders-4` */
+    medium: Property
+    /** `thick` keyword. `css-borders-4` */
+    thick: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -4474,6 +4722,26 @@ declare global {
   /** Create a `border-style` property. `css-borders-4` */
   const borderStyle: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
+    /** `hidden` keyword. `css-borders-4` */
+    hidden: Property
+    /** `dotted` keyword. `css-borders-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-borders-4` */
+    dashed: Property
+    /** `solid` keyword. `css-borders-4` */
+    solid: Property
+    /** `double` keyword. `css-borders-4` */
+    double: Property
+    /** `groove` keyword. `css-borders-4` */
+    groove: Property
+    /** `ridge` keyword. `css-borders-4` */
+    ridge: Property
+    /** `inset` keyword. `css-borders-4` */
+    inset: Property
+    /** `outset` keyword. `css-borders-4` */
+    outset: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -4667,6 +4935,14 @@ declare global {
   /** Create a `border-width` property. `css-borders-4` */
   const borderWidth: {
     (value: Content): Property
+    /** `hairline` keyword. `css-borders-4` */
+    hairline: Property
+    /** `thin` keyword. `css-borders-4` */
+    thin: Property
+    /** `medium` keyword. `css-borders-4` */
+    medium: Property
+    /** `thick` keyword. `css-borders-4` */
+    thick: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -4992,6 +5268,16 @@ declare global {
   /** Create a `caret` property. `css-ui-4` */
   const caret: {
     (value: Content): Property
+    /** `auto` keyword. `css-ui-4` */
+    auto: Property
+    /** `manual` keyword. `css-ui-4` */
+    manual: Property
+    /** `bar` keyword. `css-ui-4` */
+    bar: Property
+    /** `block` keyword. `css-ui-4` */
+    block: Property
+    /** `underscore` keyword. `css-ui-4` */
+    underscore: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -5002,7 +5288,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `caret-animation` property. `css-ui-4` */
   const caretAnimation: {
@@ -5179,6 +5465,10 @@ declare global {
   /** Create a `color-adjust` property. `css-color-adjust-1` */
   const colorAdjust: {
     (value: Content): Property
+    /** `economy` keyword. `css-color-adjust-1` */
+    economy: Property
+    /** `exact` keyword. `css-color-adjust-1` */
+    exact: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -5641,6 +5931,12 @@ declare global {
   /** Create a `columns` property. `css-multicol-2` */
   const columns: {
     (value: Content): Property
+    /** `auto` keyword. `css-multicol-2` */
+    auto: Property
+    /** `min-content` keyword. `css-multicol-2` */
+    minContent: Property
+    /** `max-content` keyword. `css-multicol-2` */
+    maxContent: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -5782,6 +6078,16 @@ declare global {
   /** Create a `container` property. `css-conditional-5` */
   const container: {
     (value: Content): Property
+    /** `none` keyword. `css-conditional-5` */
+    none: Property
+    /** `normal` keyword. `css-conditional-5` */
+    normal: Property
+    /** `size` keyword. `css-conditional-5` */
+    size: Property
+    /** `inline-size` keyword. `css-conditional-5` */
+    inlineSize: Property
+    /** `scroll-state` keyword. `css-conditional-5` */
+    scrollState: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -5957,6 +6263,18 @@ declare global {
   /** Create a `corner-block-end-shape` property. `css-borders-4` */
   const cornerBlockEndShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -5987,6 +6305,18 @@ declare global {
   /** Create a `corner-block-start-shape` property. `css-borders-4` */
   const cornerBlockStartShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6017,6 +6347,18 @@ declare global {
   /** Create a `corner-bottom-left` property. `css-borders-4` */
   const cornerBottomLeft: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6059,6 +6401,18 @@ declare global {
   /** Create a `corner-bottom-right` property. `css-borders-4` */
   const cornerBottomRight: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6101,6 +6455,18 @@ declare global {
   /** Create a `corner-bottom-shape` property. `css-borders-4` */
   const cornerBottomShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6116,6 +6482,18 @@ declare global {
   /** Create a `corner-end-end` property. `css-borders-4` */
   const cornerEndEnd: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6158,6 +6536,18 @@ declare global {
   /** Create a `corner-end-start` property. `css-borders-4` */
   const cornerEndStart: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6215,6 +6605,18 @@ declare global {
   /** Create a `corner-inline-end-shape` property. `css-borders-4` */
   const cornerInlineEndShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6245,6 +6647,18 @@ declare global {
   /** Create a `corner-inline-start-shape` property. `css-borders-4` */
   const cornerInlineStartShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6275,6 +6689,18 @@ declare global {
   /** Create a `corner-left-shape` property. `css-borders-4` */
   const cornerLeftShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6305,6 +6731,18 @@ declare global {
   /** Create a `corner-right-shape` property. `css-borders-4` */
   const cornerRightShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6320,6 +6758,18 @@ declare global {
   /** Create a `corner-shape` property. `css-borders-4` */
   const cornerShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6335,6 +6785,18 @@ declare global {
   /** Create a `corner-start-end` property. `css-borders-4` */
   const cornerStartEnd: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6377,6 +6839,18 @@ declare global {
   /** Create a `corner-start-start` property. `css-borders-4` */
   const cornerStartStart: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6434,6 +6908,18 @@ declare global {
   /** Create a `corner-top-left` property. `css-borders-4` */
   const cornerTopLeft: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6476,6 +6962,18 @@ declare global {
   /** Create a `corner-top-right` property. `css-borders-4` */
   const cornerTopRight: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6518,6 +7016,18 @@ declare global {
   /** Create a `corner-top-shape` property. `css-borders-4` */
   const cornerTopShape: {
     (value: Content): Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `scoop` keyword. `css-borders-4` */
+    scoop: Property
+    /** `bevel` keyword. `css-borders-4` */
+    bevel: Property
+    /** `notch` keyword. `css-borders-4` */
+    notch: Property
+    /** `square` keyword. `css-borders-4` */
+    square: Property
+    /** `squircle` keyword. `css-borders-4` */
+    squircle: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6584,6 +7094,8 @@ declare global {
   /** Create a `cue` property. `css-speech-1` */
   const cue: {
     (value: Content): Property
+    /** `none` keyword. `css-speech-1` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -6938,6 +7450,16 @@ declare global {
     (value: Content): Property
     /** `none` keyword. `animation-triggers-1` */
     none: Property
+    /** `activate` keyword. `animation-triggers-1` */
+    activate: Property
+    /** `interest` keyword. `animation-triggers-1` */
+    interest: Property
+    /** `click` keyword. `animation-triggers-1` */
+    click: Property
+    /** `touch` keyword. `animation-triggers-1` */
+    touch: Property
+    /** `dblclick` keyword. `animation-triggers-1` */
+    dblclick: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -7225,6 +7747,8 @@ declare global {
     (value: Content): Property
     /** `none` keyword. `css-flexbox-1` */
     none: Property
+    /** `content` keyword. `css-flexbox-1` */
+    content: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -7242,6 +7766,18 @@ declare global {
     (value: Content): Property
     /** `content` keyword. `css-flexbox-1` */
     content: Property
+    /** `auto` keyword. `css-sizing-3` */
+    auto: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -7280,6 +7816,20 @@ declare global {
   /** Create a `flex-flow` property. `css-flexbox-1` */
   const flexFlow: {
     (value: Content): Property
+    /** `row` keyword. `css-flexbox-1` */
+    row: Property
+    /** `row-reverse` keyword. `css-flexbox-1` */
+    rowReverse: Property
+    /** `column` keyword. `css-flexbox-1` */
+    column: Property
+    /** `column-reverse` keyword. `css-flexbox-1` */
+    columnReverse: Property
+    /** `nowrap` keyword. `css-flexbox-1` */
+    nowrap: Property
+    /** `wrap` keyword. `css-flexbox-1` */
+    wrap: Property
+    /** `wrap-reverse` keyword. `css-flexbox-1` */
+    wrapReverse: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -7529,7 +8079,9 @@ declare global {
   /** Create a `font` property. `css-fonts-4` */
   const font: {
     (value: Content): Property
-    /** `normal` keyword. `css-fonts-4` */
+    /** `css-fonts-4`: `normal` keyword.
+
+    `css-inline-3`: `normal` keyword. */
     normal: Property
     /** `small-caps` keyword. `css-fonts-4` */
     smallCaps: Property
@@ -7561,6 +8113,42 @@ declare global {
     smallCaption: Property
     /** `status-bar` keyword. `css-fonts-4` */
     statusBar: Property
+    /** `italic` keyword. `css-fonts-4` */
+    italic: Property
+    /** `left` keyword. `css-fonts-4` */
+    left: Property
+    /** `right` keyword. `css-fonts-4` */
+    right: Property
+    /** `oblique` keyword. `css-fonts-4` */
+    oblique: Property
+    /** `bold` keyword. `css-fonts-4` */
+    bold: Property
+    /** `bolder` keyword. `css-fonts-4` */
+    bolder: Property
+    /** `lighter` keyword. `css-fonts-4` */
+    lighter: Property
+    /** `xx-small` keyword. `css-fonts-4` */
+    xxSmall: Property
+    /** `x-small` keyword. `css-fonts-4` */
+    xSmall: Property
+    /** `small` keyword. `css-fonts-4` */
+    small: Property
+    /** `medium` keyword. `css-fonts-4` */
+    medium: Property
+    /** `large` keyword. `css-fonts-4` */
+    large: Property
+    /** `x-large` keyword. `css-fonts-4` */
+    xLarge: Property
+    /** `xx-large` keyword. `css-fonts-4` */
+    xxLarge: Property
+    /** `xxx-large` keyword. `css-fonts-4` */
+    xxxLarge: Property
+    /** `larger` keyword. `css-fonts-4` */
+    larger: Property
+    /** `smaller` keyword. `css-fonts-4` */
+    smaller: Property
+    /** `math` keyword. `css-fonts-4` */
+    math: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -8366,6 +8954,16 @@ declare global {
   /** Create a `gap` property. `css-gaps-1` */
   const gap: {
     (value: Content): Property
+    /** `normal` keyword. `css-gaps-1` */
+    normal: Property
+    /** `hairline` keyword. `css-gaps-1` */
+    hairline: Property
+    /** `thin` keyword. `css-gaps-1` */
+    thin: Property
+    /** `medium` keyword. `css-gaps-1` */
+    medium: Property
+    /** `thick` keyword. `css-gaps-1` */
+    thick: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -8402,6 +9000,10 @@ declare global {
     autoFlow: Property
     /** `dense` keyword. `css-grid-2` */
     dense: Property
+    /** `none` keyword. `css-grid-2` */
+    none: Property
+    /** `subgrid` keyword. `css-grid-2` */
+    subgrid: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -8569,6 +9171,16 @@ declare global {
   /** Create a `grid-gap` property. `css-gaps-1` */
   const gridGap: {
     (value: Content): Property
+    /** `normal` keyword. `css-gaps-1` */
+    normal: Property
+    /** `hairline` keyword. `css-gaps-1` */
+    hairline: Property
+    /** `thin` keyword. `css-gaps-1` */
+    thin: Property
+    /** `medium` keyword. `css-gaps-1` */
+    medium: Property
+    /** `thick` keyword. `css-gaps-1` */
+    thick: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -8668,6 +9280,8 @@ declare global {
     (value: Content): Property
     /** `none` keyword. `css-grid-2` */
     none: Property
+    /** `subgrid` keyword. `css-grid-2` */
+    subgrid: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9059,6 +9673,18 @@ declare global {
   /** Create a `inline-size` property. `css-logical-1` */
   const inlineSize: {
     (value: Content): Property
+    /** `auto` keyword. `css-sizing-3` */
+    auto: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9112,6 +9738,8 @@ declare global {
   /** Create a `inset` property. `css-position-3` */
   const inset: {
     (value: Content): Property
+    /** `auto` keyword. `css-position-3` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9127,6 +9755,8 @@ declare global {
   /** Create a `inset-block` property. `css-position-3` */
   const insetBlock: {
     (value: Content): Property
+    /** `auto` keyword. `css-position-3` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9176,6 +9806,8 @@ declare global {
   /** Create a `inset-inline` property. `css-position-3` */
   const insetInline: {
     (value: Content): Property
+    /** `auto` keyword. `css-position-3` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9244,6 +9876,8 @@ declare global {
   /** Create a `interest-delay` property. `css-ui-4` */
   const interestDelay: {
     (value: Content): Property
+    /** `normal` keyword. `css-ui-4` */
+    normal: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9550,6 +10184,10 @@ declare global {
     (value: Content): Property
     /** `none` keyword. `css-overflow-4` */
     none: Property
+    /** `no-ellipsis` keyword. `css-overflow-4` */
+    noEllipsis: Property
+    /** `auto` keyword. `css-overflow-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9698,6 +10336,12 @@ declare global {
   /** Create a `list-style` property. `css-lists-3` */
   const listStyle: {
     (value: Content): Property
+    /** `inside` keyword. `css-lists-3` */
+    inside: Property
+    /** `outside` keyword. `css-lists-3` */
+    outside: Property
+    /** `none` keyword. `css-lists-3` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9766,6 +10410,8 @@ declare global {
   /** Create a `margin` property. `css-box-4` */
   const margin: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9781,6 +10427,8 @@ declare global {
   /** Create a `margin-block` property. `css-logical-1` */
   const marginBlock: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9796,6 +10444,8 @@ declare global {
   /** Create a `margin-block-end` property. `css-logical-1` */
   const marginBlockEnd: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9811,6 +10461,8 @@ declare global {
   /** Create a `margin-block-start` property. `css-logical-1` */
   const marginBlockStart: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9864,6 +10516,8 @@ declare global {
   /** Create a `margin-inline` property. `css-logical-1` */
   const marginInline: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9879,6 +10533,8 @@ declare global {
   /** Create a `margin-inline-end` property. `css-logical-1` */
   const marginInlineEnd: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -9894,6 +10550,8 @@ declare global {
   /** Create a `margin-inline-start` property. `css-logical-1` */
   const marginInlineStart: {
     (value: Content): Property
+    /** `auto` keyword. `css-box-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10093,6 +10751,10 @@ declare global {
   /** Create a `mask-border` property. `css-masking-1` */
   const maskBorder: {
     (value: Content): Property
+    /** `luminance` keyword. `css-masking-1` */
+    luminance: Property
+    /** `alpha` keyword. `css-masking-1` */
+    alpha: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10142,6 +10804,14 @@ declare global {
   /** Create a `mask-border-repeat` property. `css-masking-1` */
   const maskBorderRepeat: {
     (value: Content): Property
+    /** `stretch` keyword. `css-borders-4` */
+    stretch: Property
+    /** `repeat` keyword. `css-borders-4` */
+    repeat: Property
+    /** `round` keyword. `css-borders-4` */
+    round: Property
+    /** `space` keyword. `css-borders-4` */
+    space: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10157,6 +10827,8 @@ declare global {
   /** Create a `mask-border-slice` property. `css-masking-1` */
   const maskBorderSlice: {
     (value: Content): Property
+    /** `fill` keyword. `css-borders-4` */
+    fill: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10172,6 +10844,8 @@ declare global {
   /** Create a `mask-border-source` property. `css-masking-1` */
   const maskBorderSource: {
     (value: Content): Property
+    /** `none` keyword. `css-borders-4` */
+    none: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10187,6 +10861,8 @@ declare global {
   /** Create a `mask-border-width` property. `css-masking-1` */
   const maskBorderWidth: {
     (value: Content): Property
+    /** `auto` keyword. `css-borders-4` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10432,6 +11108,18 @@ declare global {
   /** Create a `max-block-size` property. `css-logical-1` */
   const maxBlockSize: {
     (value: Content): Property
+    /** `none` keyword. `css-sizing-3` */
+    none: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10474,6 +11162,18 @@ declare global {
   /** Create a `max-inline-size` property. `css-logical-1` */
   const maxInlineSize: {
     (value: Content): Property
+    /** `none` keyword. `css-sizing-3` */
+    none: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10533,6 +11233,18 @@ declare global {
   /** Create a `min-block-size` property. `css-logical-1` */
   const minBlockSize: {
     (value: Content): Property
+    /** `auto` keyword. `css-sizing-3` */
+    auto: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10575,6 +11287,18 @@ declare global {
   /** Create a `min-inline-size` property. `css-logical-1` */
   const minInlineSize: {
     (value: Content): Property
+    /** `auto` keyword. `css-sizing-3` */
+    auto: Property
+    /** `min-content` keyword. `css-sizing-3` */
+    minContent: Property
+    /** `max-content` keyword. `css-sizing-3` */
+    maxContent: Property
+    /** `stretch` keyword. `css-sizing-3` */
+    stretch: Property
+    /** `fit-content` keyword. `css-sizing-3` */
+    fitContent: Property
+    /** `contain` keyword. `css-sizing-3` */
+    contain: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10828,6 +11552,16 @@ declare global {
   /** Create a `offset` property. `motion-1` */
   const offset: {
     (value: Content): Property
+    /** `normal` keyword. `motion-1` */
+    normal: Property
+    /** `auto` keyword. `motion-1` */
+    auto: Property
+    /** `none` keyword. `motion-1` */
+    none: Property
+    /** `view-box` keyword. `motion-1` */
+    viewBox: Property
+    /** `reverse` keyword. `motion-1` */
+    reverse: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -10977,6 +11711,34 @@ declare global {
   /** Create a `outline` property. `css-ui-4` */
   const outline: {
     (value: Content): Property
+    /** `hairline` keyword. `css-ui-4` */
+    hairline: Property
+    /** `thin` keyword. `css-ui-4` */
+    thin: Property
+    /** `medium` keyword. `css-ui-4` */
+    medium: Property
+    /** `thick` keyword. `css-ui-4` */
+    thick: Property
+    /** `auto` keyword. `css-ui-4` */
+    auto: Property
+    /** `none` keyword. `css-ui-4` */
+    none: Property
+    /** `dotted` keyword. `css-ui-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-ui-4` */
+    dashed: Property
+    /** `solid` keyword. `css-ui-4` */
+    solid: Property
+    /** `double` keyword. `css-ui-4` */
+    double: Property
+    /** `groove` keyword. `css-ui-4` */
+    groove: Property
+    /** `ridge` keyword. `css-ui-4` */
+    ridge: Property
+    /** `inset` keyword. `css-ui-4` */
+    inset: Property
+    /** `outset` keyword. `css-ui-4` */
+    outset: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -11004,7 +11766,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `outline-offset` property. `css-ui-4` */
   const outlineOffset: {
@@ -11082,6 +11844,16 @@ declare global {
   /** Create a `overflow` property. `css-overflow-3` */
   const overflow: {
     (value: Content): Property
+    /** `visible` keyword. `css-overflow-3` */
+    visible: Property
+    /** `hidden` keyword. `css-overflow-3` */
+    hidden: Property
+    /** `clip` keyword. `css-overflow-3` */
+    clip: Property
+    /** `scroll` keyword. `css-overflow-3` */
+    scroll: Property
+    /** `auto` keyword. `css-overflow-3` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -11905,6 +12677,18 @@ declare global {
   /** Create a `pause` property. `css-speech-1` */
   const pause: {
     (value: Content): Property
+    /** `none` keyword. `css-speech-1` */
+    none: Property
+    /** `x-weak` keyword. `css-speech-1` */
+    xWeak: Property
+    /** `weak` keyword. `css-speech-1` */
+    weak: Property
+    /** `medium` keyword. `css-speech-1` */
+    medium: Property
+    /** `strong` keyword. `css-speech-1` */
+    strong: Property
+    /** `x-strong` keyword. `css-speech-1` */
+    xStrong: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -12006,6 +12790,40 @@ declare global {
   /** Create a `place-content` property. `css-align-3` */
   const placeContent: {
     (value: Content): Property
+    /** `normal` keyword. `css-align-3` */
+    normal: Property
+    /** `first` keyword. `css-align-3` */
+    first: Property
+    /** `last` keyword. `css-align-3` */
+    last: Property
+    /** `baseline` keyword. `css-align-3` */
+    baseline: Property
+    /** `space-between` keyword. `css-align-3` */
+    spaceBetween: Property
+    /** `space-around` keyword. `css-align-3` */
+    spaceAround: Property
+    /** `space-evenly` keyword. `css-align-3` */
+    spaceEvenly: Property
+    /** `stretch` keyword. `css-align-3` */
+    stretch: Property
+    /** `unsafe` keyword. `css-align-3` */
+    unsafe: Property
+    /** `safe` keyword. `css-align-3` */
+    safe: Property
+    /** `center` keyword. `css-align-3` */
+    center: Property
+    /** `start` keyword. `css-align-3` */
+    start: Property
+    /** `end` keyword. `css-align-3` */
+    end: Property
+    /** `flex-start` keyword. `css-align-3` */
+    flexStart: Property
+    /** `flex-end` keyword. `css-align-3` */
+    flexEnd: Property
+    /** `left` keyword. `css-align-3` */
+    left: Property
+    /** `right` keyword. `css-align-3` */
+    right: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -12021,6 +12839,40 @@ declare global {
   /** Create a `place-items` property. `css-align-3` */
   const placeItems: {
     (value: Content): Property
+    /** `normal` keyword. `css-align-3` */
+    normal: Property
+    /** `stretch` keyword. `css-align-3` */
+    stretch: Property
+    /** `first` keyword. `css-align-3` */
+    first: Property
+    /** `last` keyword. `css-align-3` */
+    last: Property
+    /** `baseline` keyword. `css-align-3` */
+    baseline: Property
+    /** `unsafe` keyword. `css-align-3` */
+    unsafe: Property
+    /** `safe` keyword. `css-align-3` */
+    safe: Property
+    /** `center` keyword. `css-align-3` */
+    center: Property
+    /** `start` keyword. `css-align-3` */
+    start: Property
+    /** `end` keyword. `css-align-3` */
+    end: Property
+    /** `self-start` keyword. `css-align-3` */
+    selfStart: Property
+    /** `self-end` keyword. `css-align-3` */
+    selfEnd: Property
+    /** `flex-start` keyword. `css-align-3` */
+    flexStart: Property
+    /** `flex-end` keyword. `css-align-3` */
+    flexEnd: Property
+    /** `left` keyword. `css-align-3` */
+    left: Property
+    /** `right` keyword. `css-align-3` */
+    right: Property
+    /** `legacy` keyword. `css-align-3` */
+    legacy: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -12036,6 +12888,42 @@ declare global {
   /** Create a `place-self` property. `css-align-3` */
   const placeSelf: {
     (value: Content): Property
+    /** `auto` keyword. `css-align-3` */
+    auto: Property
+    /** `unsafe` keyword. `css-align-3` */
+    unsafe: Property
+    /** `safe` keyword. `css-align-3` */
+    safe: Property
+    /** `normal` keyword. `css-align-3` */
+    normal: Property
+    /** `center` keyword. `css-align-3` */
+    center: Property
+    /** `start` keyword. `css-align-3` */
+    start: Property
+    /** `end` keyword. `css-align-3` */
+    end: Property
+    /** `self-start` keyword. `css-align-3` */
+    selfStart: Property
+    /** `self-end` keyword. `css-align-3` */
+    selfEnd: Property
+    /** `flex-start` keyword. `css-align-3` */
+    flexStart: Property
+    /** `flex-end` keyword. `css-align-3` */
+    flexEnd: Property
+    /** `stretch` keyword. `css-align-3` */
+    stretch: Property
+    /** `first` keyword. `css-align-3` */
+    first: Property
+    /** `last` keyword. `css-align-3` */
+    last: Property
+    /** `baseline` keyword. `css-align-3` */
+    baseline: Property
+    /** `anchor-center` keyword. `css-align-3` */
+    anchorCenter: Property
+    /** `left` keyword. `css-align-3` */
+    left: Property
+    /** `right` keyword. `css-align-3` */
+    right: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -12088,6 +12976,16 @@ declare global {
   /** Create a `pointer-timeline` property. `pointer-animations-1` */
   const pointerTimeline: {
     (value: Content): Property
+    /** `none` keyword. `pointer-animations-1` */
+    none: Property
+    /** `block` keyword. `pointer-animations-1` */
+    block: Property
+    /** `inline` keyword. `pointer-animations-1` */
+    inline: Property
+    /** `x` keyword. `pointer-animations-1` */
+    x: Property
+    /** `y` keyword. `pointer-animations-1` */
+    y: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -12308,6 +13206,128 @@ declare global {
   /** Create a `position-try` property. `css-anchor-position-1` */
   const positionTry: {
     (value: Content): Property
+    /** `normal` keyword. `css-anchor-position-1` */
+    normal: Property
+    /** `most-width` keyword. `css-anchor-position-1` */
+    mostWidth: Property
+    /** `most-height` keyword. `css-anchor-position-1` */
+    mostHeight: Property
+    /** `most-block-size` keyword. `css-anchor-position-1` */
+    mostBlockSize: Property
+    /** `most-inline-size` keyword. `css-anchor-position-1` */
+    mostInlineSize: Property
+    /** `none` keyword. `css-anchor-position-1` */
+    none: Property
+    /** `flip-block` keyword. `css-anchor-position-1` */
+    flipBlock: Property
+    /** `flip-inline` keyword. `css-anchor-position-1` */
+    flipInline: Property
+    /** `flip-start` keyword. `css-anchor-position-1` */
+    flipStart: Property
+    /** `flip-x` keyword. `css-anchor-position-1` */
+    flipX: Property
+    /** `flip-y` keyword. `css-anchor-position-1` */
+    flipY: Property
+    /** `left` keyword. `css-anchor-position-1` */
+    left: Property
+    /** `center` keyword. `css-anchor-position-1` */
+    center: Property
+    /** `right` keyword. `css-anchor-position-1` */
+    right: Property
+    /** `span-left` keyword. `css-anchor-position-1` */
+    spanLeft: Property
+    /** `span-right` keyword. `css-anchor-position-1` */
+    spanRight: Property
+    /** `x-start` keyword. `css-anchor-position-1` */
+    xStart: Property
+    /** `x-end` keyword. `css-anchor-position-1` */
+    xEnd: Property
+    /** `span-x-start` keyword. `css-anchor-position-1` */
+    spanXStart: Property
+    /** `span-x-end` keyword. `css-anchor-position-1` */
+    spanXEnd: Property
+    /** `self-x-start` keyword. `css-anchor-position-1` */
+    selfXStart: Property
+    /** `self-x-end` keyword. `css-anchor-position-1` */
+    selfXEnd: Property
+    /** `span-self-x-start` keyword. `css-anchor-position-1` */
+    spanSelfXStart: Property
+    /** `span-self-x-end` keyword. `css-anchor-position-1` */
+    spanSelfXEnd: Property
+    /** `span-all` keyword. `css-anchor-position-1` */
+    spanAll: Property
+    /** `top` keyword. `css-anchor-position-1` */
+    top: Property
+    /** `bottom` keyword. `css-anchor-position-1` */
+    bottom: Property
+    /** `span-top` keyword. `css-anchor-position-1` */
+    spanTop: Property
+    /** `span-bottom` keyword. `css-anchor-position-1` */
+    spanBottom: Property
+    /** `y-start` keyword. `css-anchor-position-1` */
+    yStart: Property
+    /** `y-end` keyword. `css-anchor-position-1` */
+    yEnd: Property
+    /** `span-y-start` keyword. `css-anchor-position-1` */
+    spanYStart: Property
+    /** `span-y-end` keyword. `css-anchor-position-1` */
+    spanYEnd: Property
+    /** `self-y-start` keyword. `css-anchor-position-1` */
+    selfYStart: Property
+    /** `self-y-end` keyword. `css-anchor-position-1` */
+    selfYEnd: Property
+    /** `span-self-y-start` keyword. `css-anchor-position-1` */
+    spanSelfYStart: Property
+    /** `span-self-y-end` keyword. `css-anchor-position-1` */
+    spanSelfYEnd: Property
+    /** `block-start` keyword. `css-anchor-position-1` */
+    blockStart: Property
+    /** `block-end` keyword. `css-anchor-position-1` */
+    blockEnd: Property
+    /** `span-block-start` keyword. `css-anchor-position-1` */
+    spanBlockStart: Property
+    /** `span-block-end` keyword. `css-anchor-position-1` */
+    spanBlockEnd: Property
+    /** `inline-start` keyword. `css-anchor-position-1` */
+    inlineStart: Property
+    /** `inline-end` keyword. `css-anchor-position-1` */
+    inlineEnd: Property
+    /** `span-inline-start` keyword. `css-anchor-position-1` */
+    spanInlineStart: Property
+    /** `span-inline-end` keyword. `css-anchor-position-1` */
+    spanInlineEnd: Property
+    /** `self-block-start` keyword. `css-anchor-position-1` */
+    selfBlockStart: Property
+    /** `self-block-end` keyword. `css-anchor-position-1` */
+    selfBlockEnd: Property
+    /** `span-self-block-start` keyword. `css-anchor-position-1` */
+    spanSelfBlockStart: Property
+    /** `span-self-block-end` keyword. `css-anchor-position-1` */
+    spanSelfBlockEnd: Property
+    /** `self-inline-start` keyword. `css-anchor-position-1` */
+    selfInlineStart: Property
+    /** `self-inline-end` keyword. `css-anchor-position-1` */
+    selfInlineEnd: Property
+    /** `span-self-inline-start` keyword. `css-anchor-position-1` */
+    spanSelfInlineStart: Property
+    /** `span-self-inline-end` keyword. `css-anchor-position-1` */
+    spanSelfInlineEnd: Property
+    /** `start` keyword. `css-anchor-position-1` */
+    start: Property
+    /** `end` keyword. `css-anchor-position-1` */
+    end: Property
+    /** `span-start` keyword. `css-anchor-position-1` */
+    spanStart: Property
+    /** `span-end` keyword. `css-anchor-position-1` */
+    spanEnd: Property
+    /** `self-start` keyword. `css-anchor-position-1` */
+    selfStart: Property
+    /** `self-end` keyword. `css-anchor-position-1` */
+    selfEnd: Property
+    /** `span-self-start` keyword. `css-anchor-position-1` */
+    spanSelfStart: Property
+    /** `span-self-end` keyword. `css-anchor-position-1` */
+    spanSelfEnd: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -12643,6 +13663,18 @@ declare global {
   /** Create a `rest` property. `css-speech-1` */
   const rest: {
     (value: Content): Property
+    /** `none` keyword. `css-speech-1` */
+    none: Property
+    /** `x-weak` keyword. `css-speech-1` */
+    xWeak: Property
+    /** `weak` keyword. `css-speech-1` */
+    weak: Property
+    /** `medium` keyword. `css-speech-1` */
+    medium: Property
+    /** `strong` keyword. `css-speech-1` */
+    strong: Property
+    /** `x-strong` keyword. `css-speech-1` */
+    xStrong: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -13102,6 +14134,12 @@ declare global {
   /** Create a `rule-break` property. `css-gaps-1` */
   const ruleBreak: {
     (value: Content): Property
+    /** `none` keyword. `css-gaps-1` */
+    none: Property
+    /** `normal` keyword. `css-gaps-1` */
+    normal: Property
+    /** `intersection` keyword. `css-gaps-1` */
+    intersection: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -13241,6 +14279,14 @@ declare global {
   /** Create a `rule-visibility-items` property. `css-gaps-1` */
   const ruleVisibilityItems: {
     (value: Content): Property
+    /** `all` keyword. `css-gaps-1` */
+    all: Property
+    /** `around` keyword. `css-gaps-1` */
+    around: Property
+    /** `between` keyword. `css-gaps-1` */
+    between: Property
+    /** `normal` keyword. `css-gaps-1` */
+    normal: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -13829,6 +14875,16 @@ declare global {
   /** Create a `scroll-timeline` property. `scroll-animations-1` */
   const scrollTimeline: {
     (value: Content): Property
+    /** `none` keyword. `scroll-animations-1` */
+    none: Property
+    /** `block` keyword. `scroll-animations-1` */
+    block: Property
+    /** `inline` keyword. `scroll-animations-1` */
+    inline: Property
+    /** `x` keyword. `scroll-animations-1` */
+    x: Property
+    /** `y` keyword. `scroll-animations-1` */
+    y: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -14195,7 +15251,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `stop-opacity` property. `pservers.html` */
   const stopOpacity: {
@@ -14826,6 +15882,28 @@ declare global {
     (value: Content): Property
     /** `normal` keyword. `css-inline-3` */
     normal: Property
+    /** `none` keyword. `css-inline-3` */
+    none: Property
+    /** `trim-start` keyword. `css-inline-3` */
+    trimStart: Property
+    /** `trim-end` keyword. `css-inline-3` */
+    trimEnd: Property
+    /** `trim-both` keyword. `css-inline-3` */
+    trimBoth: Property
+    /** `auto` keyword. `css-inline-3` */
+    auto: Property
+    /** `text` keyword. `css-inline-3` */
+    text: Property
+    /** `ideographic` keyword. `css-inline-3` */
+    ideographic: Property
+    /** `ideographic-ink` keyword. `css-inline-3` */
+    ideographicInk: Property
+    /** `cap` keyword. `css-inline-3` */
+    cap: Property
+    /** `ex` keyword. `css-inline-3` */
+    ex: Property
+    /** `alphabetic` keyword. `css-inline-3` */
+    alphabetic: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -14914,6 +15992,42 @@ declare global {
   /** Create a `text-decoration` property. `css-text-decor-4` */
   const textDecoration: {
     (value: Content): Property
+    /** `none` keyword. `css-text-decor-4` */
+    none: Property
+    /** `underline` keyword. `css-text-decor-4` */
+    underline: Property
+    /** `overline` keyword. `css-text-decor-4` */
+    overline: Property
+    /** `line-through` keyword. `css-text-decor-4` */
+    lineThrough: Property
+    /** `blink` keyword. `css-text-decor-4` */
+    blink: Property
+    /** `spelling-error` keyword. `css-text-decor-4` */
+    spellingError: Property
+    /** `grammar-error` keyword. `css-text-decor-4` */
+    grammarError: Property
+    /** `auto` keyword. `css-text-decor-4` */
+    auto: Property
+    /** `from-font` keyword. `css-text-decor-4` */
+    fromFont: Property
+    /** `hairline` keyword. `css-text-decor-4` */
+    hairline: Property
+    /** `thin` keyword. `css-text-decor-4` */
+    thin: Property
+    /** `medium` keyword. `css-text-decor-4` */
+    medium: Property
+    /** `thick` keyword. `css-text-decor-4` */
+    thick: Property
+    /** `solid` keyword. `css-text-decor-4` */
+    solid: Property
+    /** `double` keyword. `css-text-decor-4` */
+    double: Property
+    /** `dotted` keyword. `css-text-decor-4` */
+    dotted: Property
+    /** `dashed` keyword. `css-text-decor-4` */
+    dashed: Property
+    /** `wavy` keyword. `css-text-decor-4` */
+    wavy: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -14924,7 +16038,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `text-decoration-color` property. `css-text-decor-4` */
   const textDecorationColor: {
@@ -15151,6 +16265,22 @@ declare global {
   /** Create a `text-emphasis` property. `css-text-decor-4` */
   const textEmphasis: {
     (value: Content): Property
+    /** `none` keyword. `css-text-decor-4` */
+    none: Property
+    /** `filled` keyword. `css-text-decor-4` */
+    filled: Property
+    /** `open` keyword. `css-text-decor-4` */
+    open: Property
+    /** `dot` keyword. `css-text-decor-4` */
+    dot: Property
+    /** `circle` keyword. `css-text-decor-4` */
+    circle: Property
+    /** `double-circle` keyword. `css-text-decor-4` */
+    doubleCircle: Property
+    /** `triangle` keyword. `css-text-decor-4` */
+    triangle: Property
+    /** `sesame` keyword. `css-text-decor-4` */
+    sesame: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -15161,7 +16291,7 @@ declare global {
     revert: Property
     /** `revert-layer` keyword. `css-cascade-5` */
     revertLayer: Property
-  }
+  } & ColorKeywords
   
   /** Create a `text-emphasis-color` property. `css-text-decor-4` */
   const textEmphasisColor: {
@@ -15604,6 +16734,20 @@ declare global {
   /** Create a `text-wrap` property. `css-text-4` */
   const textWrap: {
     (value: Content): Property
+    /** `wrap` keyword. `css-text-4` */
+    wrap: Property
+    /** `nowrap` keyword. `css-text-4` */
+    nowrap: Property
+    /** `auto` keyword. `css-text-4` */
+    auto: Property
+    /** `balance` keyword. `css-text-4` */
+    balance: Property
+    /** `stable` keyword. `css-text-4` */
+    stable: Property
+    /** `pretty` keyword. `css-text-4` */
+    pretty: Property
+    /** `avoid-orphans` keyword. `css-text-4` */
+    avoidOrphans: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -15684,6 +16828,8 @@ declare global {
     (value: Content): Property
     /** `none` keyword. `animation-triggers-1` */
     none: Property
+    /** `auto` keyword. `animation-triggers-1` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -15699,6 +16845,8 @@ declare global {
   /** Create a `timeline-trigger-activation-range` property. `animation-triggers-1` */
   const timelineTriggerActivationRange: {
     (value: Content): Property
+    /** `normal` keyword. `animation-triggers-1` */
+    normal: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -15748,6 +16896,10 @@ declare global {
   /** Create a `timeline-trigger-active-range` property. `animation-triggers-1` */
   const timelineTriggerActiveRange: {
     (value: Content): Property
+    /** `auto` keyword. `animation-triggers-1` */
+    auto: Property
+    /** `normal` keyword. `animation-triggers-1` */
+    normal: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -16192,6 +17344,34 @@ declare global {
     first: Property
     /** `last` keyword. `css-inline-3` */
     last: Property
+    /** `baseline` keyword. `css-inline-3` */
+    baseline: Property
+    /** `text-bottom` keyword. `css-inline-3` */
+    textBottom: Property
+    /** `alphabetic` keyword. `css-inline-3` */
+    alphabetic: Property
+    /** `ideographic` keyword. `css-inline-3` */
+    ideographic: Property
+    /** `middle` keyword. `css-inline-3` */
+    middle: Property
+    /** `central` keyword. `css-inline-3` */
+    central: Property
+    /** `mathematical` keyword. `css-inline-3` */
+    mathematical: Property
+    /** `hanging` keyword. `css-inline-3` */
+    hanging: Property
+    /** `text-top` keyword. `css-inline-3` */
+    textTop: Property
+    /** `sub` keyword. `css-inline-3` */
+    sub: Property
+    /** `super` keyword. `css-inline-3` */
+    _super: Property
+    /** `top` keyword. `css-inline-3` */
+    top: Property
+    /** `center` keyword. `css-inline-3` */
+    center: Property
+    /** `bottom` keyword. `css-inline-3` */
+    bottom: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -16207,6 +17387,18 @@ declare global {
   /** Create a `view-timeline` property. `scroll-animations-1` */
   const viewTimeline: {
     (value: Content): Property
+    /** `none` keyword. `scroll-animations-1` */
+    none: Property
+    /** `block` keyword. `scroll-animations-1` */
+    block: Property
+    /** `inline` keyword. `scroll-animations-1` */
+    inline: Property
+    /** `x` keyword. `scroll-animations-1` */
+    x: Property
+    /** `y` keyword. `scroll-animations-1` */
+    y: Property
+    /** `auto` keyword. `scroll-animations-1` */
+    auto: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
@@ -16576,6 +17768,30 @@ declare global {
     preWrap: Property
     /** `pre-line` keyword. `css-text-4` */
     preLine: Property
+    /** `collapse` keyword. `css-text-4` */
+    collapse: Property
+    /** `discard` keyword. `css-text-4` */
+    discard: Property
+    /** `preserve` keyword. `css-text-4` */
+    preserve: Property
+    /** `preserve-breaks` keyword. `css-text-4` */
+    preserveBreaks: Property
+    /** `preserve-spaces` keyword. `css-text-4` */
+    preserveSpaces: Property
+    /** `break-spaces` keyword. `css-text-4` */
+    breakSpaces: Property
+    /** `wrap` keyword. `css-text-4` */
+    wrap: Property
+    /** `nowrap` keyword. `css-text-4` */
+    nowrap: Property
+    /** `none` keyword. `css-text-4` */
+    none: Property
+    /** `discard-before` keyword. `css-text-4` */
+    discardBefore: Property
+    /** `discard-after` keyword. `css-text-4` */
+    discardAfter: Property
+    /** `discard-inner` keyword. `css-text-4` */
+    discardInner: Property
     /** `initial` keyword. `css-cascade-5` */
     initial: Property
     /** `inherit` keyword. `css-cascade-5` */
