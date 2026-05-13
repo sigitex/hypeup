@@ -1,14 +1,14 @@
 ## 1. Runtime — Add each and lazy
 
-- [ ] 1.1 Add `each()` function (both overloads) to `@hypeup/runtime/src/helpers.ts`, importing `Each` from `@hypeup/vdom`
-- [ ] 1.2 Add `lazy()` function to `@hypeup/runtime/src/helpers.ts`, importing `Lazy` from `@hypeup/vdom`
-- [ ] 1.3 Export `each` and `lazy` from `@hypeup/runtime/src/index.ts`
-- [ ] 1.4 Add `Each` and `Lazy` to the vdom re-exports in `@hypeup/runtime/src/index.ts`
+- [x] 1.1 Add `each()` function (both overloads) to `@hypeup/runtime/src/helpers.ts`, importing `Each` from `@hypeup/vdom`
+- [x] 1.2 Add `lazy()` function to `@hypeup/runtime/src/helpers.ts`, importing `Lazy` from `@hypeup/vdom`
+- [x] 1.3 Export `each` and `lazy` from `@hypeup/runtime/src/index.ts`
+- [x] 1.4 Add `Each` and `Lazy` to the vdom re-exports in `@hypeup/runtime/src/index.ts`
 
 ## 2. Babel Plugin — Update primitive table
 
-- [ ] 2.1 In `buildTable.ts`, move `"each"` and `"lazy"` from `clientHelpers` to `escapeHatches`
-- [ ] 2.2 Verify `clientHelpers` now only contains `["on", "redraw", "ref"]`
+- [x] 2.1 In `buildTable.ts`, move `"each"` and `"lazy"` from `clientHelpers` to `escapeHatches`
+- [x] 2.2 Verify `clientHelpers` now only contains `["on", "redraw", "ref"]`
 
 ## 3. Client — Re-export and clean up
 

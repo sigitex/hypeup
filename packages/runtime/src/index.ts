@@ -12,12 +12,16 @@ export {
   rule,
   atRule,
   className,
+  each,
+  lazy,
 } from "./helpers"
 export {
   Attr,
   AtRule,
   CssClass,
+  Each,
   Element,
+  Lazy,
   Property,
   Raw,
   Rule,
