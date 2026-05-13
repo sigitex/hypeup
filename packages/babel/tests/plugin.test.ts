@@ -147,6 +147,45 @@ describe("rule lowering", () => {
     expect(result).toMatchSnapshot()
     expect(result).toContain('"div"')
   })
+
+  test("rule with element selector pre", async () => {
+    const result = await transform(`rule(pre, color("red"))`)
+    expect(result).toMatchSnapshot()
+    expect(result).toContain('"pre"')
+  })
+
+  test("rule with void element selector", async () => {
+    const result = await transform(`rule(hr, borderColor("black"))`)
+    expect(result).toMatchSnapshot()
+    expect(result).toContain('"hr"')
+  })
+
+  test("rule with _var uses tag field", async () => {
+    const result = await transform(`rule(_var, fontStyle("italic"))`)
+    expect(result).toMatchSnapshot()
+    expect(result).toContain('"var"')
+    expect(result).not.toContain('"_var"')
+  })
+
+  test("rule with string selector unchanged", async () => {
+    const result = await transform(`rule(".foo", color("red"))`)
+    expect(result).toMatchSnapshot()
+    expect(result).toContain('".foo"')
+  })
+
+  test("rule with locally-bound identifier not replaced", async () => {
+    const result = await transform(`const div = ".my-div"; rule(div, color("red"))`)
+    expect(result).toMatchSnapshot()
+    // div should remain as a variable reference, not replaced with "div" string literal
+    expect(result).toContain('_rule(div,')
+    expect(result).toContain('".my-div"')
+  })
+
+  test("rule with non-element identifier left as-is", async () => {
+    const result = await transform(`rule(mySelector, color("red"))`)
+    expect(result).toMatchSnapshot()
+    expect(result).toContain('mySelector')
+  })
 })
 
 // each() Lowering
