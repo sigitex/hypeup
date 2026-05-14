@@ -7,7 +7,7 @@ import type {
   Raw,
   Rule
 } from "@hypeup/runtime"
-import type { Each, EventBinding, Ref } from "@hypeup/vdom"
+import type { Each, ElementBuilder, EventBinding, Ref } from "@hypeup/vdom"
 
 export * from "../primitives.gen"
 
@@ -25,6 +25,8 @@ declare global {
   const rule: {
     /** Create a CSS rule with a selector. */
     (selector: string, ...contents: Content[]): Rule
+    /** Create a CSS rule with an element selector (compiled to tag name string by babel plugin). */
+    (selector: ElementBuilder, ...contents: Content[]): Rule
     /** Create a `rule` CSS property. `css-gaps-1` */
     (value: Content): Property
     /** Dot-syntax class selector shorthand: `rule.active(...)` becomes `rule(".active", ...)` */
