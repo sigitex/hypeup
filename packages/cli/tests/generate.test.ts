@@ -5,8 +5,20 @@ import { rmSync, existsSync, readFileSync, writeFileSync, mkdirSync } from "node
 const FIXTURE_DIR = resolve(import.meta.dir, "fixtures")
 const OUT_DIR = resolve(FIXTURE_DIR, "dist")
 
+const generatedFixturePaths = [
+  "hypeup.config.ts",
+  "config-pages",
+  "config-dist",
+  "alias-pages",
+  "alias-src",
+  "alias-dist",
+]
+
 function cleanup() {
   rmSync(OUT_DIR, { recursive: true, force: true })
+  for (const path of generatedFixturePaths) {
+    rmSync(resolve(FIXTURE_DIR, path), { recursive: true, force: true })
+  }
 }
 
 describe("generate command (one-shot)", () => {
@@ -99,6 +111,57 @@ describe("generate command (one-shot)", () => {
     expect(result.exitCode).toBe(0)
     expect(existsSync(resolve(OUT_DIR, "stale.html"))).toBe(false)
     expect(existsSync(resolve(OUT_DIR, "index.html"))).toBe(true)
+  }, 30000)
+
+  test("uses config file defaults for dir and out", async () => {
+    mkdirSync(resolve(FIXTURE_DIR, "config-pages"), { recursive: true })
+    writeFileSync(
+      resolve(FIXTURE_DIR, "config-pages/index.html.ts"),
+      `import "@hypeup/lexicon"\nexport default function index() { return h1("From config") }\n`,
+    )
+    writeFileSync(
+      resolve(FIXTURE_DIR, "hypeup.config.ts"),
+      `export default { dir: "config-pages", out: "config-dist" }\n`,
+    )
+
+    const result = Bun.spawnSync({
+      cmd: ["bun", "run", resolve(import.meta.dir, "../src/cli.ts"), "generate"],
+      cwd: FIXTURE_DIR,
+      stdout: "pipe",
+      stderr: "pipe",
+    })
+
+    expect(result.exitCode).toBe(0)
+    expect(readFileSync(resolve(FIXTURE_DIR, "config-dist/index.html"), "utf-8"))
+      .toContain("From config")
+  }, 30000)
+
+  test("passes Vite config through to build", async () => {
+    mkdirSync(resolve(FIXTURE_DIR, "alias-pages"), { recursive: true })
+    mkdirSync(resolve(FIXTURE_DIR, "alias-src"), { recursive: true })
+    writeFileSync(
+      resolve(FIXTURE_DIR, "alias-src/message.ts"),
+      `export const message = "From alias"\n`,
+    )
+    writeFileSync(
+      resolve(FIXTURE_DIR, "alias-pages/index.html.ts"),
+      `import "@hypeup/lexicon"\nimport { message } from "@/message"\nexport default function index() { return h1(message) }\n`,
+    )
+    writeFileSync(
+      resolve(FIXTURE_DIR, "hypeup.config.ts"),
+      `export default { dir: "alias-pages", out: "alias-dist", vite: { resolve: { alias: { "@": new URL("./alias-src", import.meta.url).pathname } } } }\n`,
+    )
+
+    const result = Bun.spawnSync({
+      cmd: ["bun", "run", resolve(import.meta.dir, "../src/cli.ts"), "generate"],
+      cwd: FIXTURE_DIR,
+      stdout: "pipe",
+      stderr: "pipe",
+    })
+
+    expect(result.exitCode).toBe(0)
+    expect(readFileSync(resolve(FIXTURE_DIR, "alias-dist/index.html"), "utf-8"))
+      .toContain("From alias")
   }, 30000)
 })
 
