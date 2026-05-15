@@ -6,7 +6,7 @@ The hypeup CLI (`packages/cli`) currently takes all options via CLI flags. Confi
 
 **Goals:**
 - Provide a `hypeup.config.ts` file convention for persistent project configuration
-- Support `.ts`, `.js`, and `.mjs` config file extensions
+- Support `.ts`, `.js`, `.mjs`, and `.json` config file extensions
 - Allow Vite config passthrough via a `vite` key
 - CLI flags override config file values
 - Provide a `defineConfig` helper exported from the `hypeup` package for type safety
@@ -24,13 +24,13 @@ The hypeup CLI (`packages/cli`) currently takes all options via CLI flags. Confi
 
 **Alternative considered:** Using Vite's `loadConfigFromFile` — rejected because it adds complexity and we only need a simple import. Bun handles TypeScript directly.
 
-### 2. Static config formats: JSON, YAML, TOML
+### 2. Static config format: JSON
 
-**Rationale:** In addition to `.ts`, `.js`, and `.mjs`, support static config files: `hypeup.config.json`, `hypeup.config.yaml`, `hypeup.config.toml`. Bun natively handles all three via `JSON.parse`, `Bun.TOML.parse`, and a YAML import (or the `yaml` package bundled with Bun). Static formats only support the flat hypeup options (`dir`, `out`, `clean`, `port`). The `vite` key is **not supported** in static formats because Vite config requires JavaScript values (plugin instances, functions, regexes). If a static config includes a `vite` key, it is ignored.
+**Rationale:** In addition to `.ts`, `.js`, and `.mjs`, support a static JSON config file: `hypeup.config.json`. JSON supports simple project defaults without requiring a script config. Static formats only support the flat hypeup options (`dir`, `out`, `clean`, `port`). The `vite` key is **not supported** in static formats because Vite config requires JavaScript values (plugin instances, functions, regexes). If a static config includes a `vite` key, it is ignored.
 
-Resolution order becomes: `hypeup.config.ts`, `.js`, `.mjs`, `.json`, `.yaml`, `.toml` — first found wins. Script formats are checked first since they are strictly more capable.
+Resolution order becomes: `hypeup.config.ts`, `.js`, `.mjs`, `.json` — first found wins. Script formats are checked first since they are strictly more capable.
 
-**Alternative considered:** Only supporting JSON — rejected because Bun handles YAML and TOML with zero additional dependencies, and users may prefer the syntax of those formats for simple key-value config.
+**Alternative considered:** Supporting YAML and TOML — deferred to keep the initial config surface smaller.
 
 ### 3. Config shape: flat object with `vite` key for passthrough
 
