@@ -1,3 +1,5 @@
 export { parseArgs } from "./args"
+export { defineConfig, loadConfig, mergeConfig } from "./config"
+export type { HypeupConfig, ResolvedHypeupConfig } from "./config"
 export { discoverPages, mapRoute } from "./discover"
 export { generate } from "./generate"

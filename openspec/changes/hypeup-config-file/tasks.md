@@ -1,8 +1,8 @@
 ## 1. Config Types and defineConfig
 
-- [ ] 1.1 Define `HypeupConfig` type in `packages/cli/src/config.ts` — `dir`, `out`, `clean`, `port` (all optional), plus `vite` key accepting Vite `UserConfig`
-- [ ] 1.2 Implement `defineConfig` identity function with proper type signature (accepts object or function returning object)
-- [ ] 1.3 Export `defineConfig` and `HypeupConfig` from `packages/cli/src/index.ts`
+- [x] 1.1 Define `HypeupConfig` type in `packages/cli/src/config.ts` — `dir`, `out`, `clean`, `port` (all optional), plus `vite` key accepting Vite `UserConfig`
+- [x] 1.2 Implement `defineConfig` identity function with proper type signature (accepts object or function returning object)
+- [x] 1.3 Export `defineConfig` and `HypeupConfig` from `packages/cli/src/index.ts`
 
 ## 2. Config File Resolution
 
