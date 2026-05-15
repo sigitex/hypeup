@@ -21,3 +21,7 @@
 
 - [ ] 5.1 Run TypeScript type checking across the workspace to confirm no type errors
 - [ ] 5.2 Run existing tests to confirm no runtime regressions
+
+## 6. Documentation
+
+- [ ] 6.1 Update the `ref` example in the Refs section of `README.md` from `ref<HTMLInputElement>()` to `ref<"input">()`

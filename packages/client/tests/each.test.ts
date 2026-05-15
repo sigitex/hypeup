@@ -1,9 +1,10 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: test file */
 import "./setup-dom"
 import { describe, test, expect } from "bun:test"
-import { each, mountEach, diffEach } from "../src/each"
+import { mountEach, diffEach } from "../src/each"
 import { mount } from "../src/mount"
 import { Element } from "@hypeup/vdom"
+import { each } from "@hypeup/runtime";
 
 // ── each() initial render ──────────────────────────────────────────
 

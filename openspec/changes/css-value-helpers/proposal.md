@@ -17,9 +17,9 @@ CSS values like lengths, colors, and URLs require string interpolation in hypeup
 
 ### Modified Capabilities
 
-- `lexicon-css-gen`: Collision convention changes from `_prefix` to `$suffix` for CSS property names that are JS reserved words.
-- `lexicon-html-gen`: Collision convention changes from `_prefix` to `$suffix` for HTML element names that are JS reserved words.
-- `lexicon-primitives-gen`: Primitive table entries updated to reflect new `$suffix` names and new unit/function primitives.
+- `lexicon-css-gen`: Collision convention changes from underscore prefix (`_continue`) to dollar suffix (`continue$`) for CSS property names that are JS reserved words.
+- `lexicon-html-gen`: Collision convention changes from underscore prefix (`_var`) to dollar suffix (`var$`) for HTML element names that are JS reserved words.
+- `lexicon-primitives-gen`: Primitive table entries updated to reflect new dollar-suffix names (`var$`, `em$`, etc.) and new unit/function primitives.
 
 ## Impact
 

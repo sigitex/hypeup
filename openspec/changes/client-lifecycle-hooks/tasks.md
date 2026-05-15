@@ -20,7 +20,7 @@
 ## 4. Client Mount/Diff
 
 - [ ] 4.1 Handle `oncreate` and `onremove` classified kinds in `applyClassified()` in `packages/client/src/mount.ts`
-- [ ] 4.2 Fire `oncreate` callbacks at end of `mountElement()` after all slots are processed
+- [ ] 4.2 Fire `oncreate` callbacks at end of `mountElement()` using inline tracking — collect callbacks via lazy-initialized array (`createCallbacks ??= []`) during the build loop, fire after loop completes
 - [ ] 4.3 Handle `oncreate` diff in `diffSlot()` — same ref keeps slot, different ref replaces without firing
 - [ ] 4.4 Handle `onremove` diff in `diffSlot()` — same ref keeps slot, different ref replaces stored callback
 
@@ -38,3 +38,7 @@
 - [ ] 6.4 Test: `on.remove` fires when conditional child disappears on redraw
 - [ ] 6.5 Test: `on.create` and `on.remove` coexist on the same element
 - [ ] 6.6 Test: `on.remove` callback is updated when reference changes on redraw
+
+## 7. Documentation
+
+- [ ] 7.1 Add a "Lifecycle Hooks" subsection under Client Runtime in `README.md` documenting `on.create(cb)` and `on.remove(cb)`

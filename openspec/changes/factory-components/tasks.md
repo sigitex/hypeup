@@ -26,3 +26,7 @@
 - [ ] 4.5 Add test: factory args changed — factory re-invoked, new view stored
 - [ ] 4.6 Add test: factory fn changed — old disposed, new mounted fresh
 - [ ] 4.7 Add test: pure Lazy components still work unchanged alongside factory components
+
+## 5. Documentation
+
+- [ ] 5.1 Add a "Factory Components" subsection under Components in `README.md` showing the pattern where a component function returns a view function for closure-based state

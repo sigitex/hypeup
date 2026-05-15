@@ -6,7 +6,7 @@
 - [ ] 1.4 Update the generator template for `css.gen.ts` to emit `$` suffix names
 - [ ] 1.5 Update the generator template for `primitives.gen.ts` to emit `$` suffix names
 - [ ] 1.6 Regenerate all `.gen.ts` files and verify `var$`, `continue$`, `default$`, `super$`, `break$` appear correctly
-- [ ] 1.7 Update babel plugin primitive table references from `_prefix` to `$suffix` names
+- [ ] 1.7 Update babel plugin primitive table references from underscore-prefix names (`_var`, `_continue`) to dollar-suffix names (`var$`, `continue$`)
 
 ## 2. Add unit discovery and generation
 
@@ -41,10 +41,16 @@
 - [ ] 6.2 Register color function and `url` globals in the babel plugin's primitive recognition (using `cssFunctions` from primitives)
 - [ ] 6.3 Ensure the plugin transforms unit/function calls to string literals at build time where arguments are static
 
-## 7. Validate
+## 7. Update documentation
 
-- [ ] 7.1 Run the generator (`bun run generate` in `packages/lexicon`) and verify output
-- [ ] 7.2 Type-check lexicon package (`bun run check`)
-- [ ] 7.3 Type-check babel package (`bun run check`)
-- [ ] 7.4 Run existing tests to ensure nothing breaks
-- [ ] 7.5 Verify no `_var` or `_continue` references remain in generated output
+- [ ] 7.1 Add a "CSS Value Helpers" section to `README.md` documenting unit functions (`px(10)`, `rem(1.5)`, `deg(45)`, etc.), color functions (`rgb`, `hsl`, `oklch`, etc. with alpha examples), and `url`
+- [ ] 7.2 Document the `$` suffix collision convention in `README.md` — explain that names colliding with HTML elements, CSS keywords, or JS reserved words use a `$` suffix (`var$`, `em$`, `in$`, `continue$`, etc.)
+- [ ] 7.3 Update existing `README.md` examples to use value helpers where appropriate (e.g., `width(px(1200))` or `fontSize(px(40))`)
+
+## 8. Validate
+
+- [ ] 8.1 Run the generator (`bun run generate` in `packages/lexicon`) and verify output
+- [ ] 8.2 Type-check lexicon package (`bun run check`)
+- [ ] 8.3 Type-check babel package (`bun run check`)
+- [ ] 8.4 Run existing tests to ensure nothing breaks
+- [ ] 8.5 Verify no `_var` or `_continue` references remain in generated output

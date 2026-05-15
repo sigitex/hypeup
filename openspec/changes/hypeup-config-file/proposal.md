@@ -4,8 +4,9 @@ The hypeup CLI currently accepts all configuration through command-line flags (`
 
 ## What Changes
 
-- Add config file loading to the CLI — resolve and import `hypeup.config.ts` (or `.js`, `.mjs`) from the project root at startup
-- The config file exports a default object (or function returning one) with typed options: `dir`, `out`, `clean`, `port`, and a `vite` key for Vite config passthrough
+- Add config file loading to the CLI — resolve `hypeup.config.ts` (or `.js`, `.mjs`, `.json`, `.yaml`, `.toml`) from the project root at startup
+- Script formats (`.ts`, `.js`, `.mjs`) export a default object (or function returning one) with typed options: `dir`, `out`, `clean`, `port`, and a `vite` key for Vite config passthrough
+- Static formats (`.json`, `.yaml`, `.toml`) support only the flat hypeup options (`dir`, `out`, `clean`, `port`) — the `vite` key is not available in static formats
 - CLI flags override config file values (flags take precedence)
 - The `vite` key is merged into the Vite config used by both `buildPages` and `createDevServer`
 - Provide a `defineConfig` helper for type-safe authoring
@@ -13,7 +14,7 @@ The hypeup CLI currently accepts all configuration through command-line flags (`
 ## Capabilities
 
 ### New Capabilities
-- `config-file`: Loading, resolving, and merging a project config file (`hypeup.config.ts`) with CLI flags and Vite configuration
+- `config-file`: Loading, resolving, and merging a project config file (`hypeup.config.ts`, `.js`, `.mjs`, `.json`, `.yaml`, `.toml`) with CLI flags and Vite configuration
 
 ### Modified Capabilities
 - `cli-arg-parsing`: CLI flag resolution now falls back to config file values when flags are not provided

@@ -34,15 +34,16 @@ hypeup's client runtime mounts vdom trees into real DOM elements via a classify-
 
 **Rationale**: Groups all "things that happen" under `on`. No new top-level export needed. Consistent with existing API surface.
 
-### 3. `oncreate` firing point: end of `mountElement`
+### 3. `oncreate` firing point: end of `mountElement`, inline tracking
 
-**Decision**: After `mountElement` processes all content args into slots, iterate the slots and fire any `oncreate` callbacks. This ensures the element is fully assembled (all attributes, classes, children, events applied) when the callback runs.
+**Decision**: Track `oncreate` callbacks inline during `mountElement`'s build loop using lazy initialization (`createCallbacks ??= []`). After the loop completes, fire any collected callbacks. This avoids a second scan over the slots array.
 
 **Alternatives considered**:
 - *Fire in `applyClassified`*: Would fire before sibling args are processed — element is only partially assembled.
 - *Fire after `parent.appendChild`*: Would require threading parent knowledge into `mountElement`, which currently only builds the element without knowing its parent.
+- *Post-mount scan*: Process all args into slots, then iterate slots a second time looking for `oncreate` records. Works but pays the cost of a second loop for every element, even those without lifecycle hooks.
 
-**Rationale**: Firing at end-of-`mountElement` guarantees the element is complete. The element may not yet be in the document (parent appends it after), but it is fully constructed. For most third-party libs, the element just needs to exist and be appendable — and by the time the user's component function returns and `mount()` appends to `root`, the element is in the document. For child elements, `mountElement` is called before `parent.appendChild(childHandle.element)`, so `oncreate` fires just before DOM insertion — acceptable for initialization.
+**Rationale**: Inline tracking means elements without lifecycle hooks pay only a null check (the lazy-initialized array stays null), not a full scan. The callbacks still fire after all slots are processed, so the element is fully assembled. The element may not yet be in the document (parent appends it after), but it is fully constructed. For most third-party libs, the element just needs to exist and be appendable — and by the time the user's component function returns and `mount()` appends to `root`, the element is in the document. For child elements, `mountElement` is called before `parent.appendChild(childHandle.element)`, so `oncreate` fires just before DOM insertion — acceptable for initialization.
 
 ### 4. `onremove` firing point: during `undoSlot`
 

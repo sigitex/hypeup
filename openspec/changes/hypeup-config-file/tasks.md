@@ -6,10 +6,11 @@
 
 ## 2. Config File Resolution
 
-- [ ] 2.1 Implement `loadConfig` function in `packages/cli/src/config.ts` — searches for `hypeup.config.ts`, `.js`, `.mjs` in project root
-- [ ] 2.2 Handle function vs object default export (call function if default export is a function)
-- [ ] 2.3 Handle missing config file gracefully (return empty config)
-- [ ] 2.4 Handle invalid default export (print error, exit code 1)
+- [ ] 2.1 Implement `loadConfig` function in `packages/cli/src/config.ts` — searches for `hypeup.config.ts`, `.js`, `.mjs`, `.json`, `.yaml`, `.toml` in project root
+- [ ] 2.2 Handle script formats (`.ts`, `.js`, `.mjs`) via dynamic `import()` — support function vs object default export
+- [ ] 2.3 Handle static formats: `.json` via `JSON.parse`, `.yaml` via YAML parser, `.toml` via `Bun.TOML.parse` (or equivalent) — strip any `vite` key from the result
+- [ ] 2.4 Handle missing config file gracefully (return empty config)
+- [ ] 2.5 Handle invalid default export or parse errors (print error, exit code 1)
 
 ## 3. Config Merging
 
@@ -26,7 +27,11 @@
 ## 5. Tests
 
 - [ ] 5.1 Write tests for `defineConfig` (object, function)
-- [ ] 5.2 Write tests for `loadConfig` (ts file, js file, missing file, invalid export)
+- [ ] 5.2 Write tests for `loadConfig` (ts file, js file, json file, yaml file, toml file, missing file, invalid export, static format ignores vite key)
 - [ ] 5.3 Write tests for config merging (flag override, config fallback, defaults)
 - [ ] 5.4 Write integration test — create a fixture with `hypeup.config.ts`, run generate, verify config is applied
 - [ ] 5.5 Write integration test — verify Vite config passthrough (e.g., resolve alias)
+
+## 6. Documentation
+
+- [ ] 6.1 Add a "Configuration File" section to `README.md` (near the CLI/SSG docs) documenting `hypeup.config.ts`, `defineConfig`, supported formats, and Vite config passthrough

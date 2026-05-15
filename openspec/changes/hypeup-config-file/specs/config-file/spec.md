@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: Config file is resolved from project root
-The CLI SHALL look for a config file in the project root in the following order: `hypeup.config.ts`, `hypeup.config.js`, `hypeup.config.mjs`. The first file found SHALL be loaded. If no config file exists, the CLI SHALL proceed with defaults.
+The CLI SHALL look for a config file in the project root in the following order: `hypeup.config.ts`, `hypeup.config.js`, `hypeup.config.mjs`, `hypeup.config.json`, `hypeup.config.yaml`, `hypeup.config.toml`. The first file found SHALL be loaded. If no config file exists, the CLI SHALL proceed with defaults.
 
 #### Scenario: TypeScript config file exists
 - **WHEN** the project root contains `hypeup.config.ts`
@@ -10,6 +10,18 @@ The CLI SHALL look for a config file in the project root in the following order:
 #### Scenario: JavaScript config file exists
 - **WHEN** the project root contains `hypeup.config.js` but no `hypeup.config.ts`
 - **THEN** the CLI SHALL import and use it as the project configuration
+
+#### Scenario: JSON config file exists
+- **WHEN** the project root contains `hypeup.config.json` but no `.ts`, `.js`, or `.mjs` config file
+- **THEN** the CLI SHALL parse and use it as the project configuration
+
+#### Scenario: YAML config file exists
+- **WHEN** the project root contains `hypeup.config.yaml` but no `.ts`, `.js`, `.mjs`, or `.json` config file
+- **THEN** the CLI SHALL parse and use it as the project configuration
+
+#### Scenario: TOML config file exists
+- **WHEN** the project root contains `hypeup.config.toml` but no `.ts`, `.js`, `.mjs`, `.json`, or `.yaml` config file
+- **THEN** the CLI SHALL parse and use it as the project configuration
 
 #### Scenario: No config file exists
 - **WHEN** the project root contains no config file
@@ -29,6 +41,17 @@ The config file SHALL export a default value that is either a `HypeupConfig` obj
 #### Scenario: Invalid default export
 - **WHEN** the config file default-exports a non-object, non-function value
 - **THEN** the CLI SHALL print an error message and exit with code 1
+
+### Requirement: Static formats support only flat hypeup options
+Static config formats (`.json`, `.yaml`, `.toml`) SHALL only support the flat hypeup options (`dir`, `out`, `clean`, `port`). The `vite` key SHALL be ignored if present in a static config file.
+
+#### Scenario: JSON config with vite key
+- **WHEN** `hypeup.config.json` contains `{ "dir": "src", "vite": { "resolve": {} } }`
+- **THEN** the CLI SHALL use `"src"` as the scan directory and SHALL ignore the `vite` key
+
+#### Scenario: TOML config with basic options
+- **WHEN** `hypeup.config.toml` contains `dir = "src"` and `out = "build"`
+- **THEN** the CLI SHALL use `"src"` as the scan directory and `"build"` as the output directory
 
 ### Requirement: Config supports hypeup options
 The config object SHALL accept the following optional keys: `dir` (string), `out` (string), `clean` (boolean), `port` (number).
