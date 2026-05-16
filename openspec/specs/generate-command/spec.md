@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: Generate command renders pages to static files
-The `generate` subcommand SHALL discover components from the pages directory using the double-extension convention (`.html.ts`, `.css.ts`, `.md.ts`, etc.), render each using `@hypeup/render`, and write the output files to the output directory. The output format is determined by the file's target extension.
+The `generate` subcommand SHALL load the project config file (if present), merge config values with CLI flags, discover components from the pages directory using the double-extension convention (`.html.ts`, `.css.ts`, `.md.ts`, etc.), render each using `@hypeup/render`, and write the output files to the output directory. The output format is determined by the file's target extension. The merged Vite configuration SHALL be passed to both `vite.build()` and the dev server.
 
 #### Scenario: HTML generation
 - **WHEN** the user runs `hypeup generate` with a directory containing `index.html.ts` that default-exports a function returning content
@@ -22,6 +22,18 @@ The `generate` subcommand SHALL discover components from the pages directory usi
 #### Scenario: Mixed output formats
 - **WHEN** the directory contains `index.html.ts`, `styles.css.ts`, and `readme.md.ts`
 - **THEN** the CLI SHALL write `dist/index.html`, `dist/styles.css`, and `dist/readme.md`
+
+#### Scenario: Config file provides defaults
+- **WHEN** the user has a `hypeup.config.ts` with `{ dir: "src", out: "build" }` and runs `hypeup generate`
+- **THEN** the CLI SHALL scan `src` for pages and write output to `build/`
+
+#### Scenario: Vite config passthrough in build
+- **WHEN** the config file includes `{ vite: { resolve: { alias: { "@": "./src" } } } }`
+- **THEN** the SSR build SHALL resolve `@/` imports using the provided alias
+
+#### Scenario: Vite config passthrough in dev server
+- **WHEN** the config file includes Vite config and the user runs `hypeup generate --watch`
+- **THEN** the dev server SHALL use the merged Vite configuration
 
 ### Requirement: Generate command accepts output directory option
 The `generate` subcommand SHALL accept a `--out` flag to specify the output directory. The default output directory SHALL be `dist`.
