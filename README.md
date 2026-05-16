@@ -304,6 +304,38 @@ If the build tool supports other languages, those work too (e.g. `.html.civet`).
 hypeup generate --dir src --out dist
 ```
 
+### Configuration File
+
+Project defaults can live in `hypeup.config.ts` at the project root:
+
+```ts
+import { defineConfig } from "hypeup"
+
+export default defineConfig({
+  dir: "src",
+  out: "dist",
+  clean: true,
+  port: 5173,
+  vite: {
+    resolve: {
+      alias: {
+        "@": new URL("./src", import.meta.url).pathname,
+      },
+    },
+  },
+})
+```
+
+Supported config files are checked in this order: `hypeup.config.ts`, `hypeup.config.js`, `hypeup.config.mjs`, `hypeup.config.json`. Script configs can default-export either an object or a function returning an object. JSON config supports `dir`, `out`, `clean`, and `port`; any `vite` key in JSON is ignored.
+
+CLI flags override config file values:
+
+```sh
+hypeup generate --out build
+```
+
+The `vite` key is merged into the internal Vite config used for both one-shot generation and `--watch` mode. hypeup's required plugin and SSR settings are applied after user config so they cannot be overridden.
+
 ### File Convention
 
 Each file's default export should be a function returning content. For HTML files, return elements:

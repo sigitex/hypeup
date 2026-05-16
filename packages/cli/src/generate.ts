@@ -1,24 +1,24 @@
 import { resolve, dirname } from "node:path"
 import { discoverPages, resolveRoute, TARGET_FORMATS, type Page } from "./discover"
 import { buildPages, createDevServer } from "./vite"
+import { loadConfig, mergeConfig } from "./config"
 import { render } from "@hypeup/render"
 import { rmSync, mkdirSync, cpSync, existsSync } from "node:fs"
-import type { ViteDevServer } from "vite"
+import type { UserConfig, ViteDevServer } from "vite"
 
 const formatPattern = new RegExp(`\\.(${TARGET_FORMATS.join("|")})$`)
 
 export async function generate(flags: Record<string, string | boolean>) {
   const startTime = performance.now()
   const root = process.cwd()
-  const pagesDir = resolve(
-    root,
-    typeof flags.dir === "string" ? flags.dir : ".",
+  const config = mergeConfig(
+    { dir: ".", out: "dist", clean: false },
+    await loadConfig(root),
+    flags,
   )
-  const outDir = resolve(
-    root,
-    typeof flags.out === "string" ? flags.out : "dist",
-  )
-  const clean = flags.clean === true
+  const pagesDir = resolve(root, config.dir)
+  const outDir = resolve(root, config.out)
+  const clean = config.clean
   const watch = flags.watch === true
 
   // Clean output directory if requested
@@ -35,13 +35,12 @@ export async function generate(flags: Record<string, string | boolean>) {
   }
 
   if (watch) {
-    const port = typeof flags.port === "string" ? Number(flags.port) : undefined
-    await runWatchMode(root, pagesDir, port)
+    await runWatchMode(root, pagesDir, config.port, config.vite)
     return
   }
 
   // One-shot build mode
-  await runBuild(root, pagesDir, outDir, startTime)
+  await runBuild(root, pagesDir, outDir, startTime, config.vite)
 }
 
 /** One-shot generate: vite.build() SSR, import modules, render, write. */
@@ -50,6 +49,7 @@ async function runBuild(
   pagesDir: string,
   outDir: string,
   startTime: number,
+  viteConfig?: UserConfig,
 ) {
   const pages = await discoverPages(pagesDir)
 
@@ -59,7 +59,7 @@ async function runBuild(
   }
 
   // Build with Vite SSR
-  const ssrOutDir = await buildPages(root, pages, outDir)
+  const ssrOutDir = await buildPages(root, pages, outDir, viteConfig)
 
   // Render each page
   let rendered = 0
@@ -142,13 +142,18 @@ async function renderPage(
 }
 
 /** Watch mode: Vite dev server with SSR middleware serving pages over HTTP. */
-async function runWatchMode(root: string, pagesDir: string, port?: number) {
+async function runWatchMode(
+  root: string,
+  pagesDir: string,
+  port?: number,
+  viteConfig?: UserConfig,
+) {
   const server = await createDevServer(
     root,
     pagesDir,
     renderPage,
     discoverPages,
-    { port },
+    { port, vite: viteConfig },
   )
 
   // Graceful shutdown

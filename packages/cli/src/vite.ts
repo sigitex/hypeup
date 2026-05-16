@@ -1,5 +1,5 @@
 // oxlint-disable complexity
-import type { InlineConfig, ViteDevServer } from "vite"
+import type { InlineConfig, UserConfig, ViteDevServer } from "vite"
 import type { Page } from "./discover"
 import { TARGET_FORMATS } from "./discover"
 
@@ -62,8 +62,9 @@ export async function buildPages(
   root: string,
   pages: Page[],
   outDir: string,
+  userConfig?: UserConfig,
 ): Promise<string> {
-  const { build } = await import("vite")
+  const { build, mergeConfig } = await import("vite")
   const plugin = await loadHypeupPlugin()
 
   const formatPattern = new RegExp(`\\.(${TARGET_FORMATS.join("|")})$`)
@@ -75,7 +76,7 @@ export async function buildPages(
 
   const ssrOutDir = outDir + "/.ssr"
 
-  await build({
+  const config = mergeConfig(userConfig ?? {}, {
     ...sharedConfig(root),
     logLevel: "silent",
     plugins: [plugin],
@@ -90,6 +91,8 @@ export async function buildPages(
       emptyOutDir: false,
     },
   })
+
+  await build(config)
 
   return ssrOutDir
 }
@@ -107,12 +110,12 @@ export async function createDevServer(
     params?: Record<string, string>,
   ) => Promise<string>,
   discoverPages: (pagesDir: string) => Promise<Page[]>,
-  options?: { port?: number },
+  options?: { port?: number; vite?: UserConfig },
 ): Promise<ViteDevServer> {
-  const { createServer } = await import("vite")
+  const { createServer, mergeConfig } = await import("vite")
   const plugin = await loadHypeupPlugin()
 
-  const server = await createServer({
+  const config = mergeConfig(options?.vite ?? {}, {
     ...sharedConfig(root),
     appType: "custom",
     logLevel: "info",
@@ -225,6 +228,8 @@ export async function createDevServer(
       },
     ],
   })
+
+  const server = await createServer(config)
 
   await server.listen()
   server.printUrls()
