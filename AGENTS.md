@@ -33,7 +33,7 @@ When implementing tasks via /opsx-apply:
 When archiving tasks via /opsx-archive:
 
 1. Automatically sync specs, do not ask the user.
-2. After completing the archive, `git add -A && git commit -m "chore(<change-name>"): archive change" && git push origin feat/<change-name>`
+2. After completing the archive, if the PR hasn't already been merged (check), `git add -A && git commit -m "chore(<change-name>"): archive change" && git push origin feat/<change-name>`
 
 ## Backwards Compatibility
 
