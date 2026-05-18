@@ -18,7 +18,7 @@
 		"explorer.fileNesting.enabled": true,
 		"explorer.fileNesting.patterns": {
 			"tsconfig.json": "tsconfig.*.json",
-			"package.json": "bun.lock, bunfig.toml, *.bun.plugin.ts, ox*.config.ts, .gitignore, .mirrorignore, regime.config.json, commitlint.config.*, release.config.*js",
+			"package.json": "bun.lock, bunfig.toml, *.bun.plugin.ts, ox*.config.ts, .gitignore, .mirrorignore, regime.*.json, regime.internal.json, commitlint.config.*, release.config.*js, hypeup.config.*",
 			"vite.config.ts": "*.vite.plugin.ts",
 			"README.md": "LICENSE, LICENSE.md",
 		},

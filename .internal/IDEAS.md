@@ -4,7 +4,7 @@
 
 ## Extensible global dsl via packages
 
-- hypeup/abbreviated
+- abbreviated dsl
 ```
 cc
 m p [lrtbvh] [n]
@@ -17,6 +17,10 @@ fg bg bgi
 wi hi
 ```
 
+- hypewind - automatically generate based on tailwind
+  - function abbreviations to support eg `.bg-#f0f0f0`
+  - constants for eg `.bg-red-100`
+
 ## Comment node
 
 explore special `style` tag handling to support it there (rule is easy)
@@ -25,3 +29,5 @@ explore special `style` tag handling to support it there (rule is easy)
 ```ts
 rule([h1, h2, h3])
 ```
+
+## SSG: different routing, custom routing

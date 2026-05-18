@@ -1,4 +1,9 @@
 AGENTS.md
+CLAUDE.md
 .forgejo
 openspec
 .internal
+opencode.json
+regime.internal.json
+.ai
+templates/internal
