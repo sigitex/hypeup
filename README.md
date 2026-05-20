@@ -13,7 +13,7 @@ hypeup is a beyond-hyperscript style UI framework where all HTML elements and CS
 
 ## Markup
 
-All HTML elements are global functions which create virtual DOM nodes. At render time, these are converted to HTML.
+HTML elements are available as global functions and render to HTML.
 
 ```ts
 div(
@@ -22,9 +22,7 @@ div(
 )
 ```
 
-Strings, numbers, arrays, etc. are supported as children. `null`, `undefined`, and `false` render as empty. Attributes are defined with plain `{}` objects.
-
-Object attributes are typed per HTML tag. Global attributes such as `id` and `class` are available everywhere, while tag-specific attributes are only available on the matching elements. Attribute names use serialized HTML spelling, not DOM property aliases: use `readonly`, `maxlength`, `for`, and `http-equiv` instead of `readOnly`, `maxLength`, `htmlFor`, and `httpEquiv`.
+Strings, numbers, arrays, etc. are supported as children. `null`, `undefined`, and `false` render as empty. Attributes are defined with plain `{}` objects and are strongly typed.
 
 ```ts
 div({ id: "profile", class: "card" })
@@ -32,30 +30,30 @@ input({ type: "password", placeholder: "Password", readonly: true, maxlength: 40
 label({ for: "email" }, "Email")
 ```
 
-Known enumerated values are typed for autocomplete and validation. Strict attributes reject unknown values, while loose attributes such as `target` still allow custom strings.
+Attribute names use HTML spelling, not DOM property aliases. For example, use `readonly`, `maxlength`, and `for` instead of `readOnly`, `maxLength`, and `htmlFor`.
+
+Common attribute values are typed for autocomplete and validation, while open-ended values such as custom link targets are still allowed.
 
 ```ts
 input({ type: "email" })
 a({ target: "preview-window" })
 ```
 
-Boolean HTML attributes accept booleans in object attributes. `true` renders as a presence-only attribute and `false` omits the attribute.
+Boolean attributes render naturally: `true` includes the attribute and `false` omits it.
 
 ```ts
 input({ disabled: true }) // <input disabled>
 input({ disabled: false }) // <input>
 ```
 
-Boolean attribute globals, when available, are separate shorthand sugar. Typed object attributes do not require using that shorthand.
-
-For custom or dynamic attributes and tags, use explicit escape hatches:
+For custom attributes or custom tags, use `attr()` and `elem()`:
 
 ```ts
 div(attr("data-state", state))
 elem("my-widget", attr("custom-attr", "value"))
 ```
 
-Multiple objects can be defined for convenient composition, and these can appear *after* child elements, text nodes, etc.
+You can pass multiple attribute objects wherever it reads best.
 
 ```ts
 a.someClass(
@@ -66,14 +64,13 @@ a.someClass(
 )
 ```
 
-The `raw` function will skip HTML escaping for its contents:
+Use `raw()` for content that should not be escaped:
 
 ```ts
 raw("<span>hello!</span>")
-
-`raw` can also be used to inject custom CSS inside rules & at-rules.
-
 ```
+
+`raw()` can also be used inside rules and at-rules.
 
 ### Element Class Shorthand
 
@@ -119,7 +116,7 @@ div(
 
 ### Rules
 
-The `rule` function defines CSS rules within `style` elements. Custom properties may use the `prop` function.
+Use `rule()` for CSS rules and `prop()` for custom properties.
 
 ```ts
 style(
@@ -162,7 +159,7 @@ rule(".danger",
 )
 ```
 
-Child selectors can be combined with the parent selector, similar to Sass and Less.js. This example produces two rules, the second with the selector `.danger.large`:
+Use `&` to combine a nested selector with its parent:
 
 ```ts
 rule(".danger",
@@ -198,7 +195,7 @@ rule("input, textarea",
 
 #### Native CSS Nesting
 
-Use the `/` prefix to render child rules inline inside the parent block (native CSS nesting) instead of flattening:
+Prefix a nested selector with `/` to keep it nested in the output:
 
 ```ts
 rule(".parent",
@@ -209,9 +206,7 @@ rule(".parent",
 )
 ```
 
-This produces `.parent{color:red.child{color:blue}}` -- the child rule is nested inside the parent's braces. The `/` is stripped from the output.
-
-The `/` works with any selector: `/&:hover`, `/.className`, `/ > li`, etc. Non-slash child rules continue to flatten as before.
+The `/` is removed when rendering. This also works with selectors such as `/&:hover`, `/.className`, and `/ > li`.
 
 ### At-rules
 
@@ -256,7 +251,7 @@ div(
 )
 ```
 
-Components can accept any arguments and return elements, arrays, or any valid content. There is no special component protocol — just functions returning content. You *should* capitalize their names though — the transformer will produce optimized output.
+Components are just functions. They can accept any arguments and return any valid content. Capitalize component names so build tools can optimize them.
 
 ## Client Runtime
 
@@ -292,7 +287,7 @@ button(
 
 ### Redraw
 
-Call `redraw()` after mutating state to re-render the mounted component tree. The runtime patches the DOM in place.
+Call `redraw()` after mutating state to update the page.
 
 ### Refs
 
@@ -357,7 +352,7 @@ export default defineConfig({
 })
 ```
 
-Supported config files are checked in this order: `hypeup.config.ts`, `hypeup.config.js`, `hypeup.config.mjs`, `hypeup.config.json`. Script configs can default-export either an object or a function returning an object. JSON config supports `dir`, `out`, `clean`, and `port`; any `vite` key in JSON is ignored.
+Config files can be TypeScript, JavaScript, ESM, or JSON.
 
 CLI flags override config file values:
 
@@ -365,7 +360,7 @@ CLI flags override config file values:
 hypeup generate --out build
 ```
 
-The `vite` key is merged into the internal Vite config used for both one-shot generation and `--watch` mode. hypeup's required plugin and SSR settings are applied after user config so they cannot be overridden.
+Use the `vite` key to customize Vite during generation and watch mode.
 
 ### File Convention
 
@@ -467,7 +462,7 @@ hypeup generate [options]
 
 ## Build Plugin
 
-hypeup provides a build plugin (via [unplugin](https://github.com/unjs/unplugin)) that transforms your source files so the global DSL functions resolve to the runtime. Available for Vite, esbuild, Rollup, webpack, and Rspack:
+hypeup provides build plugins for using the global DSL in your app. Available for Vite, esbuild, Rollup, webpack, and Rspack:
 
 ```ts
 // vite.config.ts
