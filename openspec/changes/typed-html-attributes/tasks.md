@@ -39,10 +39,10 @@
 
 ## 6. Verification
 
-- [ ] 6.1 Run `bun run check` in `packages/generate`
-- [ ] 6.2 Run `bun run check` in `packages/vdom`
-- [ ] 6.3 Run `bun run check` in `packages/runtime`
-- [ ] 6.4 Run `bun run check` in `packages/render`
-- [ ] 6.5 Run `bun run check` in `packages/lexicon`
-- [ ] 6.6 Run relevant package tests for lexicon, runtime, and render
-- [ ] 6.7 Run root `bun run check` and root `bun run test` if focused package checks pass
+- [x] 6.1 Run `bun run check` in `packages/generate`
+- [x] 6.2 Run `bun run check` in `packages/vdom`
+- [x] 6.3 Run `bun run check` in `packages/runtime`
+- [x] 6.4 Run `bun run check` in `packages/render`
+- [x] 6.5 Run `bun run check` in `packages/lexicon`
+- [x] 6.6 Run relevant package tests for lexicon, runtime, and render
+- [x] 6.7 Run root `bun run check` and root `bun run test` if focused package checks pass

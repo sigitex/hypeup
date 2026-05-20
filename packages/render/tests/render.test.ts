@@ -149,7 +149,7 @@ describe("render at-rules", () => {
       new Property("font-family", "Arial"),
       new Raw("src: url('font.woff2')"),
     ])
-    expect(render(ar)).toBe("font-face{font-family:Arialsrc: url('font.woff2')}")
+    expect(render(ar)).toBe("@font-face{font-family:Arialsrc: url('font.woff2')}")
   })
 })
 
