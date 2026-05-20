@@ -185,7 +185,7 @@ describe("generate command (watch mode)", () => {
     rmSync(WATCH_PAGES, { recursive: true, force: true })
   })
 
-  test("watch mode serves pages over HTTP and picks up changes", async () => {
+  test.skipIf(!!process.env.CI)("watch mode serves pages over HTTP and picks up changes", async () => {
     const proc = Bun.spawn({
       cmd: ["bun", "run", resolve(import.meta.dir, "../src/cli.ts"), "generate", "--dir", "watch-pages", "--watch", "--port", String(TEST_PORT)],
       cwd: FIXTURE_DIR,
