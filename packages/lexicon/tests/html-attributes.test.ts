@@ -1,6 +1,6 @@
 import "../src/index"
 
-function htmlAttributeTypeCoverage() {
+export function htmlAttributeTypeCoverage() {
   div({ id: "main", class: "container" })
   button({ "aria-label": "Close" })
   div({ "data-state": "open" })
@@ -38,5 +38,3 @@ function htmlAttributeTypeCoverage() {
   div(Math.random() > 0.5 ? each(statuses, status => div(status.name)) : undefined)
   rule(body, backgroundColor.white)
 }
-
-void htmlAttributeTypeCoverage

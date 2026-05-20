@@ -1,4 +1,4 @@
-import { type Element, Each, Lazy } from "@hypeup/vdom"
+import { type Element, type Each, Lazy } from "@hypeup/vdom"
 import { disposeHandle, type EachState, type MountHandle } from "./apply"
 import { mountElement, diffElement } from "./mount"
 import { type KeyedItem, reconcile } from "./reconcile"

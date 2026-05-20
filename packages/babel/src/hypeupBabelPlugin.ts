@@ -10,7 +10,6 @@ import {
 import { kebab } from "./kebab"
 
 const RUNTIME_MODULE = "@hypeup/runtime"
-const CLIENT_MODULE = "@hypeup/client"
 
 /** JS built-in constructors that should not be wrapped in lazy(). */
 const JS_BUILTINS = new Set([
