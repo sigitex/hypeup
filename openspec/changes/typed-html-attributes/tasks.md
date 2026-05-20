@@ -33,9 +33,9 @@
 
 ## 5. Documentation
 
-- [ ] 5.1 Update `README.md` Markup docs to describe typed object attributes, HTML attribute spelling, value autocomplete, and boolean attribute rendering
-- [ ] 5.2 Document `attr()` and `elem()` as escape hatches for custom or dynamic attributes and tags
-- [ ] 5.3 Mention that boolean attribute globals are separate sugar and not required for typed object attributes
+- [x] 5.1 Update `README.md` Markup docs to describe typed object attributes, HTML attribute spelling, value autocomplete, and boolean attribute rendering
+- [x] 5.2 Document `attr()` and `elem()` as escape hatches for custom or dynamic attributes and tags
+- [x] 5.3 Mention that boolean attribute globals are separate sugar and not required for typed object attributes
 
 ## 6. Verification
 

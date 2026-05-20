@@ -24,6 +24,37 @@ div(
 
 Strings, numbers, arrays, etc. are supported as children. `null`, `undefined`, and `false` render as empty. Attributes are defined with plain `{}` objects.
 
+Object attributes are typed per HTML tag. Global attributes such as `id` and `class` are available everywhere, while tag-specific attributes are only available on the matching elements. Attribute names use serialized HTML spelling, not DOM property aliases: use `readonly`, `maxlength`, `for`, and `http-equiv` instead of `readOnly`, `maxLength`, `htmlFor`, and `httpEquiv`.
+
+```ts
+div({ id: "profile", class: "card" })
+input({ type: "password", placeholder: "Password", readonly: true, maxlength: 40 })
+label({ for: "email" }, "Email")
+```
+
+Known enumerated values are typed for autocomplete and validation. Strict attributes reject unknown values, while loose attributes such as `target` still allow custom strings.
+
+```ts
+input({ type: "email" })
+a({ target: "preview-window" })
+```
+
+Boolean HTML attributes accept booleans in object attributes. `true` renders as a presence-only attribute and `false` omits the attribute.
+
+```ts
+input({ disabled: true }) // <input disabled>
+input({ disabled: false }) // <input>
+```
+
+Boolean attribute globals, when available, are separate shorthand sugar. Typed object attributes do not require using that shorthand.
+
+For custom or dynamic attributes and tags, use explicit escape hatches:
+
+```ts
+div(attr("data-state", state))
+elem("my-widget", attr("custom-attr", "value"))
+```
+
 Multiple objects can be defined for convenient composition, and these can appear *after* child elements, text nodes, etc.
 
 ```ts
