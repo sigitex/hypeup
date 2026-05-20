@@ -1,10 +1,10 @@
 ## 1. Attribute Data Discovery
 
-- [ ] 1.1 Add generator dependencies for `html-element-attributes`, `html-enumerated-attributes`, `property-information`, and `@mdn/browser-compat-data` in `packages/generate/package.json`
-- [ ] 1.2 Add type declarations or import handling needed for the new data packages
-- [ ] 1.3 Create `packages/generate/src/discoverHtmlAttributes.ts` to load per-element attributes, global attributes, enumerated values, attribute metadata, and MDN/spec docs
-- [ ] 1.4 Normalize attribute names to serialized HTML spelling and preserve tag-specific applicability from `html-element-attributes`
-- [ ] 1.5 Map attribute metadata to generator value kinds: boolean, numeric, enumerated, loose enumerated, token/string, and generic attribute values
+- [x] 1.1 Add generator dependencies for `html-element-attributes`, `html-enumerated-attributes`, `property-information`, and `@mdn/browser-compat-data` in `packages/generate/package.json`
+- [x] 1.2 Add type declarations or import handling needed for the new data packages
+- [x] 1.3 Create `packages/generate/src/discoverHtmlAttributes.ts` to load per-element attributes, global attributes, enumerated values, attribute metadata, and MDN/spec docs
+- [x] 1.4 Normalize attribute names to serialized HTML spelling and preserve tag-specific applicability from `html-element-attributes`
+- [x] 1.5 Map attribute metadata to generator value kinds: boolean, numeric, enumerated, loose enumerated, token/string, and generic attribute values
 
 ## 2. Generated Type Surface
 
