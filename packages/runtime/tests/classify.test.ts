@@ -21,6 +21,11 @@ describe("classifyElement", () => {
     expect(result.attributes["href"]).toBe("/home")
   })
 
+  test("true Attr routes to presence attribute", () => {
+    const result = classifyElement([new Attr("disabled", true)], false)
+    expect(result.attributes["disabled"]).toBe(true)
+  })
+
   test("CssClass routes to classes slot", () => {
     const result = classifyElement([new CssClass("active")], false)
     expect(result.classes).toContain("active")
@@ -47,6 +52,21 @@ describe("classifyElement", () => {
     const result = classifyElement([{ id: "main", "data-x": "1" }], false)
     expect(result.attributes["id"]).toBe("main")
     expect(result.attributes["data-x"]).toBe("1")
+  })
+
+  test("true object attribute routes to presence attribute", () => {
+    const result = classifyElement([{ disabled: true }], false)
+    expect(result.attributes["disabled"]).toBe(true)
+  })
+
+  test("false object attribute is skipped", () => {
+    const result = classifyElement([{ disabled: false }], false)
+    expect(result.attributes).not.toHaveProperty("disabled")
+  })
+
+  test("textual false object attribute routes to attributes", () => {
+    const result = classifyElement([{ contenteditable: "false" }], false)
+    expect(result.attributes["contenteditable"]).toBe("false")
   })
 
   test("object with class key splits into classes", () => {

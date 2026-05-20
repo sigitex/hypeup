@@ -17,10 +17,10 @@
 
 ## 3. Runtime Boolean Attribute Semantics
 
-- [ ] 3.1 Update `packages/runtime/src/classify.ts` so true `Attr` values and true object attributes are preserved as presence attributes
-- [ ] 3.2 Ensure false, null, undefined, and empty string object attribute values continue to be omitted by classification
-- [ ] 3.3 Update `packages/render/src/render.ts` so classified attributes with value `true` render as presence-only HTML without `="true"`
-- [ ] 3.4 Add or update runtime/render tests for true boolean object attrs, false boolean object attrs, true `Attr` values, and textual false enumerated attrs
+- [x] 3.1 Update `packages/runtime/src/classify.ts` so true `Attr` values and true object attributes are preserved as presence attributes
+- [x] 3.2 Ensure false, null, undefined, and empty string object attribute values continue to be omitted by classification
+- [x] 3.3 Update `packages/render/src/render.ts` so classified attributes with value `true` render as presence-only HTML without `="true"`
+- [x] 3.4 Add or update runtime/render tests for true boolean object attrs, false boolean object attrs, true `Attr` values, and textual false enumerated attrs
 
 ## 4. Type Coverage
 

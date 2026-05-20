@@ -71,7 +71,7 @@ function renderNode(x: Content, r: Renderer) {
       const attrKeys = Object.keys(attributes)
       if (attrKeys.length > 0) {
         const attrStr = attrKeys
-          .map((key) => `${key}="${attributes[key]}"`)
+          .map((key) => attributes[key] === true ? key : `${key}="${attributes[key]}"`)
           .join(" ")
         r.write(" " + attrStr)
       }

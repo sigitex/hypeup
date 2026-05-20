@@ -14,7 +14,7 @@ import {
 } from "@hypeup/vdom"
 
 type ElementSlots = {
-  attributes: Record<string, string>
+  attributes: Record<string, string | true>
   properties: Record<string, string>
   classes: string[]
   children: any[]
@@ -80,7 +80,7 @@ function walkElement(contents: any[], slots: ElementSlots, isVoid: boolean) {
     if (item instanceof Property) {
       slots.properties[item.name] = String(item.value)
     } else if (item instanceof Attr) {
-      slots.attributes[item.name] = String(item.value)
+      slots.attributes[item.name] = item.value === true ? true : String(item.value)
     } else if (item instanceof CssClass) {
       slots.classes.push(item.name)
     } else if (
@@ -106,7 +106,9 @@ function walkElement(contents: any[], slots: ElementSlots, isVoid: boolean) {
           const classes = String(val).split(/\s+/).filter(Boolean)
           slots.classes.push(...classes)
         } else {
-          if (slots.attributes[key]) {
+          if (val === true) {
+            slots.attributes[key] = true
+          } else if (slots.attributes[key]) {
             slots.attributes[key] += " " + String(val)
           } else {
             slots.attributes[key] = String(val)

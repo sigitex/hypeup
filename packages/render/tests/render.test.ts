@@ -39,6 +39,26 @@ describe("render elements", () => {
     expect(render(el)).toBe('<a href="/home">link</a>')
   })
 
+  test("true object boolean attribute renders without value", () => {
+    const el = new Element("input", true, [{ disabled: true }])
+    expect(render(el)).toBe("<input disabled>")
+  })
+
+  test("false object boolean attribute is omitted", () => {
+    const el = new Element("input", true, [{ disabled: false }])
+    expect(render(el)).toBe("<input>")
+  })
+
+  test("true Attr renders without value", () => {
+    const el = new Element("input", true, [new Attr("disabled", true)])
+    expect(render(el)).toBe("<input disabled>")
+  })
+
+  test("textual false attribute still renders", () => {
+    const el = new Element("div", false, [{ contenteditable: "false" }])
+    expect(render(el)).toBe('<div contenteditable="false"></div>')
+  })
+
   test("element with CssClass node", () => {
     const el = new Element("div", false, [
       new CssClass("foo"),
