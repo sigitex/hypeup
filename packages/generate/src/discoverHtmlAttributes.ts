@@ -90,7 +90,10 @@ function findEnumeratedDefinition(
     return undefined
   }
   const list = Array.isArray(definitions) ? definitions : [definitions]
-  return list.find((definition) => appliesToTag(definition, tag)) ?? list[0]
+  if (!tag) {
+    return list.find((definition) => !definition.selector)
+  }
+  return list.find((definition) => appliesToTag(definition, tag))
 }
 
 function appliesToTag(definition: EnumeratedDefinition, tag: string | undefined) {

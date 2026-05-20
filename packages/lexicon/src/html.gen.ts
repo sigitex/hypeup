@@ -16,10 +16,12 @@ declare global {
   type AttributeValue = string | number | bigint
   type LooseString = string & {}
   type PrimitiveContent = string | number | bigint | boolean | null | undefined
-  type NodeContent = Attr | AtRule | CssClass | Each<unknown> | Element | Lazy | Property | Raw | Rule
+  type NodeContent = Attr | AtRule | CssClass | Each | Element | Lazy | Property | Raw | Rule
   type HtmlContent<Tag extends keyof AttributeMap> = PrimitiveContent | NodeContent | AttributeMap[Tag] | HtmlContent<Tag>[]
   
   type GlobalAttributes = {
+    [attribute: `aria-${string}`]: AttributeValue | undefined
+    [attribute: `data-${string}`]: AttributeValue | undefined
     /** Global `accesskey` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/accesskey Spec: https://html.spec.whatwg.org/multipage/interaction.html#the-accesskey-attribute */
     accesskey?: AttributeValue
     /** Global `autocapitalize` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/autocapitalize Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-autocapitalize */
@@ -46,8 +48,8 @@ declare global {
     id?: AttributeValue
     /** Global `inert` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/inert Spec: https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute */
     inert?: boolean
-    /** Global `inputmode` HTML attribute. Known values: ``, `email`, `full-width-latin`, `kana`, `kana-name`, `katakana`, `latin`, `latin-name`, `latin-prose`, `numeric`, `tel`, `url`, `verbatim`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/inputmode Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-inputmode */
-    inputmode?: "" | "email" | "full-width-latin" | "kana" | "kana-name" | "katakana" | "latin" | "latin-name" | "latin-prose" | "numeric" | "tel" | "url" | "verbatim"
+    /** Global `inputmode` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/inputmode Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-inputmode */
+    inputmode?: AttributeValue
     /** Global `is` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/is Spec: https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is */
     is?: AttributeValue
     /** Global `itemid` HTML attribute. */
@@ -85,8 +87,8 @@ declare global {
   }
   
   type AAttributes = {
-    /** ` charset` attribute for `<a>`. Known values: `utf8`, `utf-8`, `unicode-1-1-utf-8`, `866`, `cp866`, `ibm866`, `csibm866`, `l1`, `ascii`, `cp819`, `cp1252`, `ibm819`, `latin1`, `us-ascii`, `x-cp1252`, `iso88591`, `iso8859-1`, `iso_8859-1`, `iso-8859-1`, `iso-ir-100`, `csisolatin1`, `windows-1252`, `ansi_x3.4-1968`, `iso_8859-1:1987`, `l2`, `csisolatin2`, `iso-8859-2`, `iso-ir-101`, `iso8859-2`, `iso88592`, `iso_8859-2`, `iso_8859-2:1987`, `latin2`, `l3`, `csisolatin3`, `iso-8859-3`, `iso-ir-109`, `iso8859-3`, `iso88593`, `iso_8859-3`, `iso_8859-3:1988`, `latin3`, `l4`, `csisolatin4`, `iso-8859-4`, `iso-ir-110`, `iso8859-4`, `iso88594`, `iso_8859-4`, `iso_8859-4:1988`, `latin4`, `l5`, `latin5`, `cp1254`, `x-cp1254`, `iso88599`, `iso8859-9`, `iso-8859-9`, `iso_8859-9`, `iso-ir-148`, `csisolatin5`, `windows-1254`, `iso_8859-9:1989`, `l6`, `latin6`, `iso885910`, `iso-ir-157`, `iso8859-10`, `csisolatin6`, `iso-8859-10`, `l9`, `iso885915`, `iso8859-15`, `iso-8859-15`, `iso_8859-15`, `csisolatin9`, `cp1250`, `x-cp1250`, `windows-1250`, `cp1251`, `x-cp1251`, `windows-1251`, `cp1253`, `x-cp1253`, `windows-1253`, `cp1255`, `x-cp1255`, `windows-1255`, `cp1256`, `x-cp1256`, `windows-1256`, `cp1257`, `x-cp1257`, `windows-1257`, `cp1258`, `x-cp1258`, `windows-1258`, `cyrillic`, `iso88595`, `iso8859-5`, `iso-8859-5`, `iso_8859-5`, `iso-ir-144`, `iso_8859-5:1988`, `csisolatincyrillic`, `arabic`, `iso88596`, `ecma-114`, `asmo-708`, `iso8859-6`, `iso-ir-127`, `iso_8859-6`, `iso-8859-6`, `csiso88596e`, `csiso88596i`, `iso-8859-6-e`, `iso-8859-6-i`, `iso_8859-6:1987`, `csisolatinarabic`, `greek`, `greek8`, `iso88597`, `ecma-118`, `elot_928`, `iso8859-7`, `iso-8859-7`, `iso_8859-7`, `iso-ir-126`, `sun_eu_greek`, `iso_8859-7:1987`, `csisolatingreek`, `hebrew`, `visual`, `iso88598`, `iso8859-8`, `iso-8859-8`, `iso_8859-8`, `iso-ir-138`, `csiso88598e`, `iso-8859-8-e`, `iso_8859-8:1988`, `csisolatinhebrew`, `logical`, `csiso88598i`, `iso-8859-8-i`, `iso885913`, `iso8859-13`, `iso-8859-13`, `iso885914`, `iso8859-14`, `iso-8859-14`, `iso-8859-16`, `koi`, `koi8`, `koi8-r`, `koi8_r`, `cskoi8r`, `koi8-u`, `koi8-ru`, `mac`, `macintosh`, `csmacintosh`, `x-mac-roman`, `dos-874`, `tis-620`, `iso885911`, `iso8859-11`, `iso-8859-11`, `windows-874`, `x-mac-cyrillic`, `x-mac-ukrainian`, `gbk`, `x-gbk`, `gb2312`, `chinese`, `gb_2312`, `csgb2312`, `iso-ir-58`, `gb_2312-80`, `csiso58gb231280`, `gb18030`, `big5`, `csbig5`, `cn-big5`, `x-x-big5`, `big5-hkscs`, `euc-jp`, `x-euc-jp`, `cseucpkdfmtjapanese`, `csiso2022jp`, `iso-2022-jp`, `ms932`, `sjis`, `x-sjis`, `ms_kanji`, `shift-jis`, `shift_jis`, `csshiftjis`, `windows-31j`, `korean`, `euc-kr`, `cseuckr`, `ksc5601`, `ksc_5601`, `iso-ir-149`, `windows-949`, `csksc56011987`, `ks_c_5601-1987`, `ks_c_5601-1989`, `hz-gb-2312`, `csiso2022kr`, `iso-2022-kr`, `iso-2022-cn`, `iso-2022-cn-ext`, `utf-16be`, `utf-16`, `utf-16le`, `x-user-defined`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-charset Deprecated. */
-    charset?: "866" | "ansi_x3.4-1968" | "arabic" | "ascii" | "asmo-708" | "big5" | "big5-hkscs" | "chinese" | "cn-big5" | "cp1250" | "cp1251" | "cp1252" | "cp1253" | "cp1254" | "cp1255" | "cp1256" | "cp1257" | "cp1258" | "cp819" | "cp866" | "csbig5" | "cseuckr" | "cseucpkdfmtjapanese" | "csgb2312" | "csibm866" | "csiso2022jp" | "csiso2022kr" | "csiso58gb231280" | "csiso88596e" | "csiso88596i" | "csiso88598e" | "csiso88598i" | "csisolatin1" | "csisolatin2" | "csisolatin3" | "csisolatin4" | "csisolatin5" | "csisolatin6" | "csisolatin9" | "csisolatinarabic" | "csisolatincyrillic" | "csisolatingreek" | "csisolatinhebrew" | "cskoi8r" | "csksc56011987" | "csmacintosh" | "csshiftjis" | "cyrillic" | "dos-874" | "ecma-114" | "ecma-118" | "elot_928" | "euc-jp" | "euc-kr" | "gb18030" | "gb2312" | "gb_2312" | "gb_2312-80" | "gbk" | "greek" | "greek8" | "hebrew" | "hz-gb-2312" | "ibm819" | "ibm866" | "iso-2022-cn" | "iso-2022-cn-ext" | "iso-2022-jp" | "iso-2022-kr" | "iso-8859-1" | "iso-8859-10" | "iso-8859-11" | "iso-8859-13" | "iso-8859-14" | "iso-8859-15" | "iso-8859-16" | "iso-8859-2" | "iso-8859-3" | "iso-8859-4" | "iso-8859-5" | "iso-8859-6" | "iso-8859-6-e" | "iso-8859-6-i" | "iso-8859-7" | "iso-8859-8" | "iso-8859-8-e" | "iso-8859-8-i" | "iso-8859-9" | "iso-ir-100" | "iso-ir-101" | "iso-ir-109" | "iso-ir-110" | "iso-ir-126" | "iso-ir-127" | "iso-ir-138" | "iso-ir-144" | "iso-ir-148" | "iso-ir-149" | "iso-ir-157" | "iso-ir-58" | "iso8859-1" | "iso8859-10" | "iso8859-11" | "iso8859-13" | "iso8859-14" | "iso8859-15" | "iso8859-2" | "iso8859-3" | "iso8859-4" | "iso8859-5" | "iso8859-6" | "iso8859-7" | "iso8859-8" | "iso8859-9" | "iso88591" | "iso885910" | "iso885911" | "iso885913" | "iso885914" | "iso885915" | "iso88592" | "iso88593" | "iso88594" | "iso88595" | "iso88596" | "iso88597" | "iso88598" | "iso88599" | "iso_8859-1" | "iso_8859-15" | "iso_8859-1:1987" | "iso_8859-2" | "iso_8859-2:1987" | "iso_8859-3" | "iso_8859-3:1988" | "iso_8859-4" | "iso_8859-4:1988" | "iso_8859-5" | "iso_8859-5:1988" | "iso_8859-6" | "iso_8859-6:1987" | "iso_8859-7" | "iso_8859-7:1987" | "iso_8859-8" | "iso_8859-8:1988" | "iso_8859-9" | "iso_8859-9:1989" | "koi" | "koi8" | "koi8-r" | "koi8-ru" | "koi8-u" | "koi8_r" | "korean" | "ks_c_5601-1987" | "ks_c_5601-1989" | "ksc5601" | "ksc_5601" | "l1" | "l2" | "l3" | "l4" | "l5" | "l6" | "l9" | "latin1" | "latin2" | "latin3" | "latin4" | "latin5" | "latin6" | "logical" | "mac" | "macintosh" | "ms932" | "ms_kanji" | "shift-jis" | "shift_jis" | "sjis" | "sun_eu_greek" | "tis-620" | "unicode-1-1-utf-8" | "us-ascii" | "utf-16" | "utf-16be" | "utf-16le" | "utf-8" | "utf8" | "visual" | "windows-1250" | "windows-1251" | "windows-1252" | "windows-1253" | "windows-1254" | "windows-1255" | "windows-1256" | "windows-1257" | "windows-1258" | "windows-31j" | "windows-874" | "windows-949" | "x-cp1250" | "x-cp1251" | "x-cp1252" | "x-cp1253" | "x-cp1254" | "x-cp1255" | "x-cp1256" | "x-cp1257" | "x-cp1258" | "x-euc-jp" | "x-gbk" | "x-mac-cyrillic" | "x-mac-roman" | "x-mac-ukrainian" | "x-sjis" | "x-user-defined" | "x-x-big5"
+    /** ` charset` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-charset Deprecated. */
+    charset?: AttributeValue
     /** ` coords` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-coords Deprecated. */
     coords?: number | `${number}`
     /** ` download` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-download */
@@ -105,12 +107,12 @@ declare global {
     rel?: AttributeValue
     /** ` rev` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-rev Deprecated. */
     rev?: AttributeValue
-    /** ` shape` attribute for `<a>`. Known values: `rect`, `rectangle`, `poly`, `polygon`, `circle`, `circ`, `default`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-shape Deprecated. */
-    shape?: "circ" | "circle" | "default" | "poly" | "polygon" | "rect" | "rectangle"
+    /** ` shape` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-shape Deprecated. */
+    shape?: AttributeValue
     /** ` target` attribute for `<a>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-target */
     target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
-    /** ` type` attribute for `<a>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-type */
+    type?: AttributeValue
   }
   
   type AbbrAttributes = {}
@@ -140,8 +142,8 @@ declare global {
     shape?: "circ" | "circle" | "default" | "poly" | "polygon" | "rect" | "rectangle"
     /** ` target` attribute for `<area>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-target */
     target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
-    /** ` type` attribute for `<area>`. Known values: `button`, `menu`, `reset`, `submit`. */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<area>`. */
+    type?: AttributeValue
   }
   
   type ArticleAttributes = {}
@@ -331,8 +333,8 @@ declare global {
     height?: number | `${number}`
     /** ` src` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-src */
     src?: AttributeValue
-    /** ` type` attribute for `<embed>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-type */
+    type?: AttributeValue
     /** ` width` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
     width?: number | `${number}`
   }
@@ -521,8 +523,8 @@ declare global {
     alpha?: AttributeValue
     /** ` alt` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#alt Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-alt */
     alt?: AttributeValue
-    /** ` autocomplete` attribute for `<input>`. Known values: ``, `on`, `off`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
-    autocomplete?: "" | "off" | "on"
+    /** ` autocomplete` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
+    autocomplete?: AttributeValue
     /** ` checked` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#checked Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-checked */
     checked?: boolean
     /** ` colorspace` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input/color Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-colorspace Experimental. */
@@ -622,8 +624,8 @@ declare global {
     as?: AttributeValue
     /** ` blocking` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-blocking */
     blocking?: AttributeValue
-    /** ` charset` attribute for `<link>`. Known values: `utf8`, `utf-8`, `unicode-1-1-utf-8`, `866`, `cp866`, `ibm866`, `csibm866`, `l1`, `ascii`, `cp819`, `cp1252`, `ibm819`, `latin1`, `us-ascii`, `x-cp1252`, `iso88591`, `iso8859-1`, `iso_8859-1`, `iso-8859-1`, `iso-ir-100`, `csisolatin1`, `windows-1252`, `ansi_x3.4-1968`, `iso_8859-1:1987`, `l2`, `csisolatin2`, `iso-8859-2`, `iso-ir-101`, `iso8859-2`, `iso88592`, `iso_8859-2`, `iso_8859-2:1987`, `latin2`, `l3`, `csisolatin3`, `iso-8859-3`, `iso-ir-109`, `iso8859-3`, `iso88593`, `iso_8859-3`, `iso_8859-3:1988`, `latin3`, `l4`, `csisolatin4`, `iso-8859-4`, `iso-ir-110`, `iso8859-4`, `iso88594`, `iso_8859-4`, `iso_8859-4:1988`, `latin4`, `l5`, `latin5`, `cp1254`, `x-cp1254`, `iso88599`, `iso8859-9`, `iso-8859-9`, `iso_8859-9`, `iso-ir-148`, `csisolatin5`, `windows-1254`, `iso_8859-9:1989`, `l6`, `latin6`, `iso885910`, `iso-ir-157`, `iso8859-10`, `csisolatin6`, `iso-8859-10`, `l9`, `iso885915`, `iso8859-15`, `iso-8859-15`, `iso_8859-15`, `csisolatin9`, `cp1250`, `x-cp1250`, `windows-1250`, `cp1251`, `x-cp1251`, `windows-1251`, `cp1253`, `x-cp1253`, `windows-1253`, `cp1255`, `x-cp1255`, `windows-1255`, `cp1256`, `x-cp1256`, `windows-1256`, `cp1257`, `x-cp1257`, `windows-1257`, `cp1258`, `x-cp1258`, `windows-1258`, `cyrillic`, `iso88595`, `iso8859-5`, `iso-8859-5`, `iso_8859-5`, `iso-ir-144`, `iso_8859-5:1988`, `csisolatincyrillic`, `arabic`, `iso88596`, `ecma-114`, `asmo-708`, `iso8859-6`, `iso-ir-127`, `iso_8859-6`, `iso-8859-6`, `csiso88596e`, `csiso88596i`, `iso-8859-6-e`, `iso-8859-6-i`, `iso_8859-6:1987`, `csisolatinarabic`, `greek`, `greek8`, `iso88597`, `ecma-118`, `elot_928`, `iso8859-7`, `iso-8859-7`, `iso_8859-7`, `iso-ir-126`, `sun_eu_greek`, `iso_8859-7:1987`, `csisolatingreek`, `hebrew`, `visual`, `iso88598`, `iso8859-8`, `iso-8859-8`, `iso_8859-8`, `iso-ir-138`, `csiso88598e`, `iso-8859-8-e`, `iso_8859-8:1988`, `csisolatinhebrew`, `logical`, `csiso88598i`, `iso-8859-8-i`, `iso885913`, `iso8859-13`, `iso-8859-13`, `iso885914`, `iso8859-14`, `iso-8859-14`, `iso-8859-16`, `koi`, `koi8`, `koi8-r`, `koi8_r`, `cskoi8r`, `koi8-u`, `koi8-ru`, `mac`, `macintosh`, `csmacintosh`, `x-mac-roman`, `dos-874`, `tis-620`, `iso885911`, `iso8859-11`, `iso-8859-11`, `windows-874`, `x-mac-cyrillic`, `x-mac-ukrainian`, `gbk`, `x-gbk`, `gb2312`, `chinese`, `gb_2312`, `csgb2312`, `iso-ir-58`, `gb_2312-80`, `csiso58gb231280`, `gb18030`, `big5`, `csbig5`, `cn-big5`, `x-x-big5`, `big5-hkscs`, `euc-jp`, `x-euc-jp`, `cseucpkdfmtjapanese`, `csiso2022jp`, `iso-2022-jp`, `ms932`, `sjis`, `x-sjis`, `ms_kanji`, `shift-jis`, `shift_jis`, `csshiftjis`, `windows-31j`, `korean`, `euc-kr`, `cseuckr`, `ksc5601`, `ksc_5601`, `iso-ir-149`, `windows-949`, `csksc56011987`, `ks_c_5601-1987`, `ks_c_5601-1989`, `hz-gb-2312`, `csiso2022kr`, `iso-2022-kr`, `iso-2022-cn`, `iso-2022-cn-ext`, `utf-16be`, `utf-16`, `utf-16le`, `x-user-defined`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-charset Deprecated. */
-    charset?: "866" | "ansi_x3.4-1968" | "arabic" | "ascii" | "asmo-708" | "big5" | "big5-hkscs" | "chinese" | "cn-big5" | "cp1250" | "cp1251" | "cp1252" | "cp1253" | "cp1254" | "cp1255" | "cp1256" | "cp1257" | "cp1258" | "cp819" | "cp866" | "csbig5" | "cseuckr" | "cseucpkdfmtjapanese" | "csgb2312" | "csibm866" | "csiso2022jp" | "csiso2022kr" | "csiso58gb231280" | "csiso88596e" | "csiso88596i" | "csiso88598e" | "csiso88598i" | "csisolatin1" | "csisolatin2" | "csisolatin3" | "csisolatin4" | "csisolatin5" | "csisolatin6" | "csisolatin9" | "csisolatinarabic" | "csisolatincyrillic" | "csisolatingreek" | "csisolatinhebrew" | "cskoi8r" | "csksc56011987" | "csmacintosh" | "csshiftjis" | "cyrillic" | "dos-874" | "ecma-114" | "ecma-118" | "elot_928" | "euc-jp" | "euc-kr" | "gb18030" | "gb2312" | "gb_2312" | "gb_2312-80" | "gbk" | "greek" | "greek8" | "hebrew" | "hz-gb-2312" | "ibm819" | "ibm866" | "iso-2022-cn" | "iso-2022-cn-ext" | "iso-2022-jp" | "iso-2022-kr" | "iso-8859-1" | "iso-8859-10" | "iso-8859-11" | "iso-8859-13" | "iso-8859-14" | "iso-8859-15" | "iso-8859-16" | "iso-8859-2" | "iso-8859-3" | "iso-8859-4" | "iso-8859-5" | "iso-8859-6" | "iso-8859-6-e" | "iso-8859-6-i" | "iso-8859-7" | "iso-8859-8" | "iso-8859-8-e" | "iso-8859-8-i" | "iso-8859-9" | "iso-ir-100" | "iso-ir-101" | "iso-ir-109" | "iso-ir-110" | "iso-ir-126" | "iso-ir-127" | "iso-ir-138" | "iso-ir-144" | "iso-ir-148" | "iso-ir-149" | "iso-ir-157" | "iso-ir-58" | "iso8859-1" | "iso8859-10" | "iso8859-11" | "iso8859-13" | "iso8859-14" | "iso8859-15" | "iso8859-2" | "iso8859-3" | "iso8859-4" | "iso8859-5" | "iso8859-6" | "iso8859-7" | "iso8859-8" | "iso8859-9" | "iso88591" | "iso885910" | "iso885911" | "iso885913" | "iso885914" | "iso885915" | "iso88592" | "iso88593" | "iso88594" | "iso88595" | "iso88596" | "iso88597" | "iso88598" | "iso88599" | "iso_8859-1" | "iso_8859-15" | "iso_8859-1:1987" | "iso_8859-2" | "iso_8859-2:1987" | "iso_8859-3" | "iso_8859-3:1988" | "iso_8859-4" | "iso_8859-4:1988" | "iso_8859-5" | "iso_8859-5:1988" | "iso_8859-6" | "iso_8859-6:1987" | "iso_8859-7" | "iso_8859-7:1987" | "iso_8859-8" | "iso_8859-8:1988" | "iso_8859-9" | "iso_8859-9:1989" | "koi" | "koi8" | "koi8-r" | "koi8-ru" | "koi8-u" | "koi8_r" | "korean" | "ks_c_5601-1987" | "ks_c_5601-1989" | "ksc5601" | "ksc_5601" | "l1" | "l2" | "l3" | "l4" | "l5" | "l6" | "l9" | "latin1" | "latin2" | "latin3" | "latin4" | "latin5" | "latin6" | "logical" | "mac" | "macintosh" | "ms932" | "ms_kanji" | "shift-jis" | "shift_jis" | "sjis" | "sun_eu_greek" | "tis-620" | "unicode-1-1-utf-8" | "us-ascii" | "utf-16" | "utf-16be" | "utf-16le" | "utf-8" | "utf8" | "visual" | "windows-1250" | "windows-1251" | "windows-1252" | "windows-1253" | "windows-1254" | "windows-1255" | "windows-1256" | "windows-1257" | "windows-1258" | "windows-31j" | "windows-874" | "windows-949" | "x-cp1250" | "x-cp1251" | "x-cp1252" | "x-cp1253" | "x-cp1254" | "x-cp1255" | "x-cp1256" | "x-cp1257" | "x-cp1258" | "x-euc-jp" | "x-gbk" | "x-mac-cyrillic" | "x-mac-roman" | "x-mac-ukrainian" | "x-sjis" | "x-user-defined" | "x-x-big5"
+    /** ` charset` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-charset Deprecated. */
+    charset?: AttributeValue
     /** ` color` attribute for `<link>`. */
     color?: AttributeValue
     /** ` crossorigin` attribute for `<link>`. Known values: ``, `anonymous`, `use-credentials`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/crossorigin Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-crossorigin */
@@ -652,10 +654,10 @@ declare global {
     rev?: AttributeValue
     /** ` sizes` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-sizes */
     sizes?: AttributeValue
-    /** ` target` attribute for `<link>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-target Deprecated. */
-    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
-    /** ` type` attribute for `<link>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` target` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-target Deprecated. */
+    target?: AttributeValue
+    /** ` type` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-type */
+    type?: AttributeValue
   }
   
   type MainAttributes = {}
@@ -735,8 +737,8 @@ declare global {
     name?: AttributeValue
     /** ` standby` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-standby Deprecated. */
     standby?: AttributeValue
-    /** ` type` attribute for `<object>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-object-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-object-type */
+    type?: AttributeValue
     /** ` typemustmatch` attribute for `<object>`. */
     typemustmatch?: boolean
     /** ` usemap` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-usemap Deprecated. */
@@ -838,12 +840,12 @@ declare global {
     language?: AttributeValue
     /** ` nomodule` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule */
     nomodule?: boolean
-    /** ` referrerpolicy` attribute for `<script>`. Known values: ``, `no-referrer`, `no-referrer-when-downgrade`, `origin`, `origin-when-cross-origin`, `unsafe-url`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-referrerpolicy */
-    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url"
+    /** ` referrerpolicy` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-referrerpolicy */
+    referrerpolicy?: AttributeValue
     /** ` src` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-src */
     src?: AttributeValue
-    /** ` type` attribute for `<script>`. Known values: `button`, `menu`, `reset`, `submit`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/script/type Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<script>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/script/type Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type */
+    type?: AttributeValue
   }
   
   type SearchAttributes = {}
@@ -851,8 +853,8 @@ declare global {
   type SectionAttributes = {}
   
   type SelectAttributes = {
-    /** ` autocomplete` attribute for `<select>`. Known values: ``, `on`, `off`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/select#autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
-    autocomplete?: "" | "off" | "on"
+    /** ` autocomplete` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/select#autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
+    autocomplete?: AttributeValue
     /** ` disabled` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled */
     disabled?: boolean
     /** ` form` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
@@ -887,8 +889,8 @@ declare global {
     src?: AttributeValue
     /** ` srcset` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-srcset */
     srcset?: AttributeValue
-    /** ` type` attribute for `<source>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-type */
+    type?: AttributeValue
     /** ` width` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
     width?: number | `${number}`
   }
@@ -902,8 +904,8 @@ declare global {
     blocking?: AttributeValue
     /** ` media` attribute for `<style>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-style-media */
     media?: AttributeValue
-    /** ` type` attribute for `<style>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-style-type Deprecated. */
-    type?: "button" | "menu" | "reset" | "submit"
+    /** ` type` attribute for `<style>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-style-type Deprecated. */
+    type?: AttributeValue
   }
   
   type SubAttributes = {}
@@ -969,8 +971,8 @@ declare global {
     nowrap?: boolean
     /** ` rowspan` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-rowspan */
     rowspan?: number | `${number}`
-    /** ` scope` attribute for `<td>`. Known values: ``, `col`, `colgroup`, `row`, `rowgroup`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-td-scope Deprecated. */
-    scope?: "" | "col" | "colgroup" | "row" | "rowgroup"
+    /** ` scope` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-td-scope Deprecated. */
+    scope?: AttributeValue
     /** ` valign` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-valign Deprecated. */
     valign?: AttributeValue
     /** ` width` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-width Deprecated. */
@@ -991,8 +993,8 @@ declare global {
   }
   
   type TextareaAttributes = {
-    /** ` autocomplete` attribute for `<textarea>`. Known values: ``, `on`, `off`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
-    autocomplete?: "" | "off" | "on"
+    /** ` autocomplete` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
+    autocomplete?: AttributeValue
     /** ` cols` attribute for `<textarea>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-cols */
     cols?: number | `${number}`
     /** ` dirname` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/dirname Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-dirname */

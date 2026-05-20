@@ -2,6 +2,8 @@ import "../src/index"
 
 function htmlAttributeTypeCoverage() {
   div({ id: "main", class: "container" })
+  button({ "aria-label": "Close" })
+  div({ "data-state": "open" })
 
   input({ placeholder: "Email" })
   // @ts-expect-error placeholder is not valid on div.
@@ -18,6 +20,8 @@ function htmlAttributeTypeCoverage() {
 
   a({ target: "_blank" })
   a({ target: "preview-window" })
+  a.pdf.noprint({ href: "cv.pdf" }, "PDF")
+  link({ rel: "icon", type: "image/png", href: "/favicon.png" })
 
   input({ disabled: true })
   input({ disabled: false })
@@ -27,6 +31,12 @@ function htmlAttributeTypeCoverage() {
 
   div(attr("custom-attr", "value"))
   elem("my-widget", attr("custom-attr", "value"))
+
+  type ProjectStatus = { name: string }
+  const statuses: ProjectStatus[] = []
+  div(each(statuses, status => div(status.name)))
+  div(Math.random() > 0.5 ? each(statuses, status => div(status.name)) : undefined)
+  rule(body, backgroundColor.white)
 }
 
 void htmlAttributeTypeCoverage
