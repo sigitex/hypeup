@@ -24,12 +24,12 @@
 
 ## 4. Type Coverage
 
-- [ ] 4.1 Add lexicon type tests that accept global attributes such as `id` and `class` on standard elements
-- [ ] 4.2 Add lexicon type tests that accept tag-specific attributes such as `input({ placeholder: "Email" })` and reject invalid tag-specific attributes such as `div({ placeholder: "Email" })`
-- [ ] 4.3 Add lexicon type tests that accept HTML spelling (`readonly`, `maxlength`) and reject DOM aliases (`readOnly`, `maxLength`)
-- [ ] 4.4 Add lexicon type tests that accept valid enumerated values and reject invalid strict enumerated values such as invalid `input.type`
-- [ ] 4.5 Add lexicon type tests that allow arbitrary strings for loose enumerated values such as `a({ target: "preview-window" })`
-- [ ] 4.6 Add lexicon type tests for boolean attributes, booleanish string attributes, and `attr()`/`elem()` escape hatches
+- [x] 4.1 Add lexicon type tests that accept global attributes such as `id` and `class` on standard elements
+- [x] 4.2 Add lexicon type tests that accept tag-specific attributes such as `input({ placeholder: "Email" })` and reject invalid tag-specific attributes such as `div({ placeholder: "Email" })`
+- [x] 4.3 Add lexicon type tests that accept HTML spelling (`readonly`, `maxlength`) and reject DOM aliases (`readOnly`, `maxLength`)
+- [x] 4.4 Add lexicon type tests that accept valid enumerated values and reject invalid strict enumerated values such as invalid `input.type`
+- [x] 4.5 Add lexicon type tests that allow arbitrary strings for loose enumerated values such as `a({ target: "preview-window" })`
+- [x] 4.6 Add lexicon type tests for boolean attributes, booleanish string attributes, and `attr()`/`elem()` escape hatches
 
 ## 5. Documentation
 
