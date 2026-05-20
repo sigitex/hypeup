@@ -33,7 +33,7 @@ export function generateHtml() {
     .line("type LooseString = string & {}")
     .line("type PrimitiveContent = string | number | bigint | boolean | null | undefined")
     .line("type NodeContent = Attr | AtRule | CssClass | Each<unknown> | Element | Lazy | Property | Raw | Rule")
-    .line("type Content<Tag extends keyof AttributeMap> = PrimitiveContent | NodeContent | AttributeMap[Tag] | Content<Tag>[]")
+    .line("type HtmlContent<Tag extends keyof AttributeMap> = PrimitiveContent | NodeContent | AttributeMap[Tag] | HtmlContent<Tag>[]")
     .line()
     .line("type GlobalAttributes = {")
     .indent()
@@ -59,7 +59,7 @@ export function generateHtml() {
     .line()
     .each(elements, (element) => {
       ts.line(`/** ${element.help} */`)
-        .line(`const ${element.jsName}: ElementBuilder<Content<${JSON.stringify(element.name)}>>`)
+        .line(`const ${element.jsName}: ElementBuilder<HtmlContent<${JSON.stringify(element.name)}>>`)
         .line()
     })
     .dedent()

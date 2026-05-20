@@ -8,12 +8,12 @@
 
 ## 2. Generated Type Surface
 
-- [ ] 2.1 Update `packages/vdom/src/ElementBuilder.ts` so `ElementBuilder` is a generic type-only callable builder specialized by content type
-- [ ] 2.2 Update runtime type exports so generated lexicon files can import `ElementBuilder` and known node types from `@hypeup/runtime`
-- [ ] 2.3 Update `packages/generate/src/generateHtml.ts` to emit `AttributeMap`, global attribute types, reusable value aliases, and tag-specific `Content<Tag>` typing
-- [ ] 2.4 Generate element globals with tag-specific content types for standard, void, and keyword-collision elements
-- [ ] 2.5 Generate JSDoc summaries for elements and attributes, including known values and MDN/spec/status metadata when available
-- [ ] 2.6 Regenerate lexicon files by running `bun run generate` in `packages/lexicon`
+- [x] 2.1 Update `packages/vdom/src/ElementBuilder.ts` so `ElementBuilder` is a generic type-only callable builder specialized by content type
+- [x] 2.2 Update runtime type exports so generated lexicon files can import `ElementBuilder` and known node types from `@hypeup/runtime`
+- [x] 2.3 Update `packages/generate/src/generateHtml.ts` to emit `AttributeMap`, global attribute types, reusable value aliases, and tag-specific `Content<Tag>` typing
+- [x] 2.4 Generate element globals with tag-specific content types for standard, void, and keyword-collision elements
+- [x] 2.5 Generate JSDoc summaries for elements and attributes, including known values and MDN/spec/status metadata when available
+- [x] 2.6 Regenerate lexicon files by running `bun run generate` in `packages/lexicon`
 
 ## 3. Runtime Boolean Attribute Semantics
 
