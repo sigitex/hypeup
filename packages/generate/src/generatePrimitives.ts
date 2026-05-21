@@ -41,7 +41,7 @@ export function generatePrimitives({ elements, properties, atrules }: Primitives
   ts.line("export const atRules = {")
     .indent()
     .each(atrules, (atrule) => {
-      ts.line(`$${atrule.jsName}: "@${atrule.name}",`)
+      ts.line(`$${atrule.jsName}: "${atrule.name}",`)
     })
     .dedent()
     .line("} as const")

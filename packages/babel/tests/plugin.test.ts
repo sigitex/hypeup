@@ -108,14 +108,14 @@ describe("at-rule lowering", () => {
     const result = await transform(`$media("(min-width: 600px)", div("hi"))`)
     expect(result).toMatchSnapshot()
     expect(result).toContain('atRule')
-    expect(result).toContain('"@media"')
+    expect(result).toContain('"media"')
     expect(result).toContain('"(min-width: 600px)"')
   })
 
   test("at-rule without rule argument", async () => {
     const result = await transform(`$fontFace(fontFamily("Arial"))`)
     expect(result).toMatchSnapshot()
-    expect(result).toContain('"@font-face"')
+    expect(result).toContain('"font-face"')
     expect(result).toContain('null')
   })
 })

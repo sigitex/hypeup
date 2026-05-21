@@ -59,12 +59,12 @@ _prop("color", "red");"
 
 exports[`at-rule lowering at-rule with rule argument 1`] = `
 "import { atRule as _atRule, elem as _elem } from "@hypeup/runtime";
-_atRule("@media", "(min-width: 600px)", [_elem("div", ["hi"])]);"
+_atRule("media", "(min-width: 600px)", [_elem("div", ["hi"])]);"
 `;
 
 exports[`at-rule lowering at-rule without rule argument 1`] = `
 "import { atRule as _atRule, prop as _prop } from "@hypeup/runtime";
-_atRule("@font-face", null, [_prop("font-family", "Arial")]);"
+_atRule("font-face", null, [_prop("font-family", "Arial")]);"
 `;
 
 exports[`rule lowering rule call with string selector 1`] = `
