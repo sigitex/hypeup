@@ -4,5 +4,3 @@ dist
 *.tsbuildinfo
 packages/*/lib
 examples/*/dist
-.agents
-.internal
