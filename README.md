@@ -5,11 +5,9 @@
 hypeup is a beyond-hyperscript style UI framework where all HTML elements and CSS properties are available globally — no imports needed. It supports server-side rendering, client-side mounting, and static site generation.
 
 - Readable markup in TypeScript, no TSX necessary
-- Class shorthand on elements and rules
-- Inline styles
 - Static site generation via `hypeup generate`
 - Fast client-side framework inspired by [Mithril](https://mithril.js.org/)
-- Build plugins for Vite, esbuild, Rollup, webpack, and Rspack
+- Build plugins for Vite, esbuild, Rollup, Rolldown, Farm, Bun, webpack, and Rspack
 
 ## Markup
 
@@ -462,7 +460,7 @@ hypeup generate [options]
 
 ## Build Plugin
 
-hypeup provides build plugins for using the global DSL in your app. Available for Vite, esbuild, Rollup, webpack, and Rspack:
+hypeup provides build plugins for using the global DSL in your app. Available for Vite, esbuild, Rollup, Rolldown, Bun, Farm, webpack, and Rspack:
 
 ```ts
 // vite.config.ts

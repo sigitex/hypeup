@@ -3,5 +3,32 @@
   "instructions": [
     "AGENTS.md",
     ".ai/rules/**/*.md"
-  ]
+  ],
+  "skills": {
+    "paths": [
+      ".ai/skills"
+    ]
+  },
+  "command": {
+    "sketch": {
+      "description": "Apply an approved OpenSpec change",
+      "template": "@.ai/commands/sketch.md\n\nArguments: $ARGUMENTS",
+      "agent": "build"
+    },
+    "sketch-sync": {
+      "description": "Apply an approved OpenSpec change and sync Forgejo",
+      "template": "@.ai/commands/sketch.md\n\nMode: sync\nArguments: $ARGUMENTS",
+      "agent": "build"
+    },
+    "buff": {
+      "description": "Run one autonomous review-remediation pass for an OpenSpec change",
+      "template": "@.ai/commands/buff.md\n\nArguments: $ARGUMENTS",
+      "agent": "build"
+    },
+    "buff-sync": {
+      "description": "Run one review-remediation pass and sync Forgejo",
+      "template": "@.ai/commands/buff.md\n\nMode: sync\nArguments: $ARGUMENTS",
+      "agent": "build"
+    }
+  }
 }

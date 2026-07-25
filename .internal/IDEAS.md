@@ -31,3 +31,17 @@ rule([h1, h2, h3])
 ```
 
 ## SSG: different routing, custom routing
+
+## Separate HTML, CSS symbols
+
+## package renames
+
+- `client` -> `dom`
+- `babel` -> `???`
+- `lexicon` -> split
+
+## metapackage exports
+
+- `import "hypeup/html"`
+- `import "hypeup/css"`
+- `import { mount } from "hypeup/dom"`

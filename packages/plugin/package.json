@@ -5,7 +5,10 @@
     ".": "./src/index.ts",
     "./vite": "./src/vite.ts",
     "./esbuild": "./src/esbuild.ts",
+    "./bun": "./src/bun.ts",
+    "./farm": "./src/farm.ts",
     "./rollup": "./src/rollup.ts",
+    "./rolldown": "./src/rolldown.ts",
     "./webpack": "./src/webpack.ts",
     "./rspack": "./src/rspack.ts"
   },
@@ -24,7 +27,7 @@
   "license": "MIT",
   "author": {
     "name": "Sigitex",
-    "url": "http://github.com/sigitex"
+    "url": "https://github.com/sigitex"
   },
   "repository": {
     "type": "git",
