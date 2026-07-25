@@ -253,7 +253,7 @@ Components are just functions. They can accept any arguments and return any vali
 
 ## Client Runtime
 
-The client runtime provides mounting and event handling for interactive applications.
+The experimental client runtime provides mounting and event handling for interactive applications.
 
 ### Mounting
 
