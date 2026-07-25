@@ -5,6 +5,6 @@ openspec
 .internal
 opencode.json
 regime.internal.json
-.ai
+.agents
 templates/internal
 skills-lock.json
