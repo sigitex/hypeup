@@ -6,7 +6,7 @@ hypeup is a beyond-hyperscript style UI framework where all HTML elements and CS
 
 - Readable markup in TypeScript, no TSX necessary
 - Static site generation via `hypeup generate`
-- Fast client-side framework inspired by [Mithril](https://mithril.js.org/)
+- Experimental fast client-side framework inspired by [Mithril](https://mithril.js.org/)
 - Build plugins for Vite, esbuild, Rollup, Rolldown, Farm, Bun, webpack, and Rspack
 
 ## Markup
