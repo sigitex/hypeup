@@ -1,5 +1,7 @@
 # Ideas
 
+- INLINING: does this exist. I did it once but I dont remember if it was here
+
 ⚠️ After `hypeup-config-file` is merged: Update the `syntax-extensions` proposal.
 
 ## Extensible global dsl via packages

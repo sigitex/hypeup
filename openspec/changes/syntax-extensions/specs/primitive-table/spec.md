@@ -1,7 +1,7 @@
 ## MODIFIED Requirements
 
-### Requirement: Primitive table built from lexicon data
-The primitive table SHALL be built at plugin-init by importing `htmlTags`, `voidHtmlTags`, `atRules`, and `cssProperties` from `@hypeup/lexicon/primitives`. It SHALL NOT hardcode any identifier lists. The `buildDslPrimitives()` function SHALL accept an optional `extensions` parameter (array of `HypeupExtension` objects). When provided, aliases and constants from each extension SHALL be merged into the table after built-in primitives are registered. Aliases SHALL be resolved by looking up the target name in the table. Constants SHALL be added as a new `constant` primitive kind.
+### Requirement: Primitive table built from lexicon data and extensions
+The primitive table SHALL be built at plugin-init by importing `htmlTags`, `voidHtmlTags`, `atRules`, and `cssProperties` from `@hypeup/lexicon/primitives`. It SHALL NOT hardcode any identifier lists. The `buildDslPrimitives()` function SHALL accept an optional `extensions` parameter (array of `HypeupExtension` objects). When provided, all entries from each extension SHALL be merged into the table after built-in primitives are registered, in array order. Dotted-path keys SHALL be stored as-is in the table.
 
 #### Scenario: HTML tags loaded
 - **WHEN** the plugin initializes
@@ -19,10 +19,22 @@ The primitive table SHALL be built at plugin-init by importing `htmlTags`, `void
 - **WHEN** the plugin initializes
 - **THEN** every entry in `cssProperties` SHALL be registered as a primitive of kind `cssProperty` with its `cssName` and `keywords`
 
-#### Scenario: Extension aliases merged
-- **WHEN** the plugin initializes with extensions containing aliases
-- **THEN** each alias SHALL be registered in the table with the same `Primitive` value as its target
+#### Scenario: Extension alias merged
+- **WHEN** an extension entry has `type: "alias"` with target `"fontSize"`
+- **THEN** the entry SHALL be registered with the same `Primitive` value as `fontSize`
 
-#### Scenario: Extension constants merged
-- **WHEN** the plugin initializes with extensions containing constants
-- **THEN** each constant SHALL be registered in the table as a `constant` kind primitive with `cssName` and `value`
+#### Scenario: Extension prop constant merged
+- **WHEN** an extension entry has `type: "prop"` with `css: "margin"` and `value: "4px"`
+- **THEN** it SHALL be registered as a prop-constant primitive
+
+#### Scenario: Extension className constant merged
+- **WHEN** an extension entry has `type: "className"` with `value: "active"`
+- **THEN** it SHALL be registered as a className-constant primitive
+
+#### Scenario: Extension element constant merged
+- **WHEN** an extension entry has `type: "element"` with `tag: "div"`, `className: "container"`
+- **THEN** it SHALL be registered as an element-constant primitive storing tag, className, props, attrs
+
+#### Scenario: Dotted-path key stored as-is
+- **WHEN** an extension has key `"m4.x"`
+- **THEN** the table SHALL contain an entry keyed by the literal string `"m4.x"`
