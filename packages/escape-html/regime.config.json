@@ -1,9 +1,6 @@
 {
   "templates": [
-    "profile/monorepo/library",
-    "adapts-to/bun"
-  ],
-  "vars": {
-    "repo": "hypeup"
-  }
+    "sigitex:project/library",
+    "sigitex:adapts-to/bun"
+  ]
 }
