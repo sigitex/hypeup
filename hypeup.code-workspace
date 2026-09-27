@@ -2,11 +2,8 @@
 	"folders": [
 		{
 			"name": "hypeup",
-			"path": ".",
-		},
-		{
-			"path": "../hypeup.project",
-		},
+			"path": "."
+		}
 	],
 	"settings": {
 		"oxc.path.oxfmt": "node_modules/.bin/oxfmt",

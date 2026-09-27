@@ -4,3 +4,8 @@ dist
 *.tsbuildinfo
 packages/*/lib
 examples/*/dist
+
+/AGENTS.md
+/CONTEXT.md
+/docs
+/openspec
