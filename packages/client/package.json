@@ -8,6 +8,7 @@
     "@hypeup/runtime": "workspace:*"
   },
   "devDependencies": {
+    "@hypeup/render": "workspace:*",
     "@types/bun": "^1.3.13",
     "happy-dom": "^20.9.0",
     "typescript": "^7.0.2"

@@ -37,8 +37,8 @@ export function generateHtml() {
     .line()
     .line("type GlobalAttributes = {")
     .indent()
-    .line("[attribute: `aria-${string}`]: AttributeValue | undefined")
-    .line("[attribute: `data-${string}`]: AttributeValue | undefined")
+    .line("[attribute: `aria-${string}`]: AttributeValue | boolean | null | undefined")
+    .line("[attribute: `data-${string}`]: AttributeValue | boolean | null | undefined")
     .each(attributes.globalAttributes, generateAttribute)
     .dedent()
     .line("}")
@@ -71,8 +71,10 @@ export function generateHtml() {
 }
 
 function generateAttribute(attribute: HtmlAttributeSpec, ts: Writer) {
+  const valueType = printValueType(attribute.value)
+  const controls = attribute.value.type === "boolean" ? "null | undefined" : "boolean | null | undefined"
   ts.line(`/** ${escapeDoc(attribute.help)} */`)
-    .line(`${quoteKey(attribute.name)}?: ${printValueType(attribute.value)}`)
+    .line(`${quoteKey(attribute.name)}?: ${valueType} | ${controls}`)
 }
 
 function printValueType(kind: AttributeValueKind) {

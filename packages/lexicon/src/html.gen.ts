@@ -20,99 +20,99 @@ declare global {
   type HtmlContent<Tag extends keyof AttributeMap> = PrimitiveContent | NodeContent | AttributeMap[Tag] | HtmlContent<Tag>[]
   
   type GlobalAttributes = {
-    [attribute: `aria-${string}`]: AttributeValue | undefined
-    [attribute: `data-${string}`]: AttributeValue | undefined
+    [attribute: `aria-${string}`]: AttributeValue | boolean | null | undefined
+    [attribute: `data-${string}`]: AttributeValue | boolean | null | undefined
     /** Global `accesskey` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/accesskey Spec: https://html.spec.whatwg.org/multipage/interaction.html#the-accesskey-attribute */
-    accesskey?: AttributeValue
+    accesskey?: AttributeValue | boolean | null | undefined
     /** Global `autocapitalize` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/autocapitalize Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-autocapitalize */
-    autocapitalize?: AttributeValue
+    autocapitalize?: AttributeValue | boolean | null | undefined
     /** Global `autocorrect` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/autocorrect Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-autocorrect */
-    autocorrect?: AttributeValue
+    autocorrect?: AttributeValue | boolean | null | undefined
     /** Global `autofocus` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/autofocus Spec: https://html.spec.whatwg.org/multipage/interaction.html#the-autofocus-attribute */
-    autofocus?: boolean
+    autofocus?: boolean | null | undefined
     /** Global `class` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/class Spec: https://html.spec.whatwg.org/multipage/dom.html#classes */
-    class?: AttributeValue
+    class?: AttributeValue | boolean | null | undefined
     /** Global `contenteditable` HTML attribute. Known values: ``, `true`, `false`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/contenteditable Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-contenteditable */
-    contenteditable?: "" | "false" | "true"
+    contenteditable?: "" | "false" | "true" | boolean | null | undefined
     /** Global `dir` HTML attribute. Known values: ``, `ltr`, `rtl`, `auto`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/dir Spec: https://html.spec.whatwg.org/multipage/dom.html#the-dir-attribute */
-    dir?: "" | "auto" | "ltr" | "rtl"
+    dir?: "" | "auto" | "ltr" | "rtl" | boolean | null | undefined
     /** Global `draggable` HTML attribute. Known values: `true`, `false`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/draggable Spec: https://html.spec.whatwg.org/multipage/dnd.html#the-draggable-attribute */
-    draggable?: "false" | "true"
+    draggable?: "false" | "true" | boolean | null | undefined
     /** Global `enterkeyhint` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/enterkeyhint Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-enterkeyhint */
-    enterkeyhint?: AttributeValue
+    enterkeyhint?: AttributeValue | boolean | null | undefined
     /** Global `exportparts` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/exportparts Spec: https://drafts.csswg.org/css-shadow/#element-attrdef-html-global-exportparts */
-    exportparts?: AttributeValue
+    exportparts?: AttributeValue | boolean | null | undefined
     /** Global `hidden` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/hidden Spec: https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute */
-    hidden?: AttributeValue
+    hidden?: AttributeValue | boolean | null | undefined
     /** Global `id` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/id Spec: https://html.spec.whatwg.org/multipage/dom.html#the-id-attribute */
-    id?: AttributeValue
+    id?: AttributeValue | boolean | null | undefined
     /** Global `inert` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/inert Spec: https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute */
-    inert?: boolean
+    inert?: boolean | null | undefined
     /** Global `inputmode` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/inputmode Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-inputmode */
-    inputmode?: AttributeValue
+    inputmode?: AttributeValue | boolean | null | undefined
     /** Global `is` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/is Spec: https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is */
-    is?: AttributeValue
+    is?: AttributeValue | boolean | null | undefined
     /** Global `itemid` HTML attribute. */
-    itemid?: AttributeValue
+    itemid?: AttributeValue | boolean | null | undefined
     /** Global `itemprop` HTML attribute. */
-    itemprop?: AttributeValue
+    itemprop?: AttributeValue | boolean | null | undefined
     /** Global `itemref` HTML attribute. */
-    itemref?: AttributeValue
+    itemref?: AttributeValue | boolean | null | undefined
     /** Global `itemscope` HTML attribute. */
-    itemscope?: boolean
+    itemscope?: boolean | null | undefined
     /** Global `itemtype` HTML attribute. */
-    itemtype?: AttributeValue
+    itemtype?: AttributeValue | boolean | null | undefined
     /** Global `lang` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/lang Spec: https://html.spec.whatwg.org/multipage/dom.html#attr-lang */
-    lang?: AttributeValue
+    lang?: AttributeValue | boolean | null | undefined
     /** Global `nonce` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/nonce Spec: https://html.spec.whatwg.org/multipage/urls-and-fetching.html#attr-nonce */
-    nonce?: AttributeValue
+    nonce?: AttributeValue | boolean | null | undefined
     /** Global `part` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/part Spec: https://drafts.csswg.org/css-shadow/#part-attr */
-    part?: AttributeValue
+    part?: AttributeValue | boolean | null | undefined
     /** Global `popover` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/popover Spec: https://html.spec.whatwg.org/multipage/popover.html#the-popover-attribute */
-    popover?: AttributeValue
+    popover?: AttributeValue | boolean | null | undefined
     /** Global `slot` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/slot Spec: https://html.spec.whatwg.org/multipage/dom.html#attr-slot */
-    slot?: AttributeValue
+    slot?: AttributeValue | boolean | null | undefined
     /** Global `spellcheck` HTML attribute. Known values: ``, `true`, `false`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/spellcheck Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-spellcheck */
-    spellcheck?: "" | "false" | "true"
+    spellcheck?: "" | "false" | "true" | boolean | null | undefined
     /** Global `style` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/style Spec: https://html.spec.whatwg.org/multipage/dom.html#the-style-attribute */
-    style?: AttributeValue
+    style?: AttributeValue | boolean | null | undefined
     /** Global `tabindex` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/tabindex Spec: https://html.spec.whatwg.org/multipage/interaction.html#attr-tabindex */
-    tabindex?: number | `${number}`
+    tabindex?: number | `${number}` | boolean | null | undefined
     /** Global `title` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/title Spec: https://html.spec.whatwg.org/multipage/dom.html#the-title-attribute */
-    title?: AttributeValue
+    title?: AttributeValue | boolean | null | undefined
     /** Global `translate` HTML attribute. Known values: ``, `yes`, `no`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/translate Spec: https://html.spec.whatwg.org/multipage/dom.html#attr-translate */
-    translate?: "" | "no" | "yes"
+    translate?: "" | "no" | "yes" | boolean | null | undefined
     /** Global `writingsuggestions` HTML attribute. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Global_attributes/writingsuggestions Spec: https://html.spec.whatwg.org/multipage/interaction.html#writing-suggestions */
-    writingsuggestions?: AttributeValue
+    writingsuggestions?: AttributeValue | boolean | null | undefined
   }
   
   type AAttributes = {
     /** ` charset` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-charset Deprecated. */
-    charset?: AttributeValue
+    charset?: AttributeValue | boolean | null | undefined
     /** ` coords` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-coords Deprecated. */
-    coords?: number | `${number}`
+    coords?: number | `${number}` | boolean | null | undefined
     /** ` download` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-download */
-    download?: AttributeValue
+    download?: AttributeValue | boolean | null | undefined
     /** ` href` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-href */
-    href?: AttributeValue
+    href?: AttributeValue | boolean | null | undefined
     /** ` hreflang` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-hreflang */
-    hreflang?: AttributeValue
+    hreflang?: AttributeValue | boolean | null | undefined
     /** ` name` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-name Deprecated. */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` ping` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#ping */
-    ping?: AttributeValue
+    ping?: AttributeValue | boolean | null | undefined
     /** ` referrerpolicy` attribute for `<a>`. Known values: ``, `no-referrer`, `no-referrer-when-downgrade`, `origin`, `origin-when-cross-origin`, `unsafe-url`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-referrerpolicy */
-    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url"
+    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url" | boolean | null | undefined
     /** ` rel` attribute for `<a>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/rel Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-rel */
-    rel?: AttributeValue
+    rel?: AttributeValue | boolean | null | undefined
     /** ` rev` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-rev Deprecated. */
-    rev?: AttributeValue
+    rev?: AttributeValue | boolean | null | undefined
     /** ` shape` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-a-shape Deprecated. */
-    shape?: AttributeValue
+    shape?: AttributeValue | boolean | null | undefined
     /** ` target` attribute for `<a>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-target */
-    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
+    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString | boolean | null | undefined
     /** ` type` attribute for `<a>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-type */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
   }
   
   type AbbrAttributes = {}
@@ -121,29 +121,29 @@ declare global {
   
   type AreaAttributes = {
     /** ` alt` attribute for `<area>`. Spec: https://html.spec.whatwg.org/multipage/image-maps.html#attr-area-alt */
-    alt?: AttributeValue
+    alt?: AttributeValue | boolean | null | undefined
     /** ` coords` attribute for `<area>`. Spec: https://html.spec.whatwg.org/multipage/image-maps.html#attr-area-coords */
-    coords?: number | `${number}`
+    coords?: number | `${number}` | boolean | null | undefined
     /** ` download` attribute for `<area>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-download */
-    download?: AttributeValue
+    download?: AttributeValue | boolean | null | undefined
     /** ` href` attribute for `<area>`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-href */
-    href?: AttributeValue
+    href?: AttributeValue | boolean | null | undefined
     /** ` hreflang` attribute for `<area>`. */
-    hreflang?: AttributeValue
+    hreflang?: AttributeValue | boolean | null | undefined
     /** ` nohref` attribute for `<area>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-area-nohref Deprecated. */
-    nohref?: boolean
+    nohref?: boolean | null | undefined
     /** ` ping` attribute for `<area>`. Spec: https://html.spec.whatwg.org/multipage/links.html#ping */
-    ping?: AttributeValue
+    ping?: AttributeValue | boolean | null | undefined
     /** ` referrerpolicy` attribute for `<area>`. Known values: ``, `no-referrer`, `no-referrer-when-downgrade`, `origin`, `origin-when-cross-origin`, `unsafe-url`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-referrerpolicy */
-    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url"
+    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url" | boolean | null | undefined
     /** ` rel` attribute for `<area>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/rel Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-rel */
-    rel?: AttributeValue
+    rel?: AttributeValue | boolean | null | undefined
     /** ` shape` attribute for `<area>`. Known values: `rect`, `rectangle`, `poly`, `polygon`, `circle`, `circ`, `default`. Spec: https://html.spec.whatwg.org/multipage/image-maps.html#attr-area-shape */
-    shape?: "circ" | "circle" | "default" | "poly" | "polygon" | "rect" | "rectangle"
+    shape?: "circ" | "circle" | "default" | "poly" | "polygon" | "rect" | "rectangle" | boolean | null | undefined
     /** ` target` attribute for `<area>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/links.html#attr-hyperlink-target */
-    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
+    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString | boolean | null | undefined
     /** ` type` attribute for `<area>`. */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
   }
   
   type ArticleAttributes = {}
@@ -152,28 +152,28 @@ declare global {
   
   type AudioAttributes = {
     /** ` autoplay` attribute for `<audio>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-autoplay */
-    autoplay?: boolean
+    autoplay?: boolean | null | undefined
     /** ` controls` attribute for `<audio>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-controls */
-    controls?: boolean
+    controls?: boolean | null | undefined
     /** ` crossorigin` attribute for `<audio>`. Known values: ``, `anonymous`, `use-credentials`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/crossorigin Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-crossorigin */
-    crossorigin?: "" | "anonymous" | "use-credentials"
+    crossorigin?: "" | "anonymous" | "use-credentials" | boolean | null | undefined
     /** ` loop` attribute for `<audio>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-loop */
-    loop?: boolean
+    loop?: boolean | null | undefined
     /** ` muted` attribute for `<audio>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-muted */
-    muted?: boolean
+    muted?: boolean | null | undefined
     /** ` preload` attribute for `<audio>`. Known values: ``, `auto`, `metadata`, `none`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-preload */
-    preload?: "" | "auto" | "metadata" | "none"
+    preload?: "" | "auto" | "metadata" | "none" | boolean | null | undefined
     /** ` src` attribute for `<audio>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
   }
   
   type BAttributes = {}
   
   type BaseAttributes = {
     /** ` href` attribute for `<base>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-base-href */
-    href?: AttributeValue
+    href?: AttributeValue | boolean | null | undefined
     /** ` target` attribute for `<base>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-base-target */
-    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
+    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString | boolean | null | undefined
   }
   
   type BdiAttributes = {}
@@ -182,70 +182,70 @@ declare global {
   
   type BlockquoteAttributes = {
     /** ` cite` attribute for `<blockquote>`. Spec: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-blockquote-cite */
-    cite?: AttributeValue
+    cite?: AttributeValue | boolean | null | undefined
   }
   
   type BodyAttributes = {
     /** ` alink` attribute for `<body>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-body-alink Deprecated. */
-    alink?: AttributeValue
+    alink?: AttributeValue | boolean | null | undefined
     /** ` background` attribute for `<body>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-background Deprecated. */
-    background?: AttributeValue
+    background?: AttributeValue | boolean | null | undefined
     /** ` bgcolor` attribute for `<body>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-body-bgcolor Deprecated. */
-    bgcolor?: AttributeValue
+    bgcolor?: AttributeValue | boolean | null | undefined
     /** ` link` attribute for `<body>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-body-link Deprecated. */
-    link?: AttributeValue
+    link?: AttributeValue | boolean | null | undefined
     /** ` text` attribute for `<body>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-body-text Deprecated. */
-    text?: AttributeValue
+    text?: AttributeValue | boolean | null | undefined
     /** ` vlink` attribute for `<body>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-body-vlink Deprecated. */
-    vlink?: AttributeValue
+    vlink?: AttributeValue | boolean | null | undefined
   }
   
   type BrAttributes = {
     /** ` clear` attribute for `<br>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-br-clear Deprecated. */
-    clear?: AttributeValue
+    clear?: AttributeValue | boolean | null | undefined
   }
   
   type ButtonAttributes = {
     /** ` command` attribute for `<button>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-command */
-    command?: AttributeValue
+    command?: AttributeValue | boolean | null | undefined
     /** ` commandfor` attribute for `<button>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-commandfor */
-    commandfor?: AttributeValue
+    commandfor?: AttributeValue | boolean | null | undefined
     /** ` disabled` attribute for `<button>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` form` attribute for `<button>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` formaction` attribute for `<button>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formaction */
-    formaction?: AttributeValue
+    formaction?: AttributeValue | boolean | null | undefined
     /** ` formenctype` attribute for `<button>`. Known values: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formenctype */
-    formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain"
+    formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain" | boolean | null | undefined
     /** ` formmethod` attribute for `<button>`. Known values: `dialog`, `get`, `post`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formmethod */
-    formmethod?: "dialog" | "get" | "post"
+    formmethod?: "dialog" | "get" | "post" | boolean | null | undefined
     /** ` formnovalidate` attribute for `<button>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formnovalidate */
-    formnovalidate?: boolean
+    formnovalidate?: boolean | null | undefined
     /** ` formtarget` attribute for `<button>`. Known values: `_blank`, `_parent`, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formtarget */
-    formtarget?: "_blank" | "_parent" | "_self" | "_top" | LooseString
+    formtarget?: "_blank" | "_parent" | "_self" | "_top" | LooseString | boolean | null | undefined
     /** ` name` attribute for `<button>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` popovertarget` attribute for `<button>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/button#popovertarget Spec: https://html.spec.whatwg.org/multipage/popover.html#attr-popovertarget */
-    popovertarget?: AttributeValue
+    popovertarget?: AttributeValue | boolean | null | undefined
     /** ` popovertargetaction` attribute for `<button>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/button#popovertargetaction Spec: https://html.spec.whatwg.org/multipage/popover.html#attr-popovertargetaction */
-    popovertargetaction?: AttributeValue
+    popovertargetaction?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<button>`. Known values: `button`, `menu`, `reset`, `submit`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-type */
-    type?: "button" | "menu" | "reset" | "submit"
+    type?: "button" | "menu" | "reset" | "submit" | boolean | null | undefined
     /** ` value` attribute for `<button>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-button-value */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
   }
   
   type CanvasAttributes = {
     /** ` height` attribute for `<canvas>`. Spec: https://html.spec.whatwg.org/multipage/canvas.html#attr-canvas-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` width` attribute for `<canvas>`. Spec: https://html.spec.whatwg.org/multipage/canvas.html#attr-canvas-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type CaptionAttributes = {
     /** ` align` attribute for `<caption>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-caption-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type CiteAttributes = {}
@@ -254,37 +254,37 @@ declare global {
   
   type ColAttributes = {
     /** ` align` attribute for `<col>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<col>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<col>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` span` attribute for `<col>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-col-span */
-    span?: number | `${number}`
+    span?: number | `${number}` | boolean | null | undefined
     /** ` valign` attribute for `<col>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<col>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-width Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type ColgroupAttributes = {
     /** ` align` attribute for `<colgroup>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<colgroup>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<colgroup>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` span` attribute for `<colgroup>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-colgroup-span */
-    span?: number | `${number}`
+    span?: number | `${number}` | boolean | null | undefined
     /** ` valign` attribute for `<colgroup>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<colgroup>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-col-width Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type DataAttributes = {
     /** ` value` attribute for `<data>`. Spec: https://html.spec.whatwg.org/multipage/text-level-semantics.html#attr-data-value */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
   }
   
   type DatalistAttributes = {}
@@ -293,35 +293,35 @@ declare global {
   
   type DelAttributes = {
     /** ` cite` attribute for `<del>`. Spec: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-cite */
-    cite?: AttributeValue
+    cite?: AttributeValue | boolean | null | undefined
     /** ` datetime` attribute for `<del>`. Spec: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-datetime */
-    datetime?: AttributeValue
+    datetime?: AttributeValue | boolean | null | undefined
   }
   
   type DetailsAttributes = {
     /** ` name` attribute for `<details>`. Spec: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-details-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` open` attribute for `<details>`. Spec: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-details-open */
-    open?: boolean
+    open?: boolean | null | undefined
   }
   
   type DfnAttributes = {}
   
   type DialogAttributes = {
     /** ` closedby` attribute for `<dialog>`. Spec: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-dialog-closedby */
-    closedby?: AttributeValue
+    closedby?: AttributeValue | boolean | null | undefined
     /** ` open` attribute for `<dialog>`. Spec: https://html.spec.whatwg.org/multipage/interactive-elements.html#attr-dialog-open */
-    open?: boolean
+    open?: boolean | null | undefined
   }
   
   type DivAttributes = {
     /** ` align` attribute for `<div>`. Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type DlAttributes = {
     /** ` compact` attribute for `<dl>`. */
-    compact?: boolean
+    compact?: boolean | null | undefined
   }
   
   type DtAttributes = {}
@@ -330,22 +330,22 @@ declare global {
   
   type EmbedAttributes = {
     /** ` height` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` src` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-embed-type */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<embed>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type FieldsetAttributes = {
     /** ` disabled` attribute for `<fieldset>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` form` attribute for `<fieldset>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` name` attribute for `<fieldset>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
   }
   
   type FigcaptionAttributes = {}
@@ -356,58 +356,58 @@ declare global {
   
   type FormAttributes = {
     /** ` accept` attribute for `<form>`. */
-    accept?: AttributeValue
+    accept?: AttributeValue | boolean | null | undefined
     /** ` accept-charset` attribute for `<form>`. Spec: https://html.spec.whatwg.org/multipage/forms.html#attr-form-accept-charset */
-    "accept-charset"?: AttributeValue
+    "accept-charset"?: AttributeValue | boolean | null | undefined
     /** ` action` attribute for `<form>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-action */
-    action?: AttributeValue
+    action?: AttributeValue | boolean | null | undefined
     /** ` autocomplete` attribute for `<form>`. Known values: ``, `on`, `off`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/forms.html#attr-form-autocomplete */
-    autocomplete?: "" | "off" | "on"
+    autocomplete?: "" | "off" | "on" | boolean | null | undefined
     /** ` enctype` attribute for `<form>`. Known values: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-enctype */
-    enctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain"
+    enctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain" | boolean | null | undefined
     /** ` method` attribute for `<form>`. Known values: `dialog`, `get`, `post`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-method */
-    method?: "dialog" | "get" | "post"
+    method?: "dialog" | "get" | "post" | boolean | null | undefined
     /** ` name` attribute for `<form>`. Spec: https://html.spec.whatwg.org/multipage/forms.html#attr-form-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` novalidate` attribute for `<form>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-novalidate */
-    novalidate?: boolean
+    novalidate?: boolean | null | undefined
     /** ` target` attribute for `<form>`. Known values: `_blank`, `_parent`, ``, `_self`, `_top`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-target */
-    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString
+    target?: "" | "_blank" | "_parent" | "_self" | "_top" | LooseString | boolean | null | undefined
   }
   
   type H1Attributes = {
     /** ` align` attribute for `<h1>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type H2Attributes = {
     /** ` align` attribute for `<h2>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type H3Attributes = {
     /** ` align` attribute for `<h3>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type H4Attributes = {
     /** ` align` attribute for `<h4>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type H5Attributes = {
     /** ` align` attribute for `<h5>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type H6Attributes = {
     /** ` align` attribute for `<h6>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type HeadAttributes = {
     /** ` profile` attribute for `<head>`. */
-    profile?: AttributeValue
+    profile?: AttributeValue | boolean | null | undefined
   }
   
   type HeaderAttributes = {}
@@ -416,255 +416,255 @@ declare global {
   
   type HrAttributes = {
     /** ` align` attribute for `<hr>`. Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` noshade` attribute for `<hr>`. Deprecated. */
-    noshade?: boolean
+    noshade?: boolean | null | undefined
     /** ` size` attribute for `<hr>`. Deprecated. */
-    size?: number | `${number}`
+    size?: number | `${number}` | boolean | null | undefined
     /** ` width` attribute for `<hr>`. Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type HtmlAttributes = {
     /** ` manifest` attribute for `<html>`. */
-    manifest?: AttributeValue
+    manifest?: AttributeValue | boolean | null | undefined
     /** ` version` attribute for `<html>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-html-version Deprecated. */
-    version?: AttributeValue
+    version?: AttributeValue | boolean | null | undefined
   }
   
   type IAttributes = {}
   
   type IframeAttributes = {
     /** ` align` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` allow` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-allow */
-    allow?: AttributeValue
+    allow?: AttributeValue | boolean | null | undefined
     /** ` allowfullscreen` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-allowfullscreen */
-    allowfullscreen?: boolean
+    allowfullscreen?: boolean | null | undefined
     /** ` allowpaymentrequest` attribute for `<iframe>`. Deprecated. */
-    allowpaymentrequest?: boolean
+    allowpaymentrequest?: boolean | null | undefined
     /** ` allowusermedia` attribute for `<iframe>`. */
-    allowusermedia?: boolean
+    allowusermedia?: boolean | null | undefined
     /** ` frameborder` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-frameborder Deprecated. */
-    frameborder?: AttributeValue
+    frameborder?: AttributeValue | boolean | null | undefined
     /** ` height` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` loading` attribute for `<iframe>`. Known values: `eager`, `lazy`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-loading */
-    loading?: "eager" | "lazy"
+    loading?: "eager" | "lazy" | boolean | null | undefined
     /** ` longdesc` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-longdesc Deprecated. */
-    longdesc?: AttributeValue
+    longdesc?: AttributeValue | boolean | null | undefined
     /** ` marginheight` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-marginheight Deprecated. */
-    marginheight?: number | `${number}`
+    marginheight?: number | `${number}` | boolean | null | undefined
     /** ` marginwidth` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-marginwidth Deprecated. */
-    marginwidth?: number | `${number}`
+    marginwidth?: number | `${number}` | boolean | null | undefined
     /** ` name` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` referrerpolicy` attribute for `<iframe>`. Known values: ``, `no-referrer`, `no-referrer-when-downgrade`, `origin`, `origin-when-cross-origin`, `unsafe-url`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-referrerpolicy */
-    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url"
+    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url" | boolean | null | undefined
     /** ` sandbox` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox */
-    sandbox?: AttributeValue
+    sandbox?: AttributeValue | boolean | null | undefined
     /** ` scrolling` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-iframe-scrolling Deprecated. */
-    scrolling?: AttributeValue
+    scrolling?: AttributeValue | boolean | null | undefined
     /** ` src` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` srcdoc` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-srcdoc */
-    srcdoc?: AttributeValue
+    srcdoc?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<iframe>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type ImgAttributes = {
     /** ` align` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-img-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` alt` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-alt */
-    alt?: AttributeValue
+    alt?: AttributeValue | boolean | null | undefined
     /** ` border` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-img-border Deprecated. */
-    border?: number | `${number}`
+    border?: number | `${number}` | boolean | null | undefined
     /** ` crossorigin` attribute for `<img>`. Known values: ``, `anonymous`, `use-credentials`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/crossorigin Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-crossorigin */
-    crossorigin?: "" | "anonymous" | "use-credentials"
+    crossorigin?: "" | "anonymous" | "use-credentials" | boolean | null | undefined
     /** ` decoding` attribute for `<img>`. Known values: `sync`, `async`, ``, `auto`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/img#decoding Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-decoding */
-    decoding?: "" | "async" | "auto" | "sync"
+    decoding?: "" | "async" | "auto" | "sync" | boolean | null | undefined
     /** ` fetchpriority` attribute for `<img>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/fetchpriority Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-fetchpriority */
-    fetchpriority?: AttributeValue
+    fetchpriority?: AttributeValue | boolean | null | undefined
     /** ` height` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` hspace` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-img-hspace Deprecated. */
-    hspace?: number | `${number}`
+    hspace?: number | `${number}` | boolean | null | undefined
     /** ` ismap` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-ismap */
-    ismap?: boolean
+    ismap?: boolean | null | undefined
     /** ` loading` attribute for `<img>`. Known values: `eager`, `lazy`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-loading */
-    loading?: "eager" | "lazy"
+    loading?: "eager" | "lazy" | boolean | null | undefined
     /** ` longdesc` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-img-longdesc Deprecated. */
-    longdesc?: AttributeValue
+    longdesc?: AttributeValue | boolean | null | undefined
     /** ` name` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-img-name Deprecated. */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` referrerpolicy` attribute for `<img>`. Known values: ``, `no-referrer`, `no-referrer-when-downgrade`, `origin`, `origin-when-cross-origin`, `unsafe-url`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-referrerpolicy */
-    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url"
+    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url" | boolean | null | undefined
     /** ` sizes` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-sizes */
-    sizes?: AttributeValue
+    sizes?: AttributeValue | boolean | null | undefined
     /** ` src` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` srcset` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-srcset */
-    srcset?: AttributeValue
+    srcset?: AttributeValue | boolean | null | undefined
     /** ` usemap` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/image-maps.html#attr-hyperlink-usemap */
-    usemap?: AttributeValue
+    usemap?: AttributeValue | boolean | null | undefined
     /** ` vspace` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-img-vspace Deprecated. */
-    vspace?: number | `${number}`
+    vspace?: number | `${number}` | boolean | null | undefined
     /** ` width` attribute for `<img>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type InputAttributes = {
     /** ` accept` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/accept Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-accept */
-    accept?: AttributeValue
+    accept?: AttributeValue | boolean | null | undefined
     /** ` align` attribute for `<input>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-input-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` alpha` attribute for `<input>`. Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-alpha Experimental. */
-    alpha?: AttributeValue
+    alpha?: AttributeValue | boolean | null | undefined
     /** ` alt` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#alt Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-alt */
-    alt?: AttributeValue
+    alt?: AttributeValue | boolean | null | undefined
     /** ` autocomplete` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
-    autocomplete?: AttributeValue
+    autocomplete?: AttributeValue | boolean | null | undefined
     /** ` checked` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#checked Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-checked */
-    checked?: boolean
+    checked?: boolean | null | undefined
     /** ` colorspace` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input/color Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-colorspace Experimental. */
-    colorspace?: AttributeValue
+    colorspace?: AttributeValue | boolean | null | undefined
     /** ` dirname` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#dirname Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-dirname */
-    dirname?: AttributeValue
+    dirname?: AttributeValue | boolean | null | undefined
     /** ` disabled` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` form` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` formaction` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#formaction Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formaction */
-    formaction?: AttributeValue
+    formaction?: AttributeValue | boolean | null | undefined
     /** ` formenctype` attribute for `<input>`. Known values: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#formenctype Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formenctype */
-    formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain"
+    formenctype?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain" | boolean | null | undefined
     /** ` formmethod` attribute for `<input>`. Known values: `dialog`, `get`, `post`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#formmethod Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formmethod */
-    formmethod?: "dialog" | "get" | "post"
+    formmethod?: "dialog" | "get" | "post" | boolean | null | undefined
     /** ` formnovalidate` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#formnovalidate Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formnovalidate */
-    formnovalidate?: boolean
+    formnovalidate?: boolean | null | undefined
     /** ` formtarget` attribute for `<input>`. Known values: `_blank`, `_parent`, `_self`, `_top`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#formtarget Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-formtarget */
-    formtarget?: "_blank" | "_parent" | "_self" | "_top" | LooseString
+    formtarget?: "_blank" | "_parent" | "_self" | "_top" | LooseString | boolean | null | undefined
     /** ` height` attribute for `<input>`. */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` ismap` attribute for `<input>`. */
-    ismap?: boolean
+    ismap?: boolean | null | undefined
     /** ` list` attribute for `<input>`. */
-    list?: AttributeValue
+    list?: AttributeValue | boolean | null | undefined
     /** ` max` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/max Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-max */
-    max?: AttributeValue
+    max?: AttributeValue | boolean | null | undefined
     /** ` maxlength` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/maxlength Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-maxlength */
-    maxlength?: number | `${number}`
+    maxlength?: number | `${number}` | boolean | null | undefined
     /** ` min` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/min Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-min */
-    min?: AttributeValue
+    min?: AttributeValue | boolean | null | undefined
     /** ` minlength` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/minlength Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-minlength */
-    minlength?: number | `${number}`
+    minlength?: number | `${number}` | boolean | null | undefined
     /** ` multiple` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/multiple Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-multiple */
-    multiple?: boolean
+    multiple?: boolean | null | undefined
     /** ` name` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#name Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` pattern` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/pattern Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-pattern */
-    pattern?: AttributeValue
+    pattern?: AttributeValue | boolean | null | undefined
     /** ` placeholder` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#placeholder Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-placeholder */
-    placeholder?: AttributeValue
+    placeholder?: AttributeValue | boolean | null | undefined
     /** ` popovertarget` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#popovertarget Spec: https://html.spec.whatwg.org/multipage/popover.html#attr-popovertarget */
-    popovertarget?: AttributeValue
+    popovertarget?: AttributeValue | boolean | null | undefined
     /** ` popovertargetaction` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#popovertargetaction Spec: https://html.spec.whatwg.org/multipage/popover.html#attr-popovertargetaction */
-    popovertargetaction?: AttributeValue
+    popovertargetaction?: AttributeValue | boolean | null | undefined
     /** ` readonly` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/readonly Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-readonly */
-    readonly?: boolean
+    readonly?: boolean | null | undefined
     /** ` required` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#required Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-required */
-    required?: boolean
+    required?: boolean | null | undefined
     /** ` size` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/size Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-size */
-    size?: number | `${number}`
+    size?: number | `${number}` | boolean | null | undefined
     /** ` src` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input#src Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` step` attribute for `<input>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/step Spec: https://html.spec.whatwg.org/multipage/input.html#attr-input-step */
-    step?: AttributeValue
+    step?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<input>`. Known values: `button`, `checkbox`, `color`, `date`, `datetime-local`, `email`, `file`, `hidden`, `image`, `number`, `month`, `password`, `radio`, `range`, `reset`, `search`, `submit`, `tel`, `text`, `time`, `url`, `week`. */
-    type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week"
+    type?: "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week" | boolean | null | undefined
     /** ` usemap` attribute for `<input>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-input-usemap Deprecated. */
-    usemap?: AttributeValue
+    usemap?: AttributeValue | boolean | null | undefined
     /** ` value` attribute for `<input>`. */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<input>`. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type InsAttributes = {
     /** ` cite` attribute for `<ins>`. Spec: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-cite */
-    cite?: AttributeValue
+    cite?: AttributeValue | boolean | null | undefined
     /** ` datetime` attribute for `<ins>`. Spec: https://html.spec.whatwg.org/multipage/edits.html#attr-mod-datetime */
-    datetime?: AttributeValue
+    datetime?: AttributeValue | boolean | null | undefined
   }
   
   type KbdAttributes = {}
   
   type LabelAttributes = {
     /** ` for` attribute for `<label>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/for Spec: https://html.spec.whatwg.org/multipage/forms.html#attr-label-for */
-    for?: AttributeValue
+    for?: AttributeValue | boolean | null | undefined
     /** ` form` attribute for `<label>`. */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
   }
   
   type LegendAttributes = {
     /** ` align` attribute for `<legend>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-legend-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type LiAttributes = {
     /** ` type` attribute for `<li>`. Known values: `1`, `a`, `A`, `i`, `I`, `circle`, `disc`, `square`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-li-type Deprecated. */
-    type?: "1" | "A" | "I" | "a" | "circle" | "disc" | "i" | "square"
+    type?: "1" | "A" | "I" | "a" | "circle" | "disc" | "i" | "square" | boolean | null | undefined
     /** ` value` attribute for `<li>`. Spec: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-li-value */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
   }
   
   type LinkAttributes = {
     /** ` as` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-as */
-    as?: AttributeValue
+    as?: AttributeValue | boolean | null | undefined
     /** ` blocking` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-blocking */
-    blocking?: AttributeValue
+    blocking?: AttributeValue | boolean | null | undefined
     /** ` charset` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-charset Deprecated. */
-    charset?: AttributeValue
+    charset?: AttributeValue | boolean | null | undefined
     /** ` color` attribute for `<link>`. */
-    color?: AttributeValue
+    color?: AttributeValue | boolean | null | undefined
     /** ` crossorigin` attribute for `<link>`. Known values: ``, `anonymous`, `use-credentials`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/crossorigin Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-crossorigin */
-    crossorigin?: "" | "anonymous" | "use-credentials"
+    crossorigin?: "" | "anonymous" | "use-credentials" | boolean | null | undefined
     /** ` disabled` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` fetchpriority` attribute for `<link>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/fetchpriority Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-fetchpriority */
-    fetchpriority?: AttributeValue
+    fetchpriority?: AttributeValue | boolean | null | undefined
     /** ` href` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href */
-    href?: AttributeValue
+    href?: AttributeValue | boolean | null | undefined
     /** ` hreflang` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-hreflang */
-    hreflang?: AttributeValue
+    hreflang?: AttributeValue | boolean | null | undefined
     /** ` imagesizes` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-imagesizes */
-    imagesizes?: AttributeValue
+    imagesizes?: AttributeValue | boolean | null | undefined
     /** ` imagesrcset` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-imagesrcset */
-    imagesrcset?: AttributeValue
+    imagesrcset?: AttributeValue | boolean | null | undefined
     /** ` integrity` attribute for `<link>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/integrity Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-integrity */
-    integrity?: AttributeValue
+    integrity?: AttributeValue | boolean | null | undefined
     /** ` media` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-media */
-    media?: AttributeValue
+    media?: AttributeValue | boolean | null | undefined
     /** ` referrerpolicy` attribute for `<link>`. Known values: ``, `no-referrer`, `no-referrer-when-downgrade`, `origin`, `origin-when-cross-origin`, `unsafe-url`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-referrerpolicy */
-    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url"
+    referrerpolicy?: "" | "no-referrer" | "no-referrer-when-downgrade" | "origin" | "origin-when-cross-origin" | "unsafe-url" | boolean | null | undefined
     /** ` rel` attribute for `<link>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/rel Spec: https://html.spec.whatwg.org/multipage/links.html#linkTypes */
-    rel?: AttributeValue
+    rel?: AttributeValue | boolean | null | undefined
     /** ` rev` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-rev Deprecated. */
-    rev?: AttributeValue
+    rev?: AttributeValue | boolean | null | undefined
     /** ` sizes` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-sizes */
-    sizes?: AttributeValue
+    sizes?: AttributeValue | boolean | null | undefined
     /** ` target` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-link-target Deprecated. */
-    target?: AttributeValue
+    target?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<link>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-link-type */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
   }
   
   type MainAttributes = {}
   
   type MapAttributes = {
     /** ` name` attribute for `<map>`. Spec: https://html.spec.whatwg.org/multipage/image-maps.html#attr-map-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
   }
   
   type MarkAttributes = {}
@@ -673,37 +673,37 @@ declare global {
   
   type MenuAttributes = {
     /** ` compact` attribute for `<menu>`. */
-    compact?: boolean
+    compact?: boolean | null | undefined
   }
   
   type MetaAttributes = {
     /** ` charset` attribute for `<meta>`. Known values: `utf8`, `utf-8`, `unicode-1-1-utf-8`, `866`, `cp866`, `ibm866`, `csibm866`, `l1`, `ascii`, `cp819`, `cp1252`, `ibm819`, `latin1`, `us-ascii`, `x-cp1252`, `iso88591`, `iso8859-1`, `iso_8859-1`, `iso-8859-1`, `iso-ir-100`, `csisolatin1`, `windows-1252`, `ansi_x3.4-1968`, `iso_8859-1:1987`, `l2`, `csisolatin2`, `iso-8859-2`, `iso-ir-101`, `iso8859-2`, `iso88592`, `iso_8859-2`, `iso_8859-2:1987`, `latin2`, `l3`, `csisolatin3`, `iso-8859-3`, `iso-ir-109`, `iso8859-3`, `iso88593`, `iso_8859-3`, `iso_8859-3:1988`, `latin3`, `l4`, `csisolatin4`, `iso-8859-4`, `iso-ir-110`, `iso8859-4`, `iso88594`, `iso_8859-4`, `iso_8859-4:1988`, `latin4`, `l5`, `latin5`, `cp1254`, `x-cp1254`, `iso88599`, `iso8859-9`, `iso-8859-9`, `iso_8859-9`, `iso-ir-148`, `csisolatin5`, `windows-1254`, `iso_8859-9:1989`, `l6`, `latin6`, `iso885910`, `iso-ir-157`, `iso8859-10`, `csisolatin6`, `iso-8859-10`, `l9`, `iso885915`, `iso8859-15`, `iso-8859-15`, `iso_8859-15`, `csisolatin9`, `cp1250`, `x-cp1250`, `windows-1250`, `cp1251`, `x-cp1251`, `windows-1251`, `cp1253`, `x-cp1253`, `windows-1253`, `cp1255`, `x-cp1255`, `windows-1255`, `cp1256`, `x-cp1256`, `windows-1256`, `cp1257`, `x-cp1257`, `windows-1257`, `cp1258`, `x-cp1258`, `windows-1258`, `cyrillic`, `iso88595`, `iso8859-5`, `iso-8859-5`, `iso_8859-5`, `iso-ir-144`, `iso_8859-5:1988`, `csisolatincyrillic`, `arabic`, `iso88596`, `ecma-114`, `asmo-708`, `iso8859-6`, `iso-ir-127`, `iso_8859-6`, `iso-8859-6`, `csiso88596e`, `csiso88596i`, `iso-8859-6-e`, `iso-8859-6-i`, `iso_8859-6:1987`, `csisolatinarabic`, `greek`, `greek8`, `iso88597`, `ecma-118`, `elot_928`, `iso8859-7`, `iso-8859-7`, `iso_8859-7`, `iso-ir-126`, `sun_eu_greek`, `iso_8859-7:1987`, `csisolatingreek`, `hebrew`, `visual`, `iso88598`, `iso8859-8`, `iso-8859-8`, `iso_8859-8`, `iso-ir-138`, `csiso88598e`, `iso-8859-8-e`, `iso_8859-8:1988`, `csisolatinhebrew`, `logical`, `csiso88598i`, `iso-8859-8-i`, `iso885913`, `iso8859-13`, `iso-8859-13`, `iso885914`, `iso8859-14`, `iso-8859-14`, `iso-8859-16`, `koi`, `koi8`, `koi8-r`, `koi8_r`, `cskoi8r`, `koi8-u`, `koi8-ru`, `mac`, `macintosh`, `csmacintosh`, `x-mac-roman`, `dos-874`, `tis-620`, `iso885911`, `iso8859-11`, `iso-8859-11`, `windows-874`, `x-mac-cyrillic`, `x-mac-ukrainian`, `gbk`, `x-gbk`, `gb2312`, `chinese`, `gb_2312`, `csgb2312`, `iso-ir-58`, `gb_2312-80`, `csiso58gb231280`, `gb18030`, `big5`, `csbig5`, `cn-big5`, `x-x-big5`, `big5-hkscs`, `euc-jp`, `x-euc-jp`, `cseucpkdfmtjapanese`, `csiso2022jp`, `iso-2022-jp`, `ms932`, `sjis`, `x-sjis`, `ms_kanji`, `shift-jis`, `shift_jis`, `csshiftjis`, `windows-31j`, `korean`, `euc-kr`, `cseuckr`, `ksc5601`, `ksc_5601`, `iso-ir-149`, `windows-949`, `csksc56011987`, `ks_c_5601-1987`, `ks_c_5601-1989`, `hz-gb-2312`, `csiso2022kr`, `iso-2022-kr`, `iso-2022-cn`, `iso-2022-cn-ext`, `utf-16be`, `utf-16`, `utf-16le`, `x-user-defined`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-charset */
-    charset?: "866" | "ansi_x3.4-1968" | "arabic" | "ascii" | "asmo-708" | "big5" | "big5-hkscs" | "chinese" | "cn-big5" | "cp1250" | "cp1251" | "cp1252" | "cp1253" | "cp1254" | "cp1255" | "cp1256" | "cp1257" | "cp1258" | "cp819" | "cp866" | "csbig5" | "cseuckr" | "cseucpkdfmtjapanese" | "csgb2312" | "csibm866" | "csiso2022jp" | "csiso2022kr" | "csiso58gb231280" | "csiso88596e" | "csiso88596i" | "csiso88598e" | "csiso88598i" | "csisolatin1" | "csisolatin2" | "csisolatin3" | "csisolatin4" | "csisolatin5" | "csisolatin6" | "csisolatin9" | "csisolatinarabic" | "csisolatincyrillic" | "csisolatingreek" | "csisolatinhebrew" | "cskoi8r" | "csksc56011987" | "csmacintosh" | "csshiftjis" | "cyrillic" | "dos-874" | "ecma-114" | "ecma-118" | "elot_928" | "euc-jp" | "euc-kr" | "gb18030" | "gb2312" | "gb_2312" | "gb_2312-80" | "gbk" | "greek" | "greek8" | "hebrew" | "hz-gb-2312" | "ibm819" | "ibm866" | "iso-2022-cn" | "iso-2022-cn-ext" | "iso-2022-jp" | "iso-2022-kr" | "iso-8859-1" | "iso-8859-10" | "iso-8859-11" | "iso-8859-13" | "iso-8859-14" | "iso-8859-15" | "iso-8859-16" | "iso-8859-2" | "iso-8859-3" | "iso-8859-4" | "iso-8859-5" | "iso-8859-6" | "iso-8859-6-e" | "iso-8859-6-i" | "iso-8859-7" | "iso-8859-8" | "iso-8859-8-e" | "iso-8859-8-i" | "iso-8859-9" | "iso-ir-100" | "iso-ir-101" | "iso-ir-109" | "iso-ir-110" | "iso-ir-126" | "iso-ir-127" | "iso-ir-138" | "iso-ir-144" | "iso-ir-148" | "iso-ir-149" | "iso-ir-157" | "iso-ir-58" | "iso8859-1" | "iso8859-10" | "iso8859-11" | "iso8859-13" | "iso8859-14" | "iso8859-15" | "iso8859-2" | "iso8859-3" | "iso8859-4" | "iso8859-5" | "iso8859-6" | "iso8859-7" | "iso8859-8" | "iso8859-9" | "iso88591" | "iso885910" | "iso885911" | "iso885913" | "iso885914" | "iso885915" | "iso88592" | "iso88593" | "iso88594" | "iso88595" | "iso88596" | "iso88597" | "iso88598" | "iso88599" | "iso_8859-1" | "iso_8859-15" | "iso_8859-1:1987" | "iso_8859-2" | "iso_8859-2:1987" | "iso_8859-3" | "iso_8859-3:1988" | "iso_8859-4" | "iso_8859-4:1988" | "iso_8859-5" | "iso_8859-5:1988" | "iso_8859-6" | "iso_8859-6:1987" | "iso_8859-7" | "iso_8859-7:1987" | "iso_8859-8" | "iso_8859-8:1988" | "iso_8859-9" | "iso_8859-9:1989" | "koi" | "koi8" | "koi8-r" | "koi8-ru" | "koi8-u" | "koi8_r" | "korean" | "ks_c_5601-1987" | "ks_c_5601-1989" | "ksc5601" | "ksc_5601" | "l1" | "l2" | "l3" | "l4" | "l5" | "l6" | "l9" | "latin1" | "latin2" | "latin3" | "latin4" | "latin5" | "latin6" | "logical" | "mac" | "macintosh" | "ms932" | "ms_kanji" | "shift-jis" | "shift_jis" | "sjis" | "sun_eu_greek" | "tis-620" | "unicode-1-1-utf-8" | "us-ascii" | "utf-16" | "utf-16be" | "utf-16le" | "utf-8" | "utf8" | "visual" | "windows-1250" | "windows-1251" | "windows-1252" | "windows-1253" | "windows-1254" | "windows-1255" | "windows-1256" | "windows-1257" | "windows-1258" | "windows-31j" | "windows-874" | "windows-949" | "x-cp1250" | "x-cp1251" | "x-cp1252" | "x-cp1253" | "x-cp1254" | "x-cp1255" | "x-cp1256" | "x-cp1257" | "x-cp1258" | "x-euc-jp" | "x-gbk" | "x-mac-cyrillic" | "x-mac-roman" | "x-mac-ukrainian" | "x-sjis" | "x-user-defined" | "x-x-big5"
+    charset?: "866" | "ansi_x3.4-1968" | "arabic" | "ascii" | "asmo-708" | "big5" | "big5-hkscs" | "chinese" | "cn-big5" | "cp1250" | "cp1251" | "cp1252" | "cp1253" | "cp1254" | "cp1255" | "cp1256" | "cp1257" | "cp1258" | "cp819" | "cp866" | "csbig5" | "cseuckr" | "cseucpkdfmtjapanese" | "csgb2312" | "csibm866" | "csiso2022jp" | "csiso2022kr" | "csiso58gb231280" | "csiso88596e" | "csiso88596i" | "csiso88598e" | "csiso88598i" | "csisolatin1" | "csisolatin2" | "csisolatin3" | "csisolatin4" | "csisolatin5" | "csisolatin6" | "csisolatin9" | "csisolatinarabic" | "csisolatincyrillic" | "csisolatingreek" | "csisolatinhebrew" | "cskoi8r" | "csksc56011987" | "csmacintosh" | "csshiftjis" | "cyrillic" | "dos-874" | "ecma-114" | "ecma-118" | "elot_928" | "euc-jp" | "euc-kr" | "gb18030" | "gb2312" | "gb_2312" | "gb_2312-80" | "gbk" | "greek" | "greek8" | "hebrew" | "hz-gb-2312" | "ibm819" | "ibm866" | "iso-2022-cn" | "iso-2022-cn-ext" | "iso-2022-jp" | "iso-2022-kr" | "iso-8859-1" | "iso-8859-10" | "iso-8859-11" | "iso-8859-13" | "iso-8859-14" | "iso-8859-15" | "iso-8859-16" | "iso-8859-2" | "iso-8859-3" | "iso-8859-4" | "iso-8859-5" | "iso-8859-6" | "iso-8859-6-e" | "iso-8859-6-i" | "iso-8859-7" | "iso-8859-8" | "iso-8859-8-e" | "iso-8859-8-i" | "iso-8859-9" | "iso-ir-100" | "iso-ir-101" | "iso-ir-109" | "iso-ir-110" | "iso-ir-126" | "iso-ir-127" | "iso-ir-138" | "iso-ir-144" | "iso-ir-148" | "iso-ir-149" | "iso-ir-157" | "iso-ir-58" | "iso8859-1" | "iso8859-10" | "iso8859-11" | "iso8859-13" | "iso8859-14" | "iso8859-15" | "iso8859-2" | "iso8859-3" | "iso8859-4" | "iso8859-5" | "iso8859-6" | "iso8859-7" | "iso8859-8" | "iso8859-9" | "iso88591" | "iso885910" | "iso885911" | "iso885913" | "iso885914" | "iso885915" | "iso88592" | "iso88593" | "iso88594" | "iso88595" | "iso88596" | "iso88597" | "iso88598" | "iso88599" | "iso_8859-1" | "iso_8859-15" | "iso_8859-1:1987" | "iso_8859-2" | "iso_8859-2:1987" | "iso_8859-3" | "iso_8859-3:1988" | "iso_8859-4" | "iso_8859-4:1988" | "iso_8859-5" | "iso_8859-5:1988" | "iso_8859-6" | "iso_8859-6:1987" | "iso_8859-7" | "iso_8859-7:1987" | "iso_8859-8" | "iso_8859-8:1988" | "iso_8859-9" | "iso_8859-9:1989" | "koi" | "koi8" | "koi8-r" | "koi8-ru" | "koi8-u" | "koi8_r" | "korean" | "ks_c_5601-1987" | "ks_c_5601-1989" | "ksc5601" | "ksc_5601" | "l1" | "l2" | "l3" | "l4" | "l5" | "l6" | "l9" | "latin1" | "latin2" | "latin3" | "latin4" | "latin5" | "latin6" | "logical" | "mac" | "macintosh" | "ms932" | "ms_kanji" | "shift-jis" | "shift_jis" | "sjis" | "sun_eu_greek" | "tis-620" | "unicode-1-1-utf-8" | "us-ascii" | "utf-16" | "utf-16be" | "utf-16le" | "utf-8" | "utf8" | "visual" | "windows-1250" | "windows-1251" | "windows-1252" | "windows-1253" | "windows-1254" | "windows-1255" | "windows-1256" | "windows-1257" | "windows-1258" | "windows-31j" | "windows-874" | "windows-949" | "x-cp1250" | "x-cp1251" | "x-cp1252" | "x-cp1253" | "x-cp1254" | "x-cp1255" | "x-cp1256" | "x-cp1257" | "x-cp1258" | "x-euc-jp" | "x-gbk" | "x-mac-cyrillic" | "x-mac-roman" | "x-mac-ukrainian" | "x-sjis" | "x-user-defined" | "x-x-big5" | boolean | null | undefined
     /** ` content` attribute for `<meta>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/content Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-content */
-    content?: AttributeValue
+    content?: AttributeValue | boolean | null | undefined
     /** ` http-equiv` attribute for `<meta>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/meta/http-equiv Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-http-equiv */
-    "http-equiv"?: AttributeValue
+    "http-equiv"?: AttributeValue | boolean | null | undefined
     /** ` media` attribute for `<meta>`. */
-    media?: AttributeValue
+    media?: AttributeValue | boolean | null | undefined
     /** ` name` attribute for `<meta>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/meta/name Spec: https://html.spec.whatwg.org/multipage/semantics.html#standard-metadata-names */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` scheme` attribute for `<meta>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-meta-scheme Deprecated. */
-    scheme?: AttributeValue
+    scheme?: AttributeValue | boolean | null | undefined
   }
   
   type MeterAttributes = {
     /** ` high` attribute for `<meter>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-meter-high */
-    high?: number | `${number}`
+    high?: number | `${number}` | boolean | null | undefined
     /** ` low` attribute for `<meter>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-meter-low */
-    low?: number | `${number}`
+    low?: number | `${number}` | boolean | null | undefined
     /** ` max` attribute for `<meter>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/max Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-meter-max */
-    max?: AttributeValue
+    max?: AttributeValue | boolean | null | undefined
     /** ` min` attribute for `<meter>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/min Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-meter-max */
-    min?: AttributeValue
+    min?: AttributeValue | boolean | null | undefined
     /** ` optimum` attribute for `<meter>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-meter-optimum */
-    optimum?: number | `${number}`
+    optimum?: number | `${number}` | boolean | null | undefined
     /** ` value` attribute for `<meter>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-meter-value */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
   }
   
   type NavAttributes = {}
@@ -712,103 +712,103 @@ declare global {
   
   type ObjectAttributes = {
     /** ` align` attribute for `<object>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` archive` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-archive Deprecated. */
-    archive?: AttributeValue
+    archive?: AttributeValue | boolean | null | undefined
     /** ` border` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-border Deprecated. */
-    border?: number | `${number}`
+    border?: number | `${number}` | boolean | null | undefined
     /** ` classid` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-classid Deprecated. */
-    classid?: AttributeValue
+    classid?: AttributeValue | boolean | null | undefined
     /** ` codebase` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-codebase Deprecated. */
-    codebase?: AttributeValue
+    codebase?: AttributeValue | boolean | null | undefined
     /** ` codetype` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-codetype Deprecated. */
-    codetype?: AttributeValue
+    codetype?: AttributeValue | boolean | null | undefined
     /** ` data` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-object-data */
-    data?: AttributeValue
+    data?: AttributeValue | boolean | null | undefined
     /** ` declare` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-declare Deprecated. */
-    declare?: boolean
+    declare?: boolean | null | undefined
     /** ` form` attribute for `<object>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` height` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` hspace` attribute for `<object>`. */
-    hspace?: number | `${number}`
+    hspace?: number | `${number}` | boolean | null | undefined
     /** ` name` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-object-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` standby` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-standby Deprecated. */
-    standby?: AttributeValue
+    standby?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-object-type */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
     /** ` typemustmatch` attribute for `<object>`. */
-    typemustmatch?: boolean
+    typemustmatch?: boolean | null | undefined
     /** ` usemap` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-object-usemap Deprecated. */
-    usemap?: AttributeValue
+    usemap?: AttributeValue | boolean | null | undefined
     /** ` vspace` attribute for `<object>`. */
-    vspace?: number | `${number}`
+    vspace?: number | `${number}` | boolean | null | undefined
     /** ` width` attribute for `<object>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type OlAttributes = {
     /** ` compact` attribute for `<ol>`. Deprecated. */
-    compact?: boolean
+    compact?: boolean | null | undefined
     /** ` reversed` attribute for `<ol>`. Spec: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-ol-reversed */
-    reversed?: boolean
+    reversed?: boolean | null | undefined
     /** ` start` attribute for `<ol>`. Spec: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-ol-start */
-    start?: number | `${number}`
+    start?: number | `${number}` | boolean | null | undefined
     /** ` type` attribute for `<ol>`. Known values: `1`, `a`, `A`, `i`, `I`. Spec: https://html.spec.whatwg.org/multipage/grouping-content.html#attr-ol-type */
-    type?: "1" | "A" | "I" | "a" | "i"
+    type?: "1" | "A" | "I" | "a" | "i" | boolean | null | undefined
   }
   
   type OptgroupAttributes = {
     /** ` disabled` attribute for `<optgroup>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-optgroup-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` label` attribute for `<optgroup>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-optgroup-label */
-    label?: AttributeValue
+    label?: AttributeValue | boolean | null | undefined
   }
   
   type OptionAttributes = {
     /** ` disabled` attribute for `<option>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-option-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` label` attribute for `<option>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-option-label */
-    label?: AttributeValue
+    label?: AttributeValue | boolean | null | undefined
     /** ` selected` attribute for `<option>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-option-selected */
-    selected?: boolean
+    selected?: boolean | null | undefined
     /** ` value` attribute for `<option>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-option-value */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
   }
   
   type OutputAttributes = {
     /** ` for` attribute for `<output>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/for Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-output-for */
-    for?: AttributeValue
+    for?: AttributeValue | boolean | null | undefined
     /** ` form` attribute for `<output>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` name` attribute for `<output>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
   }
   
   type PAttributes = {
     /** ` align` attribute for `<p>`. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
   }
   
   type PictureAttributes = {}
   
   type PreAttributes = {
     /** ` width` attribute for `<pre>`. Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type ProgressAttributes = {
     /** ` max` attribute for `<progress>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/max Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-progress-max */
-    max?: AttributeValue
+    max?: AttributeValue | boolean | null | undefined
     /** ` value` attribute for `<progress>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-progress-value */
-    value?: AttributeValue
+    value?: AttributeValue | boolean | null | undefined
   }
   
   type QAttributes = {
     /** ` cite` attribute for `<q>`. Spec: https://html.spec.whatwg.org/multipage/text-level-semantics.html#attr-q-cite */
-    cite?: AttributeValue
+    cite?: AttributeValue | boolean | null | undefined
   }
   
   type RpAttributes = {}
@@ -823,29 +823,29 @@ declare global {
   
   type ScriptAttributes = {
     /** ` async` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async */
-    async?: boolean
+    async?: boolean | null | undefined
     /** ` blocking` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-blocking */
-    blocking?: AttributeValue
+    blocking?: AttributeValue | boolean | null | undefined
     /** ` charset` attribute for `<script>`. Known values: `utf8`, `utf-8`, `unicode-1-1-utf-8`, `866`, `cp866`, `ibm866`, `csibm866`, `l1`, `ascii`, `cp819`, `cp1252`, `ibm819`, `latin1`, `us-ascii`, `x-cp1252`, `iso88591`, `iso8859-1`, `iso_8859-1`, `iso-8859-1`, `iso-ir-100`, `csisolatin1`, `windows-1252`, `ansi_x3.4-1968`, `iso_8859-1:1987`, `l2`, `csisolatin2`, `iso-8859-2`, `iso-ir-101`, `iso8859-2`, `iso88592`, `iso_8859-2`, `iso_8859-2:1987`, `latin2`, `l3`, `csisolatin3`, `iso-8859-3`, `iso-ir-109`, `iso8859-3`, `iso88593`, `iso_8859-3`, `iso_8859-3:1988`, `latin3`, `l4`, `csisolatin4`, `iso-8859-4`, `iso-ir-110`, `iso8859-4`, `iso88594`, `iso_8859-4`, `iso_8859-4:1988`, `latin4`, `l5`, `latin5`, `cp1254`, `x-cp1254`, `iso88599`, `iso8859-9`, `iso-8859-9`, `iso_8859-9`, `iso-ir-148`, `csisolatin5`, `windows-1254`, `iso_8859-9:1989`, `l6`, `latin6`, `iso885910`, `iso-ir-157`, `iso8859-10`, `csisolatin6`, `iso-8859-10`, `l9`, `iso885915`, `iso8859-15`, `iso-8859-15`, `iso_8859-15`, `csisolatin9`, `cp1250`, `x-cp1250`, `windows-1250`, `cp1251`, `x-cp1251`, `windows-1251`, `cp1253`, `x-cp1253`, `windows-1253`, `cp1255`, `x-cp1255`, `windows-1255`, `cp1256`, `x-cp1256`, `windows-1256`, `cp1257`, `x-cp1257`, `windows-1257`, `cp1258`, `x-cp1258`, `windows-1258`, `cyrillic`, `iso88595`, `iso8859-5`, `iso-8859-5`, `iso_8859-5`, `iso-ir-144`, `iso_8859-5:1988`, `csisolatincyrillic`, `arabic`, `iso88596`, `ecma-114`, `asmo-708`, `iso8859-6`, `iso-ir-127`, `iso_8859-6`, `iso-8859-6`, `csiso88596e`, `csiso88596i`, `iso-8859-6-e`, `iso-8859-6-i`, `iso_8859-6:1987`, `csisolatinarabic`, `greek`, `greek8`, `iso88597`, `ecma-118`, `elot_928`, `iso8859-7`, `iso-8859-7`, `iso_8859-7`, `iso-ir-126`, `sun_eu_greek`, `iso_8859-7:1987`, `csisolatingreek`, `hebrew`, `visual`, `iso88598`, `iso8859-8`, `iso-8859-8`, `iso_8859-8`, `iso-ir-138`, `csiso88598e`, `iso-8859-8-e`, `iso_8859-8:1988`, `csisolatinhebrew`, `logical`, `csiso88598i`, `iso-8859-8-i`, `iso885913`, `iso8859-13`, `iso-8859-13`, `iso885914`, `iso8859-14`, `iso-8859-14`, `iso-8859-16`, `koi`, `koi8`, `koi8-r`, `koi8_r`, `cskoi8r`, `koi8-u`, `koi8-ru`, `mac`, `macintosh`, `csmacintosh`, `x-mac-roman`, `dos-874`, `tis-620`, `iso885911`, `iso8859-11`, `iso-8859-11`, `windows-874`, `x-mac-cyrillic`, `x-mac-ukrainian`, `gbk`, `x-gbk`, `gb2312`, `chinese`, `gb_2312`, `csgb2312`, `iso-ir-58`, `gb_2312-80`, `csiso58gb231280`, `gb18030`, `big5`, `csbig5`, `cn-big5`, `x-x-big5`, `big5-hkscs`, `euc-jp`, `x-euc-jp`, `cseucpkdfmtjapanese`, `csiso2022jp`, `iso-2022-jp`, `ms932`, `sjis`, `x-sjis`, `ms_kanji`, `shift-jis`, `shift_jis`, `csshiftjis`, `windows-31j`, `korean`, `euc-kr`, `cseuckr`, `ksc5601`, `ksc_5601`, `iso-ir-149`, `windows-949`, `csksc56011987`, `ks_c_5601-1987`, `ks_c_5601-1989`, `hz-gb-2312`, `csiso2022kr`, `iso-2022-kr`, `iso-2022-cn`, `iso-2022-cn-ext`, `utf-16be`, `utf-16`, `utf-16le`, `x-user-defined`. */
-    charset?: "866" | "ansi_x3.4-1968" | "arabic" | "ascii" | "asmo-708" | "big5" | "big5-hkscs" | "chinese" | "cn-big5" | "cp1250" | "cp1251" | "cp1252" | "cp1253" | "cp1254" | "cp1255" | "cp1256" | "cp1257" | "cp1258" | "cp819" | "cp866" | "csbig5" | "cseuckr" | "cseucpkdfmtjapanese" | "csgb2312" | "csibm866" | "csiso2022jp" | "csiso2022kr" | "csiso58gb231280" | "csiso88596e" | "csiso88596i" | "csiso88598e" | "csiso88598i" | "csisolatin1" | "csisolatin2" | "csisolatin3" | "csisolatin4" | "csisolatin5" | "csisolatin6" | "csisolatin9" | "csisolatinarabic" | "csisolatincyrillic" | "csisolatingreek" | "csisolatinhebrew" | "cskoi8r" | "csksc56011987" | "csmacintosh" | "csshiftjis" | "cyrillic" | "dos-874" | "ecma-114" | "ecma-118" | "elot_928" | "euc-jp" | "euc-kr" | "gb18030" | "gb2312" | "gb_2312" | "gb_2312-80" | "gbk" | "greek" | "greek8" | "hebrew" | "hz-gb-2312" | "ibm819" | "ibm866" | "iso-2022-cn" | "iso-2022-cn-ext" | "iso-2022-jp" | "iso-2022-kr" | "iso-8859-1" | "iso-8859-10" | "iso-8859-11" | "iso-8859-13" | "iso-8859-14" | "iso-8859-15" | "iso-8859-16" | "iso-8859-2" | "iso-8859-3" | "iso-8859-4" | "iso-8859-5" | "iso-8859-6" | "iso-8859-6-e" | "iso-8859-6-i" | "iso-8859-7" | "iso-8859-8" | "iso-8859-8-e" | "iso-8859-8-i" | "iso-8859-9" | "iso-ir-100" | "iso-ir-101" | "iso-ir-109" | "iso-ir-110" | "iso-ir-126" | "iso-ir-127" | "iso-ir-138" | "iso-ir-144" | "iso-ir-148" | "iso-ir-149" | "iso-ir-157" | "iso-ir-58" | "iso8859-1" | "iso8859-10" | "iso8859-11" | "iso8859-13" | "iso8859-14" | "iso8859-15" | "iso8859-2" | "iso8859-3" | "iso8859-4" | "iso8859-5" | "iso8859-6" | "iso8859-7" | "iso8859-8" | "iso8859-9" | "iso88591" | "iso885910" | "iso885911" | "iso885913" | "iso885914" | "iso885915" | "iso88592" | "iso88593" | "iso88594" | "iso88595" | "iso88596" | "iso88597" | "iso88598" | "iso88599" | "iso_8859-1" | "iso_8859-15" | "iso_8859-1:1987" | "iso_8859-2" | "iso_8859-2:1987" | "iso_8859-3" | "iso_8859-3:1988" | "iso_8859-4" | "iso_8859-4:1988" | "iso_8859-5" | "iso_8859-5:1988" | "iso_8859-6" | "iso_8859-6:1987" | "iso_8859-7" | "iso_8859-7:1987" | "iso_8859-8" | "iso_8859-8:1988" | "iso_8859-9" | "iso_8859-9:1989" | "koi" | "koi8" | "koi8-r" | "koi8-ru" | "koi8-u" | "koi8_r" | "korean" | "ks_c_5601-1987" | "ks_c_5601-1989" | "ksc5601" | "ksc_5601" | "l1" | "l2" | "l3" | "l4" | "l5" | "l6" | "l9" | "latin1" | "latin2" | "latin3" | "latin4" | "latin5" | "latin6" | "logical" | "mac" | "macintosh" | "ms932" | "ms_kanji" | "shift-jis" | "shift_jis" | "sjis" | "sun_eu_greek" | "tis-620" | "unicode-1-1-utf-8" | "us-ascii" | "utf-16" | "utf-16be" | "utf-16le" | "utf-8" | "utf8" | "visual" | "windows-1250" | "windows-1251" | "windows-1252" | "windows-1253" | "windows-1254" | "windows-1255" | "windows-1256" | "windows-1257" | "windows-1258" | "windows-31j" | "windows-874" | "windows-949" | "x-cp1250" | "x-cp1251" | "x-cp1252" | "x-cp1253" | "x-cp1254" | "x-cp1255" | "x-cp1256" | "x-cp1257" | "x-cp1258" | "x-euc-jp" | "x-gbk" | "x-mac-cyrillic" | "x-mac-roman" | "x-mac-ukrainian" | "x-sjis" | "x-user-defined" | "x-x-big5"
+    charset?: "866" | "ansi_x3.4-1968" | "arabic" | "ascii" | "asmo-708" | "big5" | "big5-hkscs" | "chinese" | "cn-big5" | "cp1250" | "cp1251" | "cp1252" | "cp1253" | "cp1254" | "cp1255" | "cp1256" | "cp1257" | "cp1258" | "cp819" | "cp866" | "csbig5" | "cseuckr" | "cseucpkdfmtjapanese" | "csgb2312" | "csibm866" | "csiso2022jp" | "csiso2022kr" | "csiso58gb231280" | "csiso88596e" | "csiso88596i" | "csiso88598e" | "csiso88598i" | "csisolatin1" | "csisolatin2" | "csisolatin3" | "csisolatin4" | "csisolatin5" | "csisolatin6" | "csisolatin9" | "csisolatinarabic" | "csisolatincyrillic" | "csisolatingreek" | "csisolatinhebrew" | "cskoi8r" | "csksc56011987" | "csmacintosh" | "csshiftjis" | "cyrillic" | "dos-874" | "ecma-114" | "ecma-118" | "elot_928" | "euc-jp" | "euc-kr" | "gb18030" | "gb2312" | "gb_2312" | "gb_2312-80" | "gbk" | "greek" | "greek8" | "hebrew" | "hz-gb-2312" | "ibm819" | "ibm866" | "iso-2022-cn" | "iso-2022-cn-ext" | "iso-2022-jp" | "iso-2022-kr" | "iso-8859-1" | "iso-8859-10" | "iso-8859-11" | "iso-8859-13" | "iso-8859-14" | "iso-8859-15" | "iso-8859-16" | "iso-8859-2" | "iso-8859-3" | "iso-8859-4" | "iso-8859-5" | "iso-8859-6" | "iso-8859-6-e" | "iso-8859-6-i" | "iso-8859-7" | "iso-8859-8" | "iso-8859-8-e" | "iso-8859-8-i" | "iso-8859-9" | "iso-ir-100" | "iso-ir-101" | "iso-ir-109" | "iso-ir-110" | "iso-ir-126" | "iso-ir-127" | "iso-ir-138" | "iso-ir-144" | "iso-ir-148" | "iso-ir-149" | "iso-ir-157" | "iso-ir-58" | "iso8859-1" | "iso8859-10" | "iso8859-11" | "iso8859-13" | "iso8859-14" | "iso8859-15" | "iso8859-2" | "iso8859-3" | "iso8859-4" | "iso8859-5" | "iso8859-6" | "iso8859-7" | "iso8859-8" | "iso8859-9" | "iso88591" | "iso885910" | "iso885911" | "iso885913" | "iso885914" | "iso885915" | "iso88592" | "iso88593" | "iso88594" | "iso88595" | "iso88596" | "iso88597" | "iso88598" | "iso88599" | "iso_8859-1" | "iso_8859-15" | "iso_8859-1:1987" | "iso_8859-2" | "iso_8859-2:1987" | "iso_8859-3" | "iso_8859-3:1988" | "iso_8859-4" | "iso_8859-4:1988" | "iso_8859-5" | "iso_8859-5:1988" | "iso_8859-6" | "iso_8859-6:1987" | "iso_8859-7" | "iso_8859-7:1987" | "iso_8859-8" | "iso_8859-8:1988" | "iso_8859-9" | "iso_8859-9:1989" | "koi" | "koi8" | "koi8-r" | "koi8-ru" | "koi8-u" | "koi8_r" | "korean" | "ks_c_5601-1987" | "ks_c_5601-1989" | "ksc5601" | "ksc_5601" | "l1" | "l2" | "l3" | "l4" | "l5" | "l6" | "l9" | "latin1" | "latin2" | "latin3" | "latin4" | "latin5" | "latin6" | "logical" | "mac" | "macintosh" | "ms932" | "ms_kanji" | "shift-jis" | "shift_jis" | "sjis" | "sun_eu_greek" | "tis-620" | "unicode-1-1-utf-8" | "us-ascii" | "utf-16" | "utf-16be" | "utf-16le" | "utf-8" | "utf8" | "visual" | "windows-1250" | "windows-1251" | "windows-1252" | "windows-1253" | "windows-1254" | "windows-1255" | "windows-1256" | "windows-1257" | "windows-1258" | "windows-31j" | "windows-874" | "windows-949" | "x-cp1250" | "x-cp1251" | "x-cp1252" | "x-cp1253" | "x-cp1254" | "x-cp1255" | "x-cp1256" | "x-cp1257" | "x-cp1258" | "x-euc-jp" | "x-gbk" | "x-mac-cyrillic" | "x-mac-roman" | "x-mac-ukrainian" | "x-sjis" | "x-user-defined" | "x-x-big5" | boolean | null | undefined
     /** ` crossorigin` attribute for `<script>`. Known values: ``, `anonymous`, `use-credentials`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/crossorigin Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-crossorigin */
-    crossorigin?: "" | "anonymous" | "use-credentials"
+    crossorigin?: "" | "anonymous" | "use-credentials" | boolean | null | undefined
     /** ` defer` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer */
-    defer?: boolean
+    defer?: boolean | null | undefined
     /** ` fetchpriority` attribute for `<script>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/fetchpriority Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-fetchpriority */
-    fetchpriority?: AttributeValue
+    fetchpriority?: AttributeValue | boolean | null | undefined
     /** ` integrity` attribute for `<script>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/integrity Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-integrity */
-    integrity?: AttributeValue
+    integrity?: AttributeValue | boolean | null | undefined
     /** ` language` attribute for `<script>`. */
-    language?: AttributeValue
+    language?: AttributeValue | boolean | null | undefined
     /** ` nomodule` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-nomodule */
-    nomodule?: boolean
+    nomodule?: boolean | null | undefined
     /** ` referrerpolicy` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-referrerpolicy */
-    referrerpolicy?: AttributeValue
+    referrerpolicy?: AttributeValue | boolean | null | undefined
     /** ` src` attribute for `<script>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<script>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/script/type Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
   }
   
   type SearchAttributes = {}
@@ -854,45 +854,45 @@ declare global {
   
   type SelectAttributes = {
     /** ` autocomplete` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/select#autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
-    autocomplete?: AttributeValue
+    autocomplete?: AttributeValue | boolean | null | undefined
     /** ` disabled` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` form` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` multiple` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/multiple Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-select-multiple */
-    multiple?: boolean
+    multiple?: boolean | null | undefined
     /** ` name` attribute for `<select>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` required` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/required Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-select-required */
-    required?: boolean
+    required?: boolean | null | undefined
     /** ` size` attribute for `<select>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/size Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-select-size */
-    size?: number | `${number}`
+    size?: number | `${number}` | boolean | null | undefined
   }
   
   type SelectedcontentAttributes = {}
   
   type SlotAttributes = {
     /** ` name` attribute for `<slot>`. Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-slot-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
   }
   
   type SmallAttributes = {}
   
   type SourceAttributes = {
     /** ` height` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` media` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-media */
-    media?: AttributeValue
+    media?: AttributeValue | boolean | null | undefined
     /** ` sizes` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-sizes */
-    sizes?: AttributeValue
+    sizes?: AttributeValue | boolean | null | undefined
     /** ` src` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` srcset` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-srcset */
-    srcset?: AttributeValue
+    srcset?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content.html#attr-source-type */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<source>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type SpanAttributes = {}
@@ -901,11 +901,11 @@ declare global {
   
   type StyleAttributes = {
     /** ` blocking` attribute for `<style>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-style-blocking */
-    blocking?: AttributeValue
+    blocking?: AttributeValue | boolean | null | undefined
     /** ` media` attribute for `<style>`. Spec: https://html.spec.whatwg.org/multipage/semantics.html#attr-style-media */
-    media?: AttributeValue
+    media?: AttributeValue | boolean | null | undefined
     /** ` type` attribute for `<style>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-style-type Deprecated. */
-    type?: AttributeValue
+    type?: AttributeValue | boolean | null | undefined
   }
   
   type SubAttributes = {}
@@ -918,229 +918,229 @@ declare global {
   
   type TableAttributes = {
     /** ` align` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` bgcolor` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-body-bgcolor Deprecated. */
-    bgcolor?: AttributeValue
+    bgcolor?: AttributeValue | boolean | null | undefined
     /** ` border` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#dom-table-border Deprecated. */
-    border?: number | `${number}`
+    border?: number | `${number}` | boolean | null | undefined
     /** ` cellpadding` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-cellpadding Deprecated. */
-    cellpadding?: AttributeValue
+    cellpadding?: AttributeValue | boolean | null | undefined
     /** ` cellspacing` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-cellspacing Deprecated. */
-    cellspacing?: AttributeValue
+    cellspacing?: AttributeValue | boolean | null | undefined
     /** ` frame` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#dom-table-frame Deprecated. */
-    frame?: AttributeValue
+    frame?: AttributeValue | boolean | null | undefined
     /** ` rules` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#dom-table-rules Deprecated. */
-    rules?: AttributeValue
+    rules?: AttributeValue | boolean | null | undefined
     /** ` summary` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#dom-table-summary Deprecated. */
-    summary?: AttributeValue
+    summary?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<table>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-table-width Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type TbodyAttributes = {
     /** ` align` attribute for `<tbody>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<tbody>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<tbody>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` valign` attribute for `<tbody>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
   }
   
   type TdAttributes = {
     /** ` abbr` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-td-abbr Deprecated. */
-    abbr?: AttributeValue
+    abbr?: AttributeValue | boolean | null | undefined
     /** ` align` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` axis` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-axis Deprecated. */
-    axis?: AttributeValue
+    axis?: AttributeValue | boolean | null | undefined
     /** ` bgcolor` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-bgcolor Deprecated. */
-    bgcolor?: AttributeValue
+    bgcolor?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` colspan` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-colspan */
-    colspan?: AttributeValue
+    colspan?: AttributeValue | boolean | null | undefined
     /** ` headers` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-headers */
-    headers?: AttributeValue
+    headers?: AttributeValue | boolean | null | undefined
     /** ` height` attribute for `<td>`. */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` nowrap` attribute for `<td>`. */
-    nowrap?: boolean
+    nowrap?: boolean | null | undefined
     /** ` rowspan` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-rowspan */
-    rowspan?: number | `${number}`
+    rowspan?: number | `${number}` | boolean | null | undefined
     /** ` scope` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-td-scope Deprecated. */
-    scope?: AttributeValue
+    scope?: AttributeValue | boolean | null | undefined
     /** ` valign` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<td>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-width Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type TemplateAttributes = {
     /** ` shadowrootclonable` attribute for `<template>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/template#shadowrootclonable Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-template-shadowrootclonable */
-    shadowrootclonable?: boolean
+    shadowrootclonable?: boolean | null | undefined
     /** ` shadowrootcustomelementregistry` attribute for `<template>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/template#shadowrootcustomelementregistry Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-template-shadowrootcustomelementregistry */
-    shadowrootcustomelementregistry?: AttributeValue
+    shadowrootcustomelementregistry?: AttributeValue | boolean | null | undefined
     /** ` shadowrootdelegatesfocus` attribute for `<template>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/template#shadowrootdelegatesfocus Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-template-shadowrootdelegatesfocus */
-    shadowrootdelegatesfocus?: boolean
+    shadowrootdelegatesfocus?: boolean | null | undefined
     /** ` shadowrootmode` attribute for `<template>`. Known values: `closed`, `open`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/template#shadowrootmode Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-template-shadowrootmode */
-    shadowrootmode?: "closed" | "open"
+    shadowrootmode?: "closed" | "open" | boolean | null | undefined
     /** ` shadowrootserializable` attribute for `<template>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/template#shadowrootserializable Spec: https://html.spec.whatwg.org/multipage/scripting.html#attr-template-shadowrootserializable */
-    shadowrootserializable?: AttributeValue
+    shadowrootserializable?: AttributeValue | boolean | null | undefined
   }
   
   type TextareaAttributes = {
     /** ` autocomplete` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/autocomplete Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-autocomplete */
-    autocomplete?: AttributeValue
+    autocomplete?: AttributeValue | boolean | null | undefined
     /** ` cols` attribute for `<textarea>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-cols */
-    cols?: number | `${number}`
+    cols?: number | `${number}` | boolean | null | undefined
     /** ` dirname` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/dirname Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-dirname */
-    dirname?: AttributeValue
+    dirname?: AttributeValue | boolean | null | undefined
     /** ` disabled` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/disabled Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-disabled */
-    disabled?: boolean
+    disabled?: boolean | null | undefined
     /** ` form` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/form Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fae-form */
-    form?: AttributeValue
+    form?: AttributeValue | boolean | null | undefined
     /** ` maxlength` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/maxlength Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-maxlength */
-    maxlength?: number | `${number}`
+    maxlength?: number | `${number}` | boolean | null | undefined
     /** ` minlength` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/minlength Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-minlength */
-    minlength?: number | `${number}`
+    minlength?: number | `${number}` | boolean | null | undefined
     /** ` name` attribute for `<textarea>`. Spec: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fe-name */
-    name?: AttributeValue
+    name?: AttributeValue | boolean | null | undefined
     /** ` placeholder` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/placeholder Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-placeholder */
-    placeholder?: AttributeValue
+    placeholder?: AttributeValue | boolean | null | undefined
     /** ` readonly` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/readonly Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-readonly */
-    readonly?: boolean
+    readonly?: boolean | null | undefined
     /** ` required` attribute for `<textarea>`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/required Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-required */
-    required?: boolean
+    required?: boolean | null | undefined
     /** ` rows` attribute for `<textarea>`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-rows */
-    rows?: number | `${number}`
+    rows?: number | `${number}` | boolean | null | undefined
     /** ` wrap` attribute for `<textarea>`. Known values: `hard`, `soft`. Spec: https://html.spec.whatwg.org/multipage/form-elements.html#attr-textarea-wrap */
-    wrap?: "hard" | "soft"
+    wrap?: "hard" | "soft" | boolean | null | undefined
   }
   
   type TfootAttributes = {
     /** ` align` attribute for `<tfoot>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<tfoot>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<tfoot>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` valign` attribute for `<tfoot>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
   }
   
   type ThAttributes = {
     /** ` abbr` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-th-abbr */
-    abbr?: AttributeValue
+    abbr?: AttributeValue | boolean | null | undefined
     /** ` align` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` axis` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-axis Deprecated. */
-    axis?: AttributeValue
+    axis?: AttributeValue | boolean | null | undefined
     /** ` bgcolor` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-bgcolor Deprecated. */
-    bgcolor?: AttributeValue
+    bgcolor?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` colspan` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-colspan */
-    colspan?: AttributeValue
+    colspan?: AttributeValue | boolean | null | undefined
     /** ` headers` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-headers */
-    headers?: AttributeValue
+    headers?: AttributeValue | boolean | null | undefined
     /** ` height` attribute for `<th>`. */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` nowrap` attribute for `<th>`. */
-    nowrap?: boolean
+    nowrap?: boolean | null | undefined
     /** ` rowspan` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-tdth-rowspan */
-    rowspan?: number | `${number}`
+    rowspan?: number | `${number}` | boolean | null | undefined
     /** ` scope` attribute for `<th>`. Known values: ``, `col`, `colgroup`, `row`, `rowgroup`. Spec: https://html.spec.whatwg.org/multipage/tables.html#attr-th-scope */
-    scope?: "" | "col" | "colgroup" | "row" | "rowgroup"
+    scope?: "" | "col" | "colgroup" | "row" | "rowgroup" | boolean | null | undefined
     /** ` valign` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<th>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tdth-width Deprecated. */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type TheadAttributes = {
     /** ` align` attribute for `<thead>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<thead>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<thead>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` valign` attribute for `<thead>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tbody-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
   }
   
   type TimeAttributes = {
     /** ` datetime` attribute for `<time>`. Spec: https://html.spec.whatwg.org/multipage/text-level-semantics.html#attr-time-datetime */
-    datetime?: AttributeValue
+    datetime?: AttributeValue | boolean | null | undefined
   }
   
   type TitleAttributes = {}
   
   type TrAttributes = {
     /** ` align` attribute for `<tr>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tr-align Deprecated. */
-    align?: AttributeValue
+    align?: AttributeValue | boolean | null | undefined
     /** ` bgcolor` attribute for `<tr>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tr-bgcolor Deprecated. */
-    bgcolor?: AttributeValue
+    bgcolor?: AttributeValue | boolean | null | undefined
     /** ` char` attribute for `<tr>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tr-char Deprecated. */
-    char?: AttributeValue
+    char?: AttributeValue | boolean | null | undefined
     /** ` charoff` attribute for `<tr>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tr-charoff Deprecated. */
-    charoff?: AttributeValue
+    charoff?: AttributeValue | boolean | null | undefined
     /** ` valign` attribute for `<tr>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-tr-valign Deprecated. */
-    valign?: AttributeValue
+    valign?: AttributeValue | boolean | null | undefined
   }
   
   type TrackAttributes = {
     /** ` default` attribute for `<track>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-track-default */
-    default?: boolean
+    default?: boolean | null | undefined
     /** ` kind` attribute for `<track>`. Known values: `captions`, `chapters`, `descriptions`, `metadata`, `subtitles`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-track-kind */
-    kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles"
+    kind?: "captions" | "chapters" | "descriptions" | "metadata" | "subtitles" | boolean | null | undefined
     /** ` label` attribute for `<track>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-track-label */
-    label?: AttributeValue
+    label?: AttributeValue | boolean | null | undefined
     /** ` src` attribute for `<track>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-track-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` srclang` attribute for `<track>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-track-srclang */
-    srclang?: AttributeValue
+    srclang?: AttributeValue | boolean | null | undefined
   }
   
   type UAttributes = {}
   
   type UlAttributes = {
     /** ` compact` attribute for `<ul>`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-ul-compact Deprecated. */
-    compact?: boolean
+    compact?: boolean | null | undefined
     /** ` type` attribute for `<ul>`. Known values: `circle`, `disc`, `square`. Spec: https://html.spec.whatwg.org/multipage/obsolete.html#attr-ul-type Deprecated. */
-    type?: "circle" | "disc" | "square"
+    type?: "circle" | "disc" | "square" | boolean | null | undefined
   }
   
   type VarAttributes = {}
   
   type VideoAttributes = {
     /** ` autoplay` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-autoplay */
-    autoplay?: boolean
+    autoplay?: boolean | null | undefined
     /** ` controls` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-controls */
-    controls?: boolean
+    controls?: boolean | null | undefined
     /** ` crossorigin` attribute for `<video>`. Known values: ``, `anonymous`, `use-credentials`. MDN: https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/crossorigin Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-crossorigin */
-    crossorigin?: "" | "anonymous" | "use-credentials"
+    crossorigin?: "" | "anonymous" | "use-credentials" | boolean | null | undefined
     /** ` height` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-height */
-    height?: number | `${number}`
+    height?: number | `${number}` | boolean | null | undefined
     /** ` loop` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-loop */
-    loop?: boolean
+    loop?: boolean | null | undefined
     /** ` muted` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-muted */
-    muted?: boolean
+    muted?: boolean | null | undefined
     /** ` playsinline` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-video-playsinline */
-    playsinline?: boolean
+    playsinline?: boolean | null | undefined
     /** ` poster` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-video-poster */
-    poster?: AttributeValue
+    poster?: AttributeValue | boolean | null | undefined
     /** ` preload` attribute for `<video>`. Known values: ``, `auto`, `metadata`, `none`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-preload */
-    preload?: "" | "auto" | "metadata" | "none"
+    preload?: "" | "auto" | "metadata" | "none" | boolean | null | undefined
     /** ` src` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/media.html#attr-media-src */
-    src?: AttributeValue
+    src?: AttributeValue | boolean | null | undefined
     /** ` width` attribute for `<video>`. Spec: https://html.spec.whatwg.org/multipage/embedded-content-other.html#attr-dim-width */
-    width?: number | `${number}`
+    width?: number | `${number}` | boolean | null | undefined
   }
   
   type WbrAttributes = {}

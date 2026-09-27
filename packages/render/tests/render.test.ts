@@ -73,6 +73,33 @@ describe("render elements", () => {
     ])
     expect(render(el)).toBe("<div><span>inner</span></div>")
   })
+
+  test("escapes attribute values at serialization without changing nodes", () => {
+    const value = `"'&<>&amp;`
+    const attribute = new Attr("title", value)
+    expect(render(new Element("div", false, [attribute]))).toBe(
+      '<div title="&quot;&#x27;&amp;&lt;&gt;&amp;amp;"></div>',
+    )
+    expect(attribute.value).toBe(value)
+  })
+
+  test("escapes resolved classes and generated style values", () => {
+    const value = `"<&>"`
+    const node = new Element("div", false, [new CssClass(value), new Property("--label", value)])
+    expect(render(node)).toBe(
+      '<div class="&quot;&lt;&amp;&gt;&quot;" style="--label: &quot;&lt;&amp;&gt;&quot;"></div>',
+    )
+  })
+
+  test("presence and removal survive serialization on void elements", () => {
+    const node = new Element("input", true, [
+      { disabled: true, title: "removed", value: "before" },
+      new Attr("title", false),
+      new Attr("value", ""),
+      new Attr("tabindex", 0),
+    ])
+    expect(render(node)).toBe('<input disabled value="" tabindex="0">')
+  })
 })
 
 describe("render Raw", () => {

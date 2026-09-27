@@ -20,7 +20,7 @@ div(
 )
 ```
 
-Strings, numbers, arrays, etc. are supported as children. `null`, `undefined`, and `false` render as empty. Attributes are defined with plain `{}` objects and are strongly typed.
+Strings, numbers, arrays, etc. are supported as children. In Content position, `false`, `null`, `undefined`, and `""` are **Empty**: they contribute nothing. Numeric zero remains rendered text. Attributes are defined with plain `{}` objects and are strongly typed.
 
 ```ts
 div({ id: "profile", class: "card" })
@@ -37,7 +37,15 @@ input({ type: "email" })
 a({ target: "preview-window" })
 ```
 
-Boolean attributes render naturally: `true` includes the attribute and `false` omits it.
+Every attribute uses the same value convention, regardless of its HTML name:
+
+- `true` requests presence, serialized without a value on the server.
+- `false`, `null`, and `undefined` explicitly remove earlier values.
+- Strings are literal: `"false"` is not a removal control.
+- Zero becomes `"0"`; an empty ordinary-attribute string remains `name=""`.
+- An absent object key contributes nothing; a present nullish key removes the attribute.
+
+Generated attribute types accept these controls while retaining numeric and enumerated-value constraints.
 
 ```ts
 input({ disabled: true }) // <input disabled>
@@ -51,7 +59,16 @@ div(attr("data-state", state))
 elem("my-widget", attr("custom-attr", "value"))
 ```
 
-You can pass multiple attribute objects wherever it reads best.
+You can pass multiple attribute objects wherever it reads best. Ordinary attributes use **last-value-wins** across object and `attr()` forms, including list-shaped attributes such as `rel`, `aria-labelledby`, `headers`, and `part`. Raw string-valued `style` also replaces earlier raw values; it is not parsed or concatenated with sibling CSS-property helpers.
+
+```ts
+a({ rel: "noopener" }, attr("rel", "noreferrer"))
+input({ value: "Default" }, { value: "" })
+div({ tabindex: 0 }, attr("title", ""))
+div({ style: "color: red" }, attr("style", "background: black"))
+```
+
+Only `class` accumulates tokens. Dotted classes, `className()`, object `class`, and `attr("class", ...)` all participate, preserving encounter order, duplicates, and supplied spelling. Empty class strings add nothing; explicit false/nullish class values clear earlier tokens.
 
 ```ts
 a.someClass(
@@ -61,6 +78,25 @@ a.someClass(
   className("a-third-class"),
 )
 ```
+
+### Conditional Content and Attributes
+
+Place a condition in Content position when false should omit a contribution rather than remove an earlier attribute:
+
+```ts
+div({ class: "base" }, isActive && { class: "active" })
+div({ class: "base" }, { class: isActive && "active" })
+div(attr("title", "Default"), showOverride && attr("title", "Override"))
+div(false, null, undefined, "", 0)
+```
+
+With `isActive` false, the first element keeps `class="base"`; the second has no class attribute because its explicit attribute value is false. With `showOverride` false, the title remains `Default`. The last element contains the text `0`.
+
+Server rendering, fresh client mounting, and client redraw use the same attribute and class rules. Redraw resolves current contributions in Content order: changing an earlier slot cannot displace an unchanged later value, and removing a later contribution restores an earlier value. Unchanged resolved fields do not trigger DOM writes. Repeated CSS-property helpers follow the same current-order precedence for each property.
+
+Attribute values remain unescaped in VDOM and client DOM APIs. Server serialization escapes quoted values, including classes and generated inline styles; parsing the HTML recovers the original data, including literal entity-like text such as `&amp;`.
+
+**Migration:** Replace reliance on concatenated non-class attributes with a complete final value. Replace attribute-value conditions that previously skipped false/nullish values with Content-position conditions when omission is intended. Use explicit false/nullish attribute values only when removal is intended. These rules do not add object-valued style support or define composition between raw style strings and structured CSS properties.
 
 Use `raw()` for content that should not be escaped:
 

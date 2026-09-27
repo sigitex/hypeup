@@ -1,5 +1,6 @@
 // oxlint-disable complexity
 import type { Element } from "@hypeup/vdom"
+import { ElementState } from "@hypeup/runtime"
 import {
   apply,
   undoSlot,
@@ -62,12 +63,15 @@ export function mount(
 export function mountElement(node: Element): MountHandle {
   const element = document.createElement(node.tag)
   const slots: SlotRecord[] = []
+  const fields = ElementState.create()
 
   for (const arg of node.contents) {
-    slots.push(processArg(element, arg))
+    slots.push(processArg(element, arg, fields))
   }
 
-  return { element, tag: node.tag, slots }
+  ElementState.finish(fields)
+  updateFields(element, ElementState.create(), fields)
+  return { element, tag: node.tag, slots, fields }
 }
 
 /** Diff an existing MountHandle against a new vdom Element. Patches DOM in place. */
@@ -76,18 +80,22 @@ export function diffElement(handle: MountHandle, newVdom: Element): void {
   const newArgs = newVdom.contents
   const maxLen = Math.max(oldSlots.length, newArgs.length)
   const newSlots: SlotRecord[] = []
+  const fields = ElementState.create()
 
   for (let i = 0; i < maxLen; i++) {
     if (i < oldSlots.length && i < newArgs.length) {
-      newSlots.push(diffSlot(handle.element, oldSlots[i], newArgs[i]))
+      newSlots.push(diffSlot(handle.element, oldSlots[i], newArgs[i], fields))
     } else if (i < newArgs.length) {
-      newSlots.push(processArg(handle.element, newArgs[i]))
+      newSlots.push(processArg(handle.element, newArgs[i], fields))
     } else {
       undoSlot(handle.element, oldSlots[i])
     }
   }
 
   handle.slots = newSlots
+  ElementState.finish(fields)
+  updateFields(handle.element, handle.fields, fields)
+  handle.fields = fields
 }
 
 // ── Internal ───────────────────────────────────────────────────────
@@ -98,19 +106,21 @@ function resolveArg(arg: Content): Content {
 }
 
 /** Process a single content arg: resolve, classify, apply. */
-function processArg(element: HTMLElement, arg: Content): SlotRecord {
+function processArg(element: HTMLElement, arg: Content, fields: ElementState): SlotRecord {
   const value = resolveArg(arg)
   const classified = classify(value)
   if (classified === null) {
     return { kind: "null" }
   }
-  return applyClassified(element, classified)
+  contribute(fields, classified)
+  return applyClassified(element, classified, fields)
 }
 
 /** Apply a classified value, handling structural types (child/each/array) at the mount level. */
 function applyClassified(
   element: HTMLElement,
   classified: Classified,
+  fields: ElementState,
 ): SlotRecord {
   switch (classified.kind) {
     case "child": {
@@ -136,7 +146,7 @@ function applyClassified(
     case "array": {
       const subSlots: SlotRecord[] = []
       for (const item of classified.items) {
-        subSlots.push(processArg(element, item))
+        subSlots.push(processArg(element, item, fields))
       }
       return { kind: "array", slots: subSlots }
     }
@@ -150,6 +160,7 @@ function diffSlot(
   element: HTMLElement,
   oldSlot: SlotRecord,
   newArg: Content,
+  fields: ElementState,
 ): SlotRecord {
   const value = resolveArg(newArg)
   const classified = classify(value)
@@ -164,8 +175,9 @@ function diffSlot(
   }
 
   // Old is null — fresh apply
+  contribute(fields, classified)
   if (oldSlot.kind === "null") {
-    return applyClassified(element, classified)
+    return applyClassified(element, classified, fields)
   }
 
   // Child elements
@@ -242,9 +254,9 @@ function diffSlot(
       const newSubs: SlotRecord[] = []
       for (let i = 0; i < maxLen; i++) {
         if (i < oldSubs.length && i < newItems.length) {
-          newSubs.push(diffSlot(element, oldSubs[i], newItems[i]))
+          newSubs.push(diffSlot(element, oldSubs[i], newItems[i], fields))
         } else if (i < newItems.length) {
-          newSubs.push(processArg(element, newItems[i]))
+          newSubs.push(processArg(element, newItems[i], fields))
         } else {
           undoSlot(element, oldSubs[i])
         }
@@ -254,7 +266,7 @@ function diffSlot(
     undoSlot(element, oldSlot)
     const subSlots: SlotRecord[] = []
     for (const item of classified.items) {
-      subSlots.push(processArg(element, item))
+      subSlots.push(processArg(element, item, fields))
     }
     return { kind: "array", slots: subSlots }
   }
@@ -275,6 +287,58 @@ function diffSlot(
 
   // Leaf types
   return diffLeafSlot(element, oldSlot, classified)
+}
+
+function contribute(fields: ElementState, classified: Classified): void {
+  switch (classified.kind) {
+    case "attribute":
+      ElementState.attribute(fields, classified.name, classified.value)
+      break
+    case "attributes":
+      for (const [name, value] of classified.entries) {
+        ElementState.attribute(fields, name, value)
+      }
+      break
+    case "class":
+      ElementState.attribute(fields, "class", classified.name)
+      break
+    case "style":
+      fields.properties[classified.name] = classified.value
+      break
+  }
+}
+
+function updateFields(element: HTMLElement, previous: ElementState, current: ElementState): void {
+  for (const name of Object.keys(previous.attributes)) {
+    if (!(name in current.attributes)) {
+      element.removeAttribute(name)
+    }
+  }
+  for (const [name, value] of Object.entries(current.attributes)) {
+    const domValue = value === true ? "" : value
+    const previousValue = previous.attributes[name] === true ? "" : previous.attributes[name]
+    if (domValue !== previousValue) {
+      element.setAttribute(name, domValue)
+    }
+  }
+  const rawStyleChanged = previous.attributes.style !== current.attributes.style
+  for (const name of Object.keys(previous.properties)) {
+    if (!(name in current.properties) && !rawStyleChanged) {
+      element.style.removeProperty(name)
+    }
+  }
+  for (const [name, value] of Object.entries(current.properties)) {
+    if (rawStyleChanged || value !== previous.properties[name]) {
+      element.style.setProperty(name, value)
+    }
+  }
+  if (
+    Object.keys(previous.properties).length > 0 &&
+    Object.keys(current.properties).length === 0 &&
+    !("style" in current.attributes)
+  ) {
+    element.removeAttribute("style")
+  }
 }
 
 /** Shallow-compare two argument arrays using strict equality. */
