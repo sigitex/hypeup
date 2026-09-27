@@ -12,11 +12,9 @@ import {
   Raw,
   Rule,
 } from "@hypeup/vdom"
+import { ElementState } from "./ElementState"
 
-type ElementSlots = {
-  attributes: Record<string, string | true>
-  properties: Record<string, string>
-  classes: string[]
+type ElementSlots = ElementState & {
   children: any[]
 }
 
@@ -38,12 +36,11 @@ export function classifyElement(
   isVoid: boolean,
 ): ElementSlots {
   const slots: ElementSlots = {
-    attributes: {},
-    properties: {},
-    classes: [],
+    ...ElementState.create(),
     children: [],
   }
   walkElement(contents, slots, isVoid)
+  ElementState.finish(slots)
   return slots
 }
 
@@ -80,9 +77,9 @@ function walkElement(contents: any[], slots: ElementSlots, isVoid: boolean) {
     if (item instanceof Property) {
       slots.properties[item.name] = String(item.value)
     } else if (item instanceof Attr) {
-      slots.attributes[item.name] = item.value === true ? true : String(item.value)
+      ElementState.attribute(slots, item.name, item.value)
     } else if (item instanceof CssClass) {
-      slots.classes.push(item.name)
+      ElementState.attribute(slots, "class", item.name)
     } else if (
       item instanceof Element ||
       item instanceof Each ||
@@ -98,22 +95,7 @@ function walkElement(contents: any[], slots: ElementSlots, isVoid: boolean) {
       walkElement(item, slots, isVoid)
     } else if (typeof item === "object" && item !== null) {
       for (const key in item) {
-        const val = item[key]
-        if (!val) {
-          continue
-        }
-        if (key === "class") {
-          const classes = String(val).split(/\s+/).filter(Boolean)
-          slots.classes.push(...classes)
-        } else {
-          if (val === true) {
-            slots.attributes[key] = true
-          } else if (slots.attributes[key]) {
-            slots.attributes[key] += " " + String(val)
-          } else {
-            slots.attributes[key] = String(val)
-          }
-        }
+        ElementState.attribute(slots, key, item[key])
       }
     } else if (!isVoid) {
       slots.children.push(String(item))

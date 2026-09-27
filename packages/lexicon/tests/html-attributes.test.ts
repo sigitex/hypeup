@@ -26,8 +26,24 @@ export function htmlAttributeTypeCoverage() {
   input({ disabled: true })
   input({ disabled: false })
   div({ contenteditable: "false" })
-  // @ts-expect-error contenteditable false is textual, not boolean.
   div({ contenteditable: false })
+  div({ title: true, tabindex: true, spellcheck: true })
+  div({ title: false, tabindex: false, spellcheck: false })
+  div({ title: null, tabindex: null, spellcheck: null })
+  div({ title: undefined, tabindex: undefined, spellcheck: undefined })
+  div({ tabindex: 0, spellcheck: "" })
+  div({ tabindex: "0", spellcheck: "false" })
+  div({ spellcheck: "true" })
+  div({ class: false, "data-state": null, "aria-hidden": undefined })
+  div({ class: null, "data-state": false, "aria-hidden": true })
+  input({ disabled: null })
+  input({ disabled: undefined })
+  // @ts-expect-error
+  div({ tabindex: "banana" })
+  // @ts-expect-error
+  div({ spellcheck: "yes" })
+  // @ts-expect-error
+  input({ disabled: "false" })
 
   div(attr("custom-attr", "value"))
   elem("my-widget", attr("custom-attr", "value"))

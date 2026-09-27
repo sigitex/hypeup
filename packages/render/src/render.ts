@@ -60,18 +60,15 @@ function renderNode(x: Content, r: Renderer) {
       break
     }
     case x instanceof Element: {
-      const { attributes, properties, classes, children } = classifyElement(
+      const { attributes, properties, children } = classifyElement(
         x.contents,
         x.isVoid,
       )
       r.write(`<${x.tag}`)
-      if (classes.length > 0) {
-        attributes.class = classes.join(" ")
-      }
       const attrKeys = Object.keys(attributes)
       if (attrKeys.length > 0) {
         const attrStr = attrKeys
-          .map((key) => attributes[key] === true ? key : `${key}="${attributes[key]}"`)
+          .map((key) => attributes[key] === true ? key : `${key}="${escapeHtml(attributes[key])}"`)
           .join(" ")
         r.write(" " + attrStr)
       }
@@ -80,7 +77,7 @@ function renderNode(x: Content, r: Renderer) {
         const styleStr = propKeys
           .map((key) => `${key}: ${properties[key]}`)
           .join(";")
-        r.write(` style="${styleStr}"`)
+        r.write(` style="${escapeHtml(styleStr)}"`)
       }
       r.write(`>`)
       if (x.isVoid) {

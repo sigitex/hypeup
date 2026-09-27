@@ -59,7 +59,7 @@ describe("classifyElement", () => {
     expect(result.attributes["disabled"]).toBe(true)
   })
 
-  test("false object attribute is skipped", () => {
+  test("false object attribute removes attribute", () => {
     const result = classifyElement([{ disabled: false }], false)
     expect(result.attributes).not.toHaveProperty("disabled")
   })
@@ -105,6 +105,60 @@ describe("classifyElement", () => {
     )
     expect(result.properties["color"]).toBe("red")
     expect(result.children).toHaveLength(0)
+  })
+
+  test("ordinary attributes replace across forms and nested arrays", () => {
+    for (const name of ["title", "rel", "aria-labelledby", "aria-describedby", "headers", "part", "role", "style", "srcset"]) {
+      expect(classifyElement([{ [name]: "first" }, [new Attr(name, "last")]], false).attributes[name]).toBe("last")
+      expect(classifyElement([new Attr(name, "first"), [{ [name]: "last" }]], false).attributes[name]).toBe("last")
+    }
+  })
+
+  test("attribute values retain explicit controls and literals", () => {
+    for (const value of [true, false, null, undefined, "true", "false", 0, "", 0n]) {
+      for (const contribution of [{ title: value }, new Attr("title", value)]) {
+        const result = classifyElement([{ title: "earlier" }, contribution], false)
+        if (value === false || value === null || value === undefined) {
+          expect(result.attributes).not.toHaveProperty("title")
+        } else {
+          expect(result.attributes.title).toBe(value === true ? true : String(value))
+        }
+      }
+    }
+  })
+
+  test("Empty Content and absent keys preserve attributes and numeric zero", () => {
+    const result = classifyElement([{ title: "kept", class: "base" }, false, null, undefined, "", {}, 0], false)
+    expect(result.attributes).toEqual({ title: "kept", class: "base" })
+    expect(result.children).toEqual(["0"])
+  })
+
+  test("mixed class sources preserve ordered duplicate tokens and spelling", () => {
+    const result = classifyElement([
+      [new CssClass("base"), new CssClass("Active")],
+      { class: "Active wide" },
+      new Attr("class", "first\tThird"),
+      { class: "" },
+      new Attr("class", ""),
+    ], false)
+    expect(result.classes).toEqual(["base", "Active", "Active", "wide", "first", "Third"])
+    expect(result.attributes.class).toBe("base Active Active wide first Third")
+  })
+
+  test("class controls retain presence or clear tokens across forms", () => {
+    for (const value of [false, null, undefined]) {
+      for (const contribution of [{ class: value }, new Attr("class", value)]) {
+        const cleared = classifyElement([new CssClass("base"), contribution], false)
+        expect(cleared.classes).toEqual([])
+        expect(cleared.attributes).not.toHaveProperty("class")
+        const restored = classifyElement([new CssClass("base"), contribution, new CssClass("later")], false)
+        expect(restored.classes).toEqual(["later"])
+        expect(restored.attributes.class).toBe("later")
+      }
+    }
+    expect(classifyElement([{ class: true }, { class: "" }], false).attributes.class).toBe(true)
+    expect(classifyElement([new CssClass("base"), { class: true }], false).attributes.class).toBe("base")
+    expect(classifyElement([{ class: "" }], false).attributes).not.toHaveProperty("class")
   })
 })
 

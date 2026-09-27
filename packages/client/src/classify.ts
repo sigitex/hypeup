@@ -18,12 +18,12 @@ export type Classified =
   | { kind: "each"; each: Each }
   | { kind: "lazy"; lazy: Lazy }
   | { kind: "style"; name: string; value: string }
-  | { kind: "attribute"; name: string; value: string }
+  | { kind: "attribute"; name: string; value: unknown }
   | { kind: "class"; name: string }
   | { kind: "event"; event: string; handler: Function }
   | { kind: "raw"; html: string }
   | { kind: "text"; text: string }
-  | { kind: "attributes"; entries: [string, string][] }
+  | { kind: "attributes"; entries: [string, unknown][] }
   | { kind: "ref"; ref: Ref }
   | { kind: "array"; items: Content[] }
 
@@ -45,7 +45,7 @@ export function classify(arg: Content): Classified | null {
     return { kind: "style", name: arg.name, value: String(arg.value) }
   }
   if (arg instanceof Attr) {
-    return { kind: "attribute", name: arg.name, value: String(arg.value) }
+    return { kind: "attribute", name: arg.name, value: arg.value }
   }
   if (arg instanceof CssClass) {
     return { kind: "class", name: arg.name }
@@ -63,13 +63,9 @@ export function classify(arg: Content): Classified | null {
     return { kind: "array", items: arg }
   }
   if (typeof arg === "object" && arg !== null) {
-    const entries: [string, string][] = []
+    const entries: [string, unknown][] = []
     for (const key in arg) {
-      const val = arg[key]
-      if (!val) {
-        continue
-      }
-      entries.push([key, String(val)])
+      entries.push([key, arg[key]])
     }
     return { kind: "attributes", entries }
   }

@@ -58,6 +58,13 @@ describe("class chain lowering", () => {
     expect(result).toMatchSnapshot()
     expect(result).toContain('"active-item"')
   })
+
+  test("mixed class forms retain content order", async () => {
+    const result = await transform(`div.base(className("helper"), { class: "object" }, attr("class", "explicit"))`)
+    expect(result).toContain('_className("base"), _className("helper"), {')
+    expect(result).toContain('class: "object"')
+    expect(result).toContain('_attr("class", "explicit")')
+  })
 })
 
 // CSS Property Lowering

@@ -2,6 +2,7 @@
 import type { Classified } from "./classify"
 import type { KeyedItem } from "./reconcile"
 import type { Ref } from "@hypeup/vdom"
+import type { ElementState } from "@hypeup/runtime"
 
 // ── Types ──────────────────────────────────────────────────────────
 
@@ -10,6 +11,7 @@ export type MountHandle = {
   element: HTMLElement
   tag: string
   slots: SlotRecord[]
+  fields: ElementState
 }
 
 /** State for a mounted Each list, used for diffing on redraw. */
@@ -27,13 +29,13 @@ export type SlotRecord =
   | { kind: "text"; text: string; node: Text }
   | { kind: "class"; name: string }
   | { kind: "style"; name: string; value: string }
-  | { kind: "attribute"; name: string; value: string }
+  | { kind: "attribute"; name: string; value: unknown }
   | { kind: "event"; event: string; handler: Function }
   | { kind: "child"; handle: MountHandle }
   | { kind: "each"; state: EachState }
   | { kind: "lazy"; fn: Function; args: unknown[]; handle: MountHandle }
   | { kind: "raw"; html: string; nodes: Node[] }
-  | { kind: "attributes"; entries: [string, string][] }
+  | { kind: "attributes"; entries: [string, unknown][] }
   | { kind: "ref"; ref: Ref }
   | { kind: "array"; slots: SlotRecord[] }
   | { kind: "null" }
@@ -47,11 +49,9 @@ export function apply(
 ): SlotRecord {
   switch (classified.kind) {
     case "style": {
-      element.style.setProperty(classified.name, classified.value)
       return { kind: "style", name: classified.name, value: classified.value }
     }
     case "attribute": {
-      element.setAttribute(classified.name, classified.value)
       return {
         kind: "attribute",
         name: classified.name,
@@ -59,7 +59,6 @@ export function apply(
       }
     }
     case "class": {
-      element.classList.add(classified.name)
       return { kind: "class", name: classified.name }
     }
     case "event": {
@@ -87,9 +86,6 @@ export function apply(
       return { kind: "text", text: classified.text, node }
     }
     case "attributes": {
-      for (const [name, value] of classified.entries) {
-        element.setAttribute(name, value)
-      }
       return { kind: "attributes", entries: classified.entries }
     }
     default:
@@ -106,13 +102,9 @@ export function undoSlot(element: HTMLElement, slot: SlotRecord): void {
       element.removeChild(slot.node)
       break
     case "class":
-      element.classList.remove(slot.name)
-      break
     case "style":
-      element.style.removeProperty(slot.name)
-      break
     case "attribute":
-      element.removeAttribute(slot.name)
+    case "attributes":
       break
     case "event":
       element.removeEventListener(slot.event, slot.handler as EventListener)
@@ -133,11 +125,6 @@ export function undoSlot(element: HTMLElement, slot: SlotRecord): void {
     case "raw":
       for (const node of slot.nodes) {
         element.removeChild(node)
-      }
-      break
-    case "attributes":
-      for (const [name] of slot.entries) {
-        element.removeAttribute(name)
       }
       break
     case "ref":
@@ -183,8 +170,6 @@ export function diffLeafSlot(
         if (oldSlot.name === classified.name) {
           return oldSlot
         }
-        element.classList.remove(oldSlot.name)
-        element.classList.add(classified.name)
         return { kind: "class", name: classified.name }
       }
       break
@@ -196,10 +181,6 @@ export function diffLeafSlot(
         ) {
           return oldSlot
         }
-        if (oldSlot.name !== classified.name) {
-          element.style.removeProperty(oldSlot.name)
-        }
-        element.style.setProperty(classified.name, classified.value)
         return {
           kind: "style",
           name: classified.name,
@@ -215,10 +196,6 @@ export function diffLeafSlot(
         ) {
           return oldSlot
         }
-        if (oldSlot.name !== classified.name) {
-          element.removeAttribute(oldSlot.name)
-        }
-        element.setAttribute(classified.name, classified.value)
         return {
           kind: "attribute",
           name: classified.name,
@@ -267,12 +244,6 @@ export function diffLeafSlot(
       break
     case "attributes":
       if (oldSlot.kind === "attributes") {
-        for (const [name] of oldSlot.entries) {
-          element.removeAttribute(name)
-        }
-        for (const [name, value] of classified.entries) {
-          element.setAttribute(name, value)
-        }
         return { kind: "attributes", entries: classified.entries }
       }
       break

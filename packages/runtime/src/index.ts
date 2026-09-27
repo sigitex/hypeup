@@ -2,6 +2,7 @@
 /// <reference path="types.d.ts" />
 
 export { classifyElement, classifyRule, classifyAtRule } from "./classify"
+export { ElementState } from "./ElementState"
 export { cssString } from "./cssString"
 export {
   elem,
