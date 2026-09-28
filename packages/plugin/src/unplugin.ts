@@ -1,14 +1,14 @@
 import { createUnplugin } from "unplugin"
 import { transformAsync } from "@babel/core"
 import presetTypescript from "@babel/preset-typescript"
-import { hypeupBabelPlugin, buildDslPrimitives } from "@hypeup/babel"
+import { hypeupBabelPlugin, buildDslPrimitives, type HypeupExtension } from "@hypeup/babel"
 import { existsSync, readFileSync } from "node:fs"
 import { resolve } from "node:path"
 
 /** Build a Set of all primitive identifier names for cheap pre-scan. */
-function buildIdentifierSet(): Set<string> {
-  const table = buildDslPrimitives()
-  return new Set(table.keys())
+function buildIdentifierSet(extensions?: HypeupExtension[]): Set<string> {
+  const table = buildDslPrimitives(extensions)
+  return new Set([...table.keys()].map(name => name.split(".")[0]))
 }
 
 /** Check if consumer project has @hypeup/lexicon as a dependency. */
@@ -45,6 +45,7 @@ function containsPrimitives(code: string, identifiers: Set<string>): boolean {
 const FILE_FILTER = /\.[jt]sx?$/
 
 export type HypeupPluginOptions = {
+  extensions?: HypeupExtension[]
   /** Override file include filter. Defaults to /\.[jt]sx?$/ */
   include?: RegExp
   /** Override file exclude filter. Defaults to /node_modules/ */
@@ -57,7 +58,7 @@ export const unplugin = createUnplugin((options?: HypeupPluginOptions) => {
 
   const cwd = process.cwd()
   const isActive = hasLexiconDependency(cwd)
-  const identifiers = isActive ? buildIdentifierSet() : new Set<string>()
+  const identifiers = isActive ? buildIdentifierSet(options?.extensions) : new Set<string>()
 
   return {
     name: "hypeup",
@@ -79,7 +80,7 @@ export const unplugin = createUnplugin((options?: HypeupPluginOptions) => {
       const result = await transformAsync(code, {
         filename: id,
         sourceMaps: true,
-        plugins: [hypeupBabelPlugin],
+        plugins: [hypeupBabelPlugin({ extensions: options?.extensions })],
         presets: [[presetTypescript, { isTSX: true, allExtensions: true }]],
       })
 
