@@ -500,12 +500,110 @@ hypeup provides build plugins for using the global DSL in your app. Available fo
 
 ```ts
 // vite.config.ts
-import hypeup from "@hypeup/plugin/vite"
+import { hypeup } from "@hypeup/plugin/vite"
 
 export default {
   plugins: [hypeup()],
 }
 ```
+
+### Syntax Extensions
+
+Pass an `extensions` array to the build plugin to register additional global DSL symbols. The consuming project must declare `@hypeup/lexicon` as a dependency for the build plugin to activate.
+
+```ts
+import { hypeup } from "@hypeup/plugin/vite"
+import type { HypeupExtension } from "@hypeup/babel"
+
+const utilities = {
+  fs: { type: "alias", target: "fontSize" },
+  cc: { type: "alias", target: "className" },
+  divAlias: { type: "alias", target: "div" },
+  m4: { type: "prop", css: "margin", value: "4px" },
+  "m4.x": { type: "prop", css: "margin-inline", value: "4px" },
+  active: { type: "className", value: "active" },
+  box: { type: "alias", target: "panel" },
+  panel: {
+    type: "element",
+    tag: "div",
+    className: "container",
+    props: { display: "flex" },
+    attrs: { role: "region", class: "preset" },
+  },
+  "panel.sm": { type: "element", tag: "div", className: "container-sm" },
+  logo: { type: "element", tag: "img", attrs: { src: "/logo.png" } },
+} satisfies HypeupExtension
+
+export default {
+  plugins: [hypeup({ extensions: [utilities] })],
+}
+```
+
+`HypeupExtension` is a flat `Record<string, ExtensionSymbol>`. Both types are exported from `@hypeup/babel`. Each entry has one of four shapes:
+
+| Type | Fields | Behavior |
+| --- | --- | --- |
+| `alias` | `target: string` | Reuses one built-in or extension entry's syntax. |
+| `prop` | `css: string`, `value: string` | A reference emits `prop(css, value)`; not callable. |
+| `className` | `value: string` | A reference emits `className(value)`; not callable. |
+| `element` | `tag: string`, optional `className`, `props`, `attrs` | Emits an element with predefined content, optionally followed by caller content. |
+
+Element `className` is a string, `props` is a `Record<string, string>` using CSS property names, and `attrs` is a `Record<string, string | boolean>` using HTML attribute names. The tag determines whether to emit `elem` or `elemVoid`.
+
+```ts
+panel.activeItem(fs("14px"), m4.x, active, "Hello")
+panel
+logo({ src: "/brand.png", alt: "Brand" }, className("icon"))
+```
+
+Aliases resolve after all definitions are collected. They may refer to later entries, later extensions, dotted entries, or other aliases. Reordering extensions or object entries does not change resolution. Missing targets and direct or indirect alias cycles fail initialization.
+
+An alias names exactly one entry, not its dotted family. In this example, `box.sm` uses `panel` plus the class `sm`; it does not select `panel.sm`. Registering `"box.sm"` explicitly gives that path its own meaning. Built-in aliases retain supported target syntax, such as `fs("14px")`, `fs.inherit`, and `divAlias.activeItem("Hello")`.
+
+#### Dotted Paths and Diagnostics
+
+Dotted keys have no depth limit. Lookup tries the longest registered path first. For example, `panel.sm.activeItem("Hello")` selects `panel.sm`, then adds `active-item` as a class. Unmatched class segments are allowed for element symbols; prop and class-name constants cannot consume trailing segments.
+
+A root entry is optional: registering only `"tokens.small"` leaves bare `tokens` unchanged, while `tokens.small` is transformed. An unresolved plain-dot path such as `tokens.typo` fails compilation rather than leaving an unbound runtime reference. Local bindings of the root suppress both rewriting and extension diagnostics.
+
+Extension paths use plain, noncomputed, non-optional dot access. Bracket access, dynamic keys, and optional chains such as `tokens["small"]`, `tokens[key]`, and `tokens?.small` are not recognized as extension paths.
+
+Calling a prop or class-name constant, including a dotted constant or an alias of one, is a compile-time error: `m4()`, `m4.x()`, and `active()` are invalid unless their root has a local binding.
+
+Duplicate full keys across extensions fail initialization. All built-in roots are reserved, including unused dotted paths beneath them: `div`, `div.card`, and `display.flex` cannot be extension keys. This also excludes CSS names such as `container` and `d`; use custom roots such as `panel` and `divAlias`. Custom-root aliases may still target built-ins.
+
+#### Element Defaults and Caller Content
+
+Element symbols emit content in this order:
+
+1. Predefined `className`.
+2. Predefined `props`.
+3. Predefined `attrs`.
+4. Unmatched dotted class segments, converted to kebab-case.
+5. Caller arguments, passed directly without generated thunks.
+
+Bare element references emit only predefined content (and any class suffixes). Void elements retain caller attribute, property, and class contributions even though they cannot contain child content.
+
+Predefined content uses the shared attribute and class semantics described under [Markup](#markup), supplied by `consistent-syntax`; extensions do not introduce a separate runtime policy. Caller attributes replace predefined non-class values in both object and explicit `attr()` form. Caller `false`, `null`, or `undefined` removes an earlier attribute. Class contributions accumulate in order; explicit false/nullish class values clear earlier tokens.
+
+For example, the configured `logo({ src: "/brand.png" })` replaces the predefined source. A button symbol with `attrs: { disabled: true }` can be enabled with `{ disabled: false }`. The configured `panel({ class: "caller" })` retains `container preset caller` in that order.
+
+#### Babel and TypeScript
+
+For direct Babel usage, pass the same definitions to the plugin factory:
+
+```ts
+import { transformAsync } from "@babel/core"
+import { hypeupBabelPlugin } from "@hypeup/babel"
+
+const result = await transformAsync(source, {
+  plugins: [hypeupBabelPlugin({ extensions: [utilities] })],
+})
+```
+
+Without `extensions`, only built-in primitives are recognized. Extension roots are included in the build plugin's pre-scan, including roots contributed only by dotted keys.
+
+Extension TypeScript declarations remain user-managed: provide ambient declarations matching the configured global names, dotted members, and callable element or alias forms. Configuration alone does not make those names known to TypeScript. Automatic declaration generation belongs to the separate `extension-type-gen` change and is not included here.
 
 ## License
 
