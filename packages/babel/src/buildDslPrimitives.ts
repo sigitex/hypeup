@@ -4,6 +4,13 @@ import {
   htmlTags,
   voidHtmlTags,
 } from "@hypeup/lexicon/primitives"
+import type {
+  HypeupExtension,
+  ExtensionSymbol,
+  PropSymbol,
+  ClassNameSymbol,
+  ElementSymbol,
+} from "./HypeupExtension"
 
 export type HtmlElementPrimitive = {
   kind: "htmlElement"
@@ -22,14 +29,28 @@ export type BuiltinPrimitive = {
   module?: string
 }
 
+export type PropConstantPrimitive = Omit<PropSymbol, "type"> & {
+  kind: "prop-constant"
+}
+export type ClassNameConstantPrimitive = Omit<ClassNameSymbol, "type"> & {
+  kind: "className-constant"
+}
+export type ElementConstantPrimitive = Omit<ElementSymbol, "type"> & {
+  kind: "element-constant"
+  isVoid: boolean
+}
+
 export type Primitive =
   | HtmlElementPrimitive
   | AtRulePrimitive
   | CssPropertyPrimitive
   | BuiltinPrimitive
+  | PropConstantPrimitive
+  | ClassNameConstantPrimitive
+  | ElementConstantPrimitive
 
 /** Build an O(1) lookup table of all DSL primitives. */
-export function buildDslPrimitives(): Map<string, Primitive> {
+export function buildDslPrimitives(extensions: HypeupExtension[] = []): Map<string, Primitive> {
   const table = new Map<string, Primitive>()
 
   // HTML elements (non-void)
@@ -96,5 +117,68 @@ export function buildDslPrimitives(): Map<string, Primitive> {
     table.set(name, { kind: "builtin", name, module: "@hypeup/client" })
   }
 
+  const reservedRoots = new Set(table.keys())
+  const definitions = new Map<string, ExtensionSymbol>()
+  for (const extension of extensions) {
+    for (const [name, symbol] of Object.entries(extension)) {
+      if (reservedRoots.has(name.split(".")[0])) {
+        throw new Error(`Extension symbol "${name}" uses a reserved built-in root`)
+      }
+      if (definitions.has(name)) {
+        throw new Error(`Duplicate extension symbol "${name}"`)
+      }
+      definitions.set(name, symbol)
+    }
+  }
+
+  for (const [name, symbol] of definitions) {
+    switch (symbol.type) {
+      case "prop":
+        table.set(name, { kind: "prop-constant", css: symbol.css, value: symbol.value })
+        break
+      case "className":
+        table.set(name, { kind: "className-constant", value: symbol.value })
+        break
+      case "element":
+        table.set(name, {
+          kind: "element-constant",
+          tag: symbol.tag,
+          className: symbol.className,
+          props: symbol.props,
+          attrs: symbol.attrs,
+          isVoid: (voidHtmlTags as readonly string[]).includes(symbol.tag),
+        })
+        break
+    }
+  }
+
+  for (const name of definitions.keys()) {
+    resolveAlias(name, definitions, table, new Set())
+  }
+
   return table
+}
+
+function resolveAlias(
+  name: string,
+  definitions: Map<string, ExtensionSymbol>,
+  table: Map<string, Primitive>,
+  resolving: Set<string>,
+): Primitive {
+  const primitive = table.get(name)
+  if (primitive) {
+    return primitive
+  }
+  const symbol = definitions.get(name)
+  if (!symbol || symbol.type !== "alias") {
+    throw new Error(`Missing extension alias target "${name}"`)
+  }
+  if (resolving.has(name)) {
+    throw new Error(`Extension alias cycle: ${[...resolving, name].join(" -> ")}`)
+  }
+  resolving.add(name)
+  const target = resolveAlias(symbol.target, definitions, table, resolving)
+  resolving.delete(name)
+  table.set(name, target)
+  return target
 }
