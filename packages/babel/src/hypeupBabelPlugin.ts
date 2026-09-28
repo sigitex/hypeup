@@ -6,7 +6,11 @@ import {
   buildDslPrimitives,
   type Primitive,
   type CssPropertyPrimitive,
+  type PropConstantPrimitive,
+  type ClassNameConstantPrimitive,
+  type ElementConstantPrimitive,
 } from "./buildDslPrimitives"
+import type { HypeupExtension } from "./HypeupExtension"
 import { kebab } from "./kebab"
 
 const RUNTIME_MODULE = "@hypeup/runtime"
@@ -27,6 +31,11 @@ const JS_BUILTINS = new Set([
 ])
 
 type ImportCache = Map<string, t.Identifier>
+type PrimitivePath = NodePath<t.Identifier | t.MemberExpression>
+
+export type HypeupBabelPluginOptions = {
+  extensions?: HypeupExtension[]
+}
 
 /** Get or create a cached import for a helper. */
 function getImport(
@@ -52,22 +61,20 @@ function getImport(
  */
 function collectChain(
   node: t.MemberExpression,
-): { root: string; segments: string[] } | null {
+  root: t.Node,
+): { segments: string[] } | null {
   const segments: string[] = []
   let current: t.Node = node
 
-  while (t.isMemberExpression(current)) {
-    if (!t.isIdentifier(current.property) || current.computed) {
+  while (current !== root) {
+    if (!t.isMemberExpression(current) || !t.isIdentifier(current.property) || current.computed) {
       return null
     }
     segments.unshift(current.property.name)
     current = current.object
   }
 
-  if (!t.isIdentifier(current)) {
-    return null
-  }
-  return { root: current.name, segments }
+  return { segments }
 }
 
 /** Wrap arguments in an ArrayExpression. */
@@ -85,8 +92,11 @@ function helperCall(
   return t.callExpression(getImport(path, cache, helper), args)
 }
 
-export function hypeupBabelPlugin(): PluginObj {
-  const table = buildDslPrimitives()
+export function hypeupBabelPlugin(options: HypeupBabelPluginOptions = {}): PluginObj {
+  const table = buildDslPrimitives(options.extensions)
+  const extensionRoots = new Set(
+    (options.extensions ?? []).flatMap(extension => Object.keys(extension).map(name => name.split(".")[0])),
+  )
 
   return {
     name: "hypeup",
@@ -94,7 +104,7 @@ export function hypeupBabelPlugin(): PluginObj {
       Identifier(path: NodePath<t.Identifier>) {
         const { name } = path.node
         const primitive = table.get(name)
-        if (!primitive) {
+        if (!primitive && !extensionRoots.has(name)) {
           return
         }
 
@@ -115,7 +125,11 @@ export function hypeupBabelPlugin(): PluginObj {
         }
         const cache = state._hypeupImports
 
-        handlePrimitive(path, cache, primitive)
+        if (extensionRoots.has(name)) {
+          handleExtension(path, cache, table)
+        } else if (primitive) {
+          handlePrimitive(path, cache, primitive)
+        }
       },
 
       CallExpression(path: NodePath<t.CallExpression>) {
@@ -174,7 +188,7 @@ export function hypeupBabelPlugin(): PluginObj {
 }
 
 function handlePrimitive(
-  path: NodePath<t.Identifier>,
+  path: PrimitivePath,
   cache: ImportCache,
   primitive: Primitive,
 ): void {
@@ -191,13 +205,157 @@ function handlePrimitive(
     case "builtin":
       handleBuiltin(path, cache, primitive.name, primitive.module)
       break
+    case "prop-constant":
+      handlePropConstant(path, cache, primitive)
+      break
+    case "className-constant":
+      handleClassNameConstant(path, cache, primitive)
+      break
+    case "element-constant":
+      handleElementConstant(path, cache, primitive)
+      break
   }
+}
+
+function handleExtension(
+  path: NodePath<t.Identifier>,
+  cache: ImportCache,
+  table: Map<string, Primitive>,
+): void {
+  const paths: PrimitivePath[] = [path]
+  const names = [path.node.name]
+  let current: PrimitivePath = path
+  while (
+    (current.parentPath?.isMemberExpression() || current.parentPath?.isOptionalMemberExpression()) &&
+    current.parentPath.node.object === current.node
+  ) {
+    const parent = current.parentPath
+    if (!parent.isMemberExpression() || parent.node.computed || !t.isIdentifier(parent.node.property)) {
+      return
+    }
+    names.push(parent.node.property.name)
+    paths.push(parent)
+    current = parent
+  }
+  if (current.parentPath?.isOptionalCallExpression() && current.parentPath.node.callee === current.node) {
+    return
+  }
+
+  for (let length = names.length; length > 0; length--) {
+    const primitive = table.get(names.slice(0, length).join("."))
+    if (!primitive) {
+      continue
+    }
+    const suffix = names.slice(length)
+    if (!supportsExtensionSuffix(primitive, suffix, current)) {
+      throw path.buildCodeFrameError(`Unresolved extension path "${names.join(".")}"`)
+    }
+    handlePrimitive(paths[length - 1], cache, primitive)
+    return
+  }
+  if (names.length > 1) {
+    throw path.buildCodeFrameError(`Unresolved extension path "${names.join(".")}"`)
+  }
+}
+
+function supportsExtensionSuffix(
+  primitive: Primitive,
+  suffix: string[],
+  path: PrimitivePath,
+): boolean {
+  if (suffix.length === 0) {
+    return true
+  }
+  const isCall = path.parentPath?.isCallExpression() && path.parentPath.node.callee === path.node
+  switch (primitive.kind) {
+    case "element-constant":
+      return true
+    case "htmlElement":
+      return isCall
+    case "cssProperty":
+      return suffix.length === 1 && !isCall && primitive.keywords.includes(kebab(suffix[0]))
+    case "builtin":
+      return suffix.length === 1 && (
+        (primitive.name === "doctype" && suffix[0] === "html5" && !isCall) ||
+        (primitive.name === "rule" && isCall)
+      )
+    default:
+      return false
+  }
+}
+
+function rejectConstantCall(path: PrimitivePath): void {
+  const parent = path.parentPath
+  if (
+    (parent?.isCallExpression() || parent?.isNewExpression()) &&
+    parent.node.callee === path.node
+  ) {
+    throw path.buildCodeFrameError("Extension constants are not callable")
+  }
+}
+
+function handlePropConstant(
+  path: PrimitivePath,
+  cache: ImportCache,
+  primitive: PropConstantPrimitive,
+): void {
+  rejectConstantCall(path)
+  path.replaceWith(helperCall(path, cache, "prop", [
+    t.stringLiteral(primitive.css),
+    t.stringLiteral(primitive.value),
+  ]))
+}
+
+function handleClassNameConstant(
+  path: PrimitivePath,
+  cache: ImportCache,
+  primitive: ClassNameConstantPrimitive,
+): void {
+  rejectConstantCall(path)
+  path.replaceWith(helperCall(path, cache, "className", [t.stringLiteral(primitive.value)]))
+}
+
+function handleElementConstant(
+  path: PrimitivePath,
+  cache: ImportCache,
+  primitive: ElementConstantPrimitive,
+): void {
+  const contents: t.Expression[] = []
+  if (primitive.className !== undefined) {
+    contents.push(helperCall(path, cache, "className", [t.stringLiteral(primitive.className)]))
+  }
+  for (const [name, value] of Object.entries(primitive.props ?? {})) {
+    contents.push(helperCall(path, cache, "prop", [t.stringLiteral(name), t.stringLiteral(value)]))
+  }
+  for (const [name, value] of Object.entries(primitive.attrs ?? {})) {
+    contents.push(helperCall(path, cache, "attr", [t.stringLiteral(name), t.valueToNode(value)]))
+  }
+
+  let reference = path
+  while (reference.parentPath?.isMemberExpression() && reference.parentPath.node.object === reference.node) {
+    const parent = reference.parentPath
+    const property = parent.node.property as t.Identifier
+    const className = t.stringLiteral(kebab(property.name))
+    contents.push(helperCall(path, cache, "className", [className]))
+    reference = parent
+  }
+  const parent = reference.parentPath
+  const call = parent?.isCallExpression() && parent.node.callee === reference.node ? parent : null
+  if (call) {
+    contents.push(...call.node.arguments as t.Expression[])
+  }
+  const helper = primitive.isVoid ? "elemVoid" : "elem"
+  const target = call ?? reference
+  target.replaceWith(helperCall(path, cache, helper, [
+    t.stringLiteral(primitive.tag),
+    argsArray(contents),
+  ]))
 }
 
 // HTML Elements
 
 function handleHtmlElement(
-  path: NodePath<t.Identifier>,
+  path: PrimitivePath,
   cache: ImportCache,
   tag: string,
   isVoid: boolean,
@@ -220,7 +378,7 @@ function handleHtmlElement(
       memberPath.parentPath.node.callee === memberPath.node
     ) {
       const callPath = memberPath.parentPath
-      const chain = collectChain(memberPath.node as t.MemberExpression)
+      const chain = collectChain(memberPath.node as t.MemberExpression, path.node)
       if (!chain) {
         return
       }
@@ -266,7 +424,7 @@ function handleHtmlElement(
 // CSS Properties
 
 function handleCssProperty(
-  path: NodePath<t.Identifier>,
+  path: PrimitivePath,
   cache: ImportCache,
   primitive: CssPropertyPrimitive,
 ): void {
@@ -314,7 +472,7 @@ function handleCssProperty(
 // At-Rules
 
 function handleAtRule(
-  path: NodePath<t.Identifier>,
+  path: PrimitivePath,
   cache: ImportCache,
   keyword: string,
 ): void {
@@ -347,7 +505,7 @@ function handleAtRule(
 // Builtins
 
 function handleBuiltin(
-  path: NodePath<t.Identifier>,
+  path: PrimitivePath,
   cache: ImportCache,
   name: string,
   module?: string,
