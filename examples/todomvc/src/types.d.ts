@@ -1,4 +1,3 @@
-// biome-ignore lint/suspicious/noExplicitAny: This is intentional
 declare type Content = any
 
 declare module "cssesc" {

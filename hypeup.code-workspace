@@ -3,6 +3,9 @@
 		{
 			"name": "hypeup",
 			"path": "."
+		},
+		{
+			"path": "../hypeup-extension-tests"
 		}
 	],
 	"settings": {

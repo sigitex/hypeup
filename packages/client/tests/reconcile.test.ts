@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: test file */
 import { describe, test, expect } from "bun:test"
 import { lis, reconcile, type KeyedItem } from "../src/reconcile"
 

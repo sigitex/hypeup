@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: it's ok */
 declare module "@webref/elements" {
   export function listAll(): Promise<Record<string, ElementsReference>>
 

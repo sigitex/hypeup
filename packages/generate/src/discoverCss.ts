@@ -1,5 +1,3 @@
-/** biome-ignore-all lint/suspicious/noNonNullAssertedOptionalChain: it's ok */
-/** biome-ignore-all lint/suspicious/noPrototypeBuiltins: it's ok */
 import { listAll as getCssRefs, type RefType } from "@webref/css"
 import { definitionSyntax, type DSNodeGroup } from "css-tree"
 
